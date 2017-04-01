@@ -1,0 +1,43 @@
+                                    <table id="provinsi" class="table table-bordered">
+                                        <thead>
+                                            <col>
+                                            <col>
+                                            <col>
+                                            <colgroup span="3"></colgroup>
+                                            <colgroup span="5"></colgroup>
+                                            <tr>
+                                                <th width="5%" rowspan="2" class="text-center" style="vertical-align: middle">No.</th>
+                                                <th width="20%" rowspan="2" class="text-center" style="vertical-align: middle">Provinsi</th>
+                                                <th width="10%" rowspan="2" class="text-center" style="vertical-align: middle">Taksi</th>
+                                                <th width="25%" colspan="3" scope="colgroup" class="text-center">Uang Harian</th>
+                                                <th width="35%" colspan="5" scope="colgroup" class="text-center">Tarif Hotel</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Luar kota</th>
+                                                <th class="text-center">Dalam kota > 8 jam</th>
+                                                <th class="text-center" style="vertical-align: middle">Diklat</th>
+                                                <th class="text-center" style="vertical-align: middle">Eselon I</th>
+                                                <th class="text-center" style="vertical-align: middle">Eselon II</th>
+                                                <th class="text-center">Eselon III/Gol. IV</th>
+                                                <th class="text-center">Eselon IV/Gol. III</th>
+                                                <th class="text-center" style="vertical-align: middle">Gol. I/II</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each provinsi}}
+                                            <tr name="{{name}}">
+                                                <td>{{inc @key}}</td>
+                                                <td>{{label}}</td>
+                                                <td jenis="taksi_dn" class="text-right">{{taksi_dn}}</td>
+                                                <td jenis="har_dn_lk" class="text-right">{{har_dn_lk}}</td>
+                                                <td jenis="har_dn_dk" class="text-right">{{har_dn_dk}}</td>
+                                                <td jenis="har_dn_dik" class="text-right">{{har_dn_dik}}</td>
+                                                <td jenis="inap_dn_es1" class="text-right">{{inap_dn_es1}}</td>
+                                                <td jenis="inap_dn_es2" class="text-right">{{inap_dn_es2}}</td>
+                                                <td jenis="inap_dn_es3_g4" class="text-right">{{inap_dn_es3_g4}}</td>
+                                                <td jenis="inap_dn_es4_g3" class="text-right">{{inap_dn_es4_g3}}</td>
+                                                <td jenis="inap_dn_g12" class="text-right">{{inap_dn_g12}}</td>
+                                            </tr>
+                                        {{/each}}                                            
+                                        </tbody>
+                                    </table>

@@ -1,0 +1,22 @@
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="35%">Nama</th>
+                                                <th width="30%">Jabatan (Untuk SPPD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each pegawai}}
+                                            <tr nip="{{nip}}" jenis="sppd_surat">
+                                                <td>{{nama}}</td>
+                                                <td>
+                                                    <select id="select" name="ttd_surat_tugas" class="form-control input-lg jab" size="1">
+                                                    {{#each jabatan}}
+                                                        <option index="{{@index}}" value="{{this}}" {{#if_eq @index ../sppd_surat}}selected{{/if_eq}}>{{this}}</option>
+                                                    {{/each}}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        {{/each}}                                            
+                                        </tbody>
+                                    </table>

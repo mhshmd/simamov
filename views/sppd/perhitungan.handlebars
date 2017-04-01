@@ -1,0 +1,618 @@
+<div class="animated fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card-group mb-0">
+                    <div class="card p-2">
+                        <div class="card-block">
+                            <div class="row">
+                                <h3><i class="icon-check"></i> Perhitungan</h3>
+                                <p class="text-muted">Pengeluaran Riil, Perincian, dan Kwitansi</p>
+                            </div>
+                            <form id="perhitungan" action="/sppd/perhitungan" method="POST">  
+                                <div class="form-group row">
+                                    <label for="nomor">Nomor</label>
+                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor" value="" required>
+                                </div>    
+                                <div class="form-group row">
+                                    <label for="nomor">Nama</label>
+                                    <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-control" placeholder="Nama" value="" required>
+                                </div>    
+                                <div class="form-group row">
+                                    <label for="nomor">Golongan</label>
+                                    <input type="text" id="gol" name="gol" class="form-control" placeholder="Golongan" value="" required>
+                                </div>                                                                         
+                                <div class="form-group row">
+                                    <label for="datetimepicker1">Transport lokal dari tempat asal</label>                                  
+                                    <div class="form-group row">
+                                        <div class="col-md-6">                                                
+                                            <input type="text-input" id="w_dari_t4_asal" class="form-control input-group provinsi" name="w_dari_t4_asal" value="DKI Jakarta" placeholder="Wilayah" required>
+                                        </div> 
+                                        <div class="col-md-6">                                                
+                                            <input type="text-input" id="t_dari_t4_asal" class="form-control input-group numberOnly tr" name="t_dari_t4_asal" value="" placeholder="Biaya Transport" required>
+                                        </div> 
+                                    </div>
+                                </div>                                                                    
+                                <div class="form-group row">
+                                    <label for="datetimepicker1">Trasport lokal ke tempat tujuan</label>                                  
+                                    <div class="form-group row">
+                                        <div class="col-md-6">                                                
+                                            <input type="text-input" id="w_dari_t4_tujuan" class="form-control input-group" name="w_dari_t4_asal" value="" placeholder="Wilayah" required>
+                                        </div> 
+                                        <div class="col-md-6">                                                
+                                            <input type="text-input" id="t_dari_t4_tujuan" class="form-control input-group numberOnly tr ft" name="t_dari_t4_tujuan" value="" placeholder="Biaya Transport" required>                                           
+                                        </div> 
+                                    </div>
+                                </div>                                                                      
+                                <div class="form-group row">
+                                    <label>B. Penginapan</label>                                  
+                                    <div class="form-group row">
+                                        <div class="col-md-4">                                                
+                                            <input type="text-input" id="jumlah_menginap" class="form-control input-group numberOnly bp tr ft" name="jumlah_menginap" value="0" placeholder="Jml hari" required>
+                                        </div> 
+                                        <div class="col-md-4">                                                
+                                            <input type="text-input" id="biaya_inap" class="form-control input-group numberOnly bp tr ft" name="biaya_inap" value="" placeholder="Biaya inap" required>                                           
+                                        </div> 
+                                        <div class="col-md-4">                                                
+                                            <input type="text-input" id="totalb_inap" class="form-control input-group numberOnly tr ft" name="totalb_inap" value="" placeholder="Total b. inap" required>                                           
+                                        </div> 
+                                    </div>
+                                </div>                                                                   
+                                <div class="form-group row">
+                                    <label for="datetimepicker1">Total Riil</label>                                  
+                                    <div class="form-group row">
+                                        <div class="col-md-6">                                                
+                                            <input type="text-input" id="total_riil" class="form-control input-group ft numberOnly" name="total_riil" value="" placeholder="Total" required>
+                                        </div> 
+                                        <div class="col-md-12"> 
+                                            <input type="text-input" id="total_terbilang" class="form-control input-group ft" name="total_terbilang" value="" placeholder="Terbilang" required>                                           
+                                        </div> 
+                                    </div>
+                                </div> 
+                                <input style="display: none;" type="text" name="bendahara_nama" value="{{#with bendahara}}{{nama}}{{/with}}">
+                                <input style="display: none;" type="text" name="bend_nip" value="{{#with bendahara}}{{nip}}{{/with}}">                                      
+                                <div class="form-group row">
+                                    <label for="nomor">Biaya Tiket</label>
+                                    <input type="text" id="harga_tiket" name="harga_tiket" class="form-control ft numberOnly" placeholder="Tiket" value="0" required>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="nomor">Uang harian</label>                               
+                                    <div class="form-group row">                                    
+                                        <div class="col-md-3">      
+                                            <input type="text" id="harian_hari" name="harian_hari" class="form-control ht numberOnly ft" placeholder="hari" value="0" required>
+                                        </div> 
+                                        <div class="col-md-4"> 
+                                            <input type="text-input" id="harian_biaya" class="form-control input-group ht numberOnly ft" name="harian_biaya" value="0" placeholder="Biaya harian" required>
+                                        </div>  
+                                        <div class="col-md-5"> 
+                                            <input type="text" id="harian_total" name="harian_total" class="form-control ft numberOnly" placeholder="Total harian" value="0" required> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label>Hotel</label>                                
+                                    <div class="form-group row">                                    
+                                        <div class="col-md-3">      
+                                            <input type="text" id="hotel_hari" name="hotel_hari" class="form-control uh numberOnly ft" placeholder="hari" value="0" required>
+                                        </div> 
+                                        <div class="col-md-4"> 
+                                            <input type="text-input" id="hotel_biaya" class="form-control input-group uh numberOnly ft" name="hotel_biaya" value="0" placeholder="Biaya hotel" required>                                           
+                                        </div>  
+                                        <div class="col-md-5"> 
+                                            <input type="text-input" id="hotel_total" class="form-control input-group ft numberOnly" name="hotel_total" value="0" placeholder="Total Hotel" required>                                           
+                                        </div> 
+                                    </div>
+                                </div>                                                                     
+                                <div class="form-group row">
+                                    <label for="nomor">Total Perincian</label>                             
+                                    <div class="form-group row">                                    
+                                        <div class="col-md-12">
+                                            <input type="text" id="total_rincian" name="total_rincian" class="form-control numberOnly ft" placeholder="Total rincian" value="0" required>   
+                                        </div> 
+                                        <div class="col-md-12"> 
+                                            <input type="text-input" id="total_rincian_terbilang" class="form-control input-group" name="total_rincian_terbilang" value="" placeholder="Terbilang" required>                                          
+                                        </div> 
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <label for="tgl_hari_ini">Tanggal Pembuatan Pehitungan</label>  
+                                    <div class="col-md-6" style="padding-left: 0">                                                
+                                        <input type="text-input" id="tgl_hari_ini" class="form-control input-group date tgl_ttd" name="tgl_hari_ini" value="" placeholder="Tgl Tanda Tangan" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button id="generateLetter" type="submit" class="btn btn-primary px-2">Buat Surat</button><span><pre> </pre></span>
+                                    <button id="reset" class="btn btn-secondary px-2">Reset</button>
+                                </div>
+                            </form> 
+                            <br>
+                            <div class="row">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#home3" role="tab" aria-controls="home"><i class="icon-hourglass"></i> Belum</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile"><i class="icon-check"></i> Sudah</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="home3" role="tabpanel">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10%">No.</th>
+                                                    <th width="30%">Nama</th>
+                                                    <th width="28%">Tanggal Kembali</th>
+                                                    <th width="20%">Pilihan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each surat}}
+                                                {{#unless done}}  
+                                                    <tr nomor="{{_id}}" gol="{{gol}}" class="undone">
+                                                        <td>{{_id}}</td>
+                                                        <td>{{nama_lengkap}}</td>
+                                                        <td>{{tgl_kembali}}</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success hitung"><i class="icon-check"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                {{/unless}}
+                                            {{/each}}                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane" id="profile3" role="tabpanel">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10%">No.</th>
+                                                    <th width="30%">Nama</th>
+                                                    <th width="28%">Tanggal Kembali</th>
+                                                    <th width="20%">Pilihan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each surat}}
+                                                {{#if done}}                                                
+                                                    <tr nomor="{{_id}}" gol="{{gol}}" class="done">
+                                                        <td>{{_id}}</td>
+                                                        <td>{{nama_lengkap}}</td>
+                                                        <td>{{tgl_kembali}}</td>
+                                                        <td >
+                                                            <button type="button" class="btn btn-primary edit"><i class="icon-pencil"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                {{/if}}
+                                            {{/each}}                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <iframe id="realTimeView" class="preview-pane" type="application/pdf" width="100%" height="690" frameborder="0" style="position:relative;z-index:999;" src=""></iframe>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/moment.min.js"></script>
+
+<script src="/js/id.js"></script>
+
+<script src="/js/bootstrap-datetimepicker.js"></script>
+
+<script src="/js/bootstrap-tokenfield.js"></script>
+
+<script src="/js/typeahead.bundle.min.js"></script>
+
+<script type="text/javascript">
+    document.title = 'Perhitungan - SIMAMOV';
+    //ubah breadcumb
+    $('#level3').text('SPPD / Perhitungan');
+    //load css timepicker
+    var head = $('head');
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-datetimepicker.min.css"));
+
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
+
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/tokenfield-typeahead.css"));
+
+    $("#realTimeView").attr("src", 'http://'+location.host+"/result/sppd_perhitungan.pdf");
+
+    function terbilang(bilangan) {
+
+      bilangan    = String(bilangan);
+      var angka   = new Array('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0');
+      var kata    = new Array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan');
+      var tingkat = new Array('','Ribu','Juta','Milyar','Triliun');
+
+      var panjang_bilangan = bilangan.length;
+
+      /* pengujian panjang bilangan */
+      if (panjang_bilangan > 15) {
+        kaLimat = "Diluar Batas";
+        return kaLimat;
+      }
+
+      /* mengambil angka-angka yang ada dalam bilangan, dimasukkan ke dalam array */
+      for (i = 1; i <= panjang_bilangan; i++) {
+        angka[i] = bilangan.substr(-(i),1);
+      }
+
+      i = 1;
+      j = 0;
+      kaLimat = "";
+
+
+      /* mulai proses iterasi terhadap array angka */
+      while (i <= panjang_bilangan) {
+
+        subkaLimat = "";
+        kata1 = "";
+        kata2 = "";
+        kata3 = "";
+
+        /* untuk Ratusan */
+        if (angka[i+2] != "0") {
+          if (angka[i+2] == "1") {
+            kata1 = "Seratus";
+          } else {
+            kata1 = kata[angka[i+2]] + " Ratus";
+          }
+        }
+
+        /* untuk Puluhan atau Belasan */
+        if (angka[i+1] != "0") {
+          if (angka[i+1] == "1") {
+            if (angka[i] == "0") {
+              kata2 = "Sepuluh";
+            } else if (angka[i] == "1") {
+              kata2 = "Sebelas";
+            } else {
+              kata2 = kata[angka[i]] + " Belas";
+            }
+          } else {
+            kata2 = kata[angka[i+1]] + " Puluh";
+          }
+        }
+
+        /* untuk Satuan */
+        if (angka[i] != "0") {
+          if (angka[i+1] != "1") {
+            kata3 = kata[angka[i]];
+          }
+        }
+
+        /* pengujian angka apakah tidak nol semua, lalu ditambahkan tingkat */
+        if ((angka[i] != "0") || (angka[i+1] != "0") || (angka[i+2] != "0")) {
+          subkaLimat = kata1+" "+kata2+" "+kata3+" "+tingkat[j]+" ";
+        }
+
+        /* gabungkan variabe sub kaLimat (untuk Satu blok 3 angka) ke variabel kaLimat */
+        kaLimat = subkaLimat + kaLimat;
+        i = i + 3;
+        j = j + 1;
+
+      }
+
+      /* mengganti Satu Ribu jadi Seribu jika diperlukan */
+      if ((angka[5] == "0") && (angka[6] == "0")) {
+        kaLimat = kaLimat.replace("Satu Ribu","Seribu");
+      }
+      kaLimat = kaLimat.replace(/\s+/g, " ") + "Rupiah";
+
+      // kaLimat = kaLimat.replace(/\s+Rupiah$/, " Rupiah")
+
+      return kaLimat.replace(/^\s/g, "");
+    }
+
+    function formatUang(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function forceInt(x){
+        if(!x) x = '0';
+        return parseInt(x.replace(/\D/g, ""));
+    }
+
+    function forceSumInput(arrNumber){
+        var total = 0;
+        for (var i = 0; i < arrNumber.length; i++) {
+            if(!arrNumber[i].val()){
+                continue;
+            }
+            total += forceInt(arrNumber[i].val());
+        }
+
+        return total;
+    }
+
+    function forceMultInput(arrNumber){
+        var total = 1;
+        for (var i = 0; i < arrNumber.length; i++) {
+            if(!arrNumber[i].val()){
+                continue;
+            }
+            total *= forceInt(arrNumber[i].val());
+        }
+
+        return total;
+    }
+
+    function isPrintablePressed(e){        
+        var regex = new RegExp("^[a-zA-Z0-9`]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        //console.log(">>"+e.keyCode+"<<");//||e.keyCode == 9
+        if (regex.test(str)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function ajaxGet(url, method, data){
+
+         return $.ajax({
+            url : url,
+            type: method,
+            data: data
+            // success: function (data) {
+            //     return data;
+            // },
+            // error: function (jXHR, textStatus, errorThrown) {
+            //     $.toaster({ priority : 'warning', title : 'Kesalahan', message : 'Terjadi kesalahan, mohon hubungi bagian teknis.'});
+            // }
+        });
+
+    }
+
+    $('.numberOnly').on({
+        'keypress': function(e){
+            var regex = new RegExp("^[0-9]+$");
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+            if (regex.test(str) || e.keyCode == 9 || e.keyCode == 13) {
+                return true;
+            }
+
+            e.preventDefault();
+            return false;
+        },
+        'keyup': function(e){
+            if(!isPrintablePressed(e)) return;
+            $(this).val(formatUang(forceInt($(this).val())));
+        }
+    });
+
+    //Input tgl sekarang utk ttd
+    $(".tgl_ttd").val(moment().format('D MMMM YYYY'));
+    $('#tgl_hari_ini').datetimepicker({
+        locale: 'id',
+        format: 'D MMMM YYYY'
+    });
+
+    //Submit & Update pdf view
+    $('#perhitungan').on('submit', function(e) {
+        e.preventDefault();
+        if($('#hotel_hari').val()>0 && $('#hotel_total')<1){
+
+            alert("Mohon cek jumlah hari di hotel.")
+            return;
+
+        }
+        $('#generateLetter').prop('disabled', true);
+        $("#generateLetter").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#generateLetter").text());
+        $.ajax({
+            url : $(this).attr('action') || window.location.pathname,
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                $("#generateLetter").html('Buat Surat');
+                $('#generateLetter').prop('disabled', false);
+                $("#realTimeView").attr("src", 'http://'+location.host+data.result);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
+
+    $('#reset').click(function(){
+
+        $('#perhitunganSTMenu').trigger('click');
+
+    })
+
+    //Total hari menginap/hotel (Inisial)
+    var n_total = 0;
+
+    //Ambil data SPPD bd nomor
+    $(".hitung").click(function(){
+        ajaxGet('/sppd/perhitungan/load', "POST", {nomor: $(this).closest('tr').attr('nomor')}).done(function(data) {
+            console.log(data);
+            $('#nomor').val(data._id+"/SPD/STIS/"+data.tahun_ini);//Nomor surat
+            $('#nama_lengkap').val(data.nama_lengkap);//nama lengkap
+            $('#gol').val(data.gol);//gol
+            $('#w_dari_t4_tujuan').val(data.prov);//Prov tujuan
+            $('#harian_hari').val(data.jumlah_hari);
+            $('#hotel_hari').val(parseInt(data.jumlah_hari)-1);
+            n_total = parseInt(data.jumlah_hari)-1;
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("#nama_lengkap").focus();
+        });
+    });
+
+    //Ambil data SPPD bd nomor
+    $(".edit").click(function(){
+        ajaxGet('/sppd/perhitungan/load', "POST", {nomor: $(this).closest('tr').attr('nomor')}).done(function(data) {
+            console.log(data);
+            $('#nomor').val(data._id+"/SPD/STIS/"+data.tahun_ini);//Nomor surat
+            $('#nama_lengkap').val(data.nama_lengkap);//nama lengkap
+            $('#gol').val(data.gol);//gol
+            $('#w_dari_t4_tujuan').val(data.prov);//Prov tujuan
+            $('#harian_hari').val(data.jumlah_hari);
+            n_total = parseInt(data.jumlah_hari)-1;
+
+            $('#t_dari_t4_asal').val(data.t_dari_t4_asal);
+            $('#t_dari_t4_tujuan').val(data.t_dari_t4_tujuan);
+            $('#jumlah_menginap').val(data.jumlah_menginap);
+            $('#biaya_inap').val(data.biaya_inap);
+            $('#totalb_inap').val(data.totalb_inap);
+            $('#total_riil').val(data.total_riil);
+            $('#total_terbilang').val(data.total_terbilang);
+            $('#harga_tiket').val(data.harga_tiket);
+            $('#harian_hari').val(data.harian_hari);
+            $('#harian_biaya').val(data.harian_biaya);
+            $('#harian_total').val(data.harian_total);
+
+            $('#hotel_hari').val(data.hotel_hari);
+            $('#hotel_biaya').val(data.hotel_biaya);
+            $('#hotel_total').val(data.hotel_total);
+            $('#total_rincian').val(data.total_rincian);
+            $('#total_rincian_terbilang').val(data.total_rincian_terbilang);
+            $('#tgl_hari_ini').val(data.tgl_hari_ini);
+
+
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("#nama_lengkap").focus();
+        });
+    });
+
+
+
+    //field provinsi
+    $('.provinsi').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+            {
+                return $.getJSON(
+                    '/sppd/ajax/provinsi',
+                    { query: q },
+                    function (data) {
+                        states = [];
+                        map = {};
+
+                        $.each(data, function (i, state) {
+                            map[state.label] = state;
+                            states.push(state.label);
+                        });
+
+                        var states = $.map(states, function (string) { return { value: string }; });
+
+                        return p(states);
+                    });
+            }
+          }
+        });
+
+    $(".ft").on("change paste keyup", function(e) {
+        var total = forceSumInput([$('#total_riil'), $('#harga_tiket'), $('#harian_total'), $('#hotel_total')]);
+        $('#total_rincian').val(formatUang(total));
+        $('#total_rincian_terbilang').val(terbilang(total));
+    });
+
+    $(".ht").on("change paste keyup", function(e) {
+        var total = forceMultInput([$('#harian_hari'), $('#harian_biaya')]);
+        $('#harian_total').val(formatUang(total));
+    });
+
+    $(".uh").on("change paste keyup", function() {
+        var total = forceMultInput([$('#hotel_hari'), $('#hotel_biaya')]);
+        $('#hotel_total').val(formatUang(total));
+    });
+
+    //jika field prov berubah
+    $("#w_dari_t4_asal").on("change paste keyup", function() {
+        $.ajax({
+            url : '/sppd/perhitungan/biaya/taksi_dn',
+            type: "POST",
+            data: {label: $(this).val()},
+            success: function (data) {
+                $('#t_dari_t4_asal').val(formatUang(2*parseInt(data.taksi_dn)));
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
+
+    $("#w_dari_t4_tujuan").on("change paste keyup", function() {
+        console.log($(this).val());
+        $.ajax({
+            url : '/sppd/perhitungan/biaya/taksi_dn',
+            type: "POST",
+            data: {label: $(this).val()},
+            success: function (data) {
+                $('#t_dari_t4_tujuan').val(formatUang(2*parseInt(data.taksi_dn)));
+
+                if(/iv/i.test($('#gol').val())){
+                    $('#biaya_inap').val(formatUang(data.inap_dn_es3_g4));
+                } else if(/iii/i.test($('#gol').val())){
+                    $('#biaya_inap').val(formatUang(data.inap_dn_es4_g3));
+                } else if(/[i|ii]/i.test($('#gol').val())){
+                    $('#biaya_inap').val(formatUang(data.inap_dn_g12));
+                }
+                $('#harian_biaya').val(formatUang(data.har_dn_lk));
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
+
+    $(".bp").on("change paste keyup", function() {
+
+        var totalInap = formatUang(forceInt($('#jumlah_menginap').val())*(forceInt($("#biaya_inap").val())*0.3));
+
+        $("#totalb_inap").val(totalInap);
+    });
+
+    $(".tr").on("change paste keyup", function() {
+
+        var total_riil = forceSumInput([$('#t_dari_t4_tujuan'), $('#t_dari_t4_asal'), $('#totalb_inap')]);
+
+        if($(w_dari_t4_tujuan).val() == $(w_dari_t4_asal).val()){
+
+            total_riil -= forceInt($('#t_dari_t4_asal').val());
+
+        }
+                
+        $('#total_riil').val(formatUang(total_riil));
+                
+        $('#total_terbilang').val(terbilang(total_riil));
+    });
+
+    $("#jumlah_menginap").on("keyup", function(e) {
+
+        if(!$(this).val()){
+            $("#hotel_hari").val(n_total);
+            return;
+        }
+
+        $("#hotel_hari").val(n_total - forceInt($(this).val()));
+
+
+        if((forceInt($(this).val()) + forceInt($("#hotel_hari").val())) != n_total){
+
+            $(this).val(0);
+
+            $("#hotel_hari").val(n_total);
+
+            alert("Mohon cek jumlah hari menginap");
+
+        }
+
+    });
+</script>

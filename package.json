@@ -1,0 +1,33 @@
+{
+  "name": "simamov",
+  "version": "1.0.0",
+  "description": "Skripsi KS untuk memenuhi syarat gelar S.ST",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muh. Shamad",
+  "license": "ISC",
+  "dependencies": {
+    "angular-expressions": "0.3.0",
+    "async": "2.1.5",
+    "body-parser": "1.17.1",
+    "compression": "1.6.2",
+    "cookie-parser": "1.4.3",
+    "docxtemplater": "3.0.6",
+    "express": "4.15.2",
+    "express-handlebars": "3.0.0",
+    "express-session": "1.15.1",
+    "formidable": "1.1.1",
+    "handlebars-helper-equal": "^1.0.0",
+    "helmet": "3.5.0",
+    "jszip": "2.6.1",
+    "mongodb": "2.2.24",
+    "morgan": "1.8.1",
+    "mysql": "2.13.0",
+    "node-msoffice-pdf": "0.0.7",
+    "nodemon": "1.11.0",
+    "path": "0.12.7",
+    "pdf-merge": "0.1.0"
+  }
+}

@@ -1,0 +1,176 @@
+<script>
+    var requireJS = [];
+    
+    loadJS(requireJS, "js/views/main.js");
+</script>
+
+
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-inverse card-primary">
+                <div class="card-block pb-0">
+                    <div class="btn-group float-right">
+                        <button type="button" class="btn btn-transparent active dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-settings"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    <h4 class="mb-0">Rp 2,3 Milyar</h4>
+                    <p>PKL 56</p>
+                </div>
+                <div class="chart-wrapper px-1" style="height:70px;">
+                    <canvas id="card-chart1" class="chart" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-inverse card-info">
+                <div class="card-block pb-0">
+                    <button type="button" class="btn btn-transparent active p-0 float-right">
+                        <i class="icon-location-pin"></i>
+                    </button>
+                    <h4 class="mb-0">Rp 923 Juta</h4>
+                    <p>Rapat</p>
+                </div>
+                <div class="chart-wrapper px-1" style="height:70px;">
+                    <canvas id="card-chart2" class="chart" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-inverse card-warning">
+                <div class="card-block pb-0">
+                    <div class="btn-group float-right">
+                        <button type="button" class="btn btn-transparent active dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-settings"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    <h4 class="mb-0">Rp 1 Milyar</h4>
+                    <p>Perjalanan Dinas</p>
+                </div>
+                <div class="chart-wrapper" style="height:70px;">
+                    <canvas id="card-chart3" class="chart" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-inverse card-danger">
+                <div class="card-block pb-0">
+                    <div class="btn-group float-right">
+                        <button type="button" class="btn btn-transparent active dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-settings"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    <h4 class="mb-0">Rp 9,2 Milyar</h4>
+                    <p>TID</p>
+                </div>
+                <div class="chart-wrapper px-1" style="height:70px;">
+                    <canvas id="card-chart4" class="chart" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+
+    <div class="card">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h4 class="card-title mb-0">Realisasi Bulan Ini</h4>
+                    <div class="small text-muted">April 2017</div>
+                </div>
+                <!--/.col-->
+                <div class="col-sm-7 hidden-sm-down">
+                    <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i>
+                    </button>
+                    <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-1" data-toggle="buttons" aria-label="First group">
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="option1">Harian
+                            </label>
+                            <label class="btn btn-outline-secondary active">
+                                <input type="radio" name="options" id="option2" checked>Bulanan
+                            </label>
+                            <label class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="option3">Tahunan
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--/.col-->
+            </div>
+            <!--/.row-->
+            <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+                <canvas id="main-chart" class="chart" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card-footer">
+            <ul>
+                <li>
+                    <div class="text-muted">Realisasi</div>
+                    <strong>16,7 Milyar (40%)</strong>
+                    <div class="progress progress-xs mt-h">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </li>
+                <li class="hidden-sm-down">
+                    <div class="text-muted">Saldo</div>
+                    <strong>3,0 Milyar (20%)</strong>
+                    <div class="progress progress-xs mt-h">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="text-muted">Pagu</div>
+                    <strong>Rp 18,48 Milyar (60%)</strong>
+                    <div class="progress progress-xs mt-h">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </li>
+                <li class="hidden-sm-down">
+                    <div class="text-muted">Dibayarkan</div>
+                    <strong>14,7 Milyar (80%)</strong>
+                    <div class="progress progress-xs mt-h">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </li>
+                <li class="hidden-sm-down">
+                    <div class="text-muted">Pemasukkan</div>
+                    <strong>40.15%</strong>
+                    <div class="progress progress-xs mt-h">
+                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/.card-->
+</div>
+
+<script type="text/javascript">
+    document.title = 'Monitoring - SIMAMOV';
+    $('#level3').text('Monitoring');
+</script>
