@@ -139,6 +139,8 @@
 
 <script src="/js/mindmup-editabletable.js"></script>
 
+<script src="/js/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript">
     document.title = 'Pengaturan - SIMAMOV';
     //ubah breadcumb
@@ -147,6 +149,8 @@
     $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
 
     $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/tokenfield-typeahead.css"));
+
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css")); 
 
     function getHtml(tabId) {
         return $.ajax({
@@ -170,6 +174,12 @@
             $('.money').formatUang(); 
 
             if(id != 'jabPegTab'){
+                $('#provinsi, #tiket').DataTable({
+                    aaSorting: [],
+                    rowReorder: {
+                        enable: false
+                    }
+                });
 
                 $('#provinsi, #tiket').editableTableWidget();
 
