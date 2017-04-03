@@ -11,13 +11,13 @@
                                     <a class="nav-link active" data-toggle="tab" href="#home3" role="tab" aria-controls="home"><i class="icon-paper-clip"></i> Tanda Tangan</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="jabPegTab" class="nav-link tabAjax" data-toggle="tab" href="#jabPegTabchild" role="tab" aria-controls="profile"><i class="icon-people"></i> Jabatan Pegawai</a>
+                                    <a id="jabPegTab" class="nav-link tabAjax" data-toggle="tab" href="#jabPegTabchild" role="tab" aria-controls="jabPegTabchild"><i class="icon-people"></i> Jabatan Pegawai</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="biaya2Tab" class="nav-link tabAjax" data-toggle="tab" href="#biaya2Tabchild" role="tab" aria-controls="profile"><i class="icon-wallet"></i> Biaya-Biaya</a>
+                                    <a id="biaya2Tab" class="nav-link tabAjax" data-toggle="tab" href="#biaya2Tabchild" role="tab" aria-controls="biaya2Tabchild"><i class="icon-wallet"></i> Biaya-Biaya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="tiketPesawatTab" class="nav-link tabAjax" data-toggle="tab" href="#tiketPesawatTabchild" role="tab" aria-controls="profile"><i class="icon-plane"></i> Biaya Tiket</a>
+                                    <a id="tiketPesawatTab" class="nav-link tabAjax" data-toggle="tab" href="#tiketPesawatTabchild" role="tab" aria-controls="tiketPesawatTabchild"><i class="icon-plane"></i> Biaya Tiket</a>
                                 </li>
                             </ul>
 
@@ -31,7 +31,7 @@
                                             <input type="submit" class="btn btn-primary" value="Tambah">
                                         </form>                                        
                                         </div>
-                                    </div>                            
+                                    </div>                           
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -117,9 +117,9 @@
                                 </div>
                                 <div class="tab-pane" id="jabPegTabchild" role="tabpanel">
                                 </div>
-                                <div class="tab-pane active" id="biaya2Tabchild" role="tabpanel">
+                                <div class="tab-pane" id="biaya2Tabchild" role="tabpanel">
                                 </div>
-                                <div class="tab-pane active" id="tiketPesawatTabchild" role="tabpanel">
+                                <div class="tab-pane" id="tiketPesawatTabchild" role="tabpanel">
                                 </div>
                             </div>                                               
                         </div>
@@ -156,10 +156,18 @@
         });
     }
 
+    $.fn.formatUang = function () {
+        return this.each(function(){
+            $(this).text($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        })
+    }
+
     $(".tabAjax").click(function(){
         var id = $(this).attr('id');
         getHtml(id).done(function(data) {
-            $('#'+id+'child').html(data);       
+            $('#'+id+'child').html(data); 
+
+            $('.money').formatUang(); 
 
             if(id != 'jabPegTab'){
 
@@ -174,6 +182,9 @@
                     if (newValue == "") { 
                         return false; // reject change
                     }
+
+                    newValue = newValue.replace(/\./g, '');
+
                     $.ajax({
                         url : "/sppd/pengaturan/biaya/"+$(this).attr('jenis'),
                         type: "POST",
@@ -234,12 +245,11 @@
                             $("#tambah_tiket").html('Tambah');
                         },
                         error: function (jXHR, textStatus, errorThrown) {
-                            $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil ditambah'});
                             $("#tambah_tiket").html('Tambah');
                             $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal ditambah'});
                         }
                     });
-                });
+                });  
 
             } else{
 
@@ -257,7 +267,7 @@
                     });
                 });
 
-            }
+            } 
             
         });
     })

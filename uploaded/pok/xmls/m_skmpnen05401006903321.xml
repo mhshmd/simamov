@@ -1,0 +1,529 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData xml:space="preserve">
+	<xsd:schema id="VFPData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="VFPData" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="c_skmpnen" minOccurs="0" maxOccurs="unbounded">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="thang">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="4"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdjendok">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdsatker">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="6"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kddept">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdunit">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdprogram">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdgiat">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="4"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdoutput">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdlokasi">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdkabkota">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kddekon">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="1"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdsoutput">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdkmpnen">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdskmpnen">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="urskmpnen">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="200"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdib">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+				<xsd:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>701</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>702</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>703</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>707</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>751</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>752</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>001</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>Pembayaran Gaji dan Tunjangan</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>001</kdkmpnen>
+		<kdskmpnen> B</kdskmpnen>
+		<urskmpnen>Tunjangan Kinerja dan Lembur</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>Pemeriksaan Kesehatan, Extra Fooding, Poliklinik dan Obat-obatan</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> B</kdskmpnen>
+		<urskmpnen>PENGADAAN TOGA/PAKAIAN KERJA SOPIR/PESURUH/PERAWAT/DOKTER/SATPAM/TENAGA TEKNIS LAINNYA</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> C</kdskmpnen>
+		<urskmpnen>Pemeliharaan Bangunan Gedung Kantor dan Halaman Kantor</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> D</kdskmpnen>
+		<urskmpnen>Perawatan Kendaraan Bermotor Roda 4/6/10 dan Roda 2</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> E</kdskmpnen>
+		<urskmpnen>Perawatan/Pemeliharaan Sarana dan Prasarana Gedung Kantor</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> F</kdskmpnen>
+		<urskmpnen>Operasional Perkantoran dan Pimpinan</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdskmpnen> G</kdskmpnen>
+		<urskmpnen>Penanggung Jawab Pengelola Keuangan</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>996</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>301</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>996</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>302</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>997</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>403</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+	<c_skmpnen>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>997</kdoutput>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>404</kdkmpnen>
+		<kdskmpnen> A</kdskmpnen>
+		<urskmpnen>tanpa sub komponen</urskmpnen>
+		<kdib>00</kdib>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_skmpnen>
+</VFPData>

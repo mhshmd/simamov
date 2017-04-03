@@ -1,0 +1,300 @@
+<div class="animated fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card-group mb-0">
+                    <div class="card p-2">
+                        <div class="card-block"> 
+                            <h3><i class="icon-shuffle"></i> Petunjuk Operasional Kegiatan (POK)</h3>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-eye"></i> Utama</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="uploadTab" class="nav-link tabAjax" data-toggle="tab" href="#uploadTabchild" role="tab" aria-controls="uploadTabchild"><i class="icon-link"></i> Unggah</a>
+                                </li>
+                            </ul> 
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="utamachild" role="tabpanel">
+                                    <table id="pok_table" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="15%">Kode</th>
+                                                <th width="37%">Uraian</th>
+                                                <th width="3%">Volume</th>
+                                                <th width="5%">Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
+                                                <th width="10%">Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each data.get_program}}
+
+                                            <tr id="{{_id}}" coll="pok_program">
+                                                <td field="_id">{{_id}}</td>
+                                                <td field="uraian">{{uraian}}</td>
+                                                <td field="vol"></td>
+                                                <td field="sat"></td>
+                                                <td field="harga_satuan"></td>
+                                                <td field="jumlah"></td>
+                                            </tr>
+
+                                            {{#each ../data.get_kegiatan}}
+
+                                                {{#if_eq prog ../_id}}
+
+                                                    <tr id="{{_id}}" coll="pok_kegiatan">
+                                                        <td style="padding-left: 2em" field="_id">{{_id}}</td>
+                                                        <td field="uraian">{{uraian}}</td>
+                                                        <td field="vol"></td>
+                                                        <td field="sat"></td>
+                                                        <td field="harga_satuan"></td>
+                                                        <td field="jumlah"></td>
+                                                    </tr>
+
+                                                    {{#each ../../data.get_output}}
+
+                                                        {{#if_eq keg ../_id}} 
+
+                                                            <tr id="{{_id}}" coll="pok_output">
+                                                                <td style="padding-left: 4em" field="_id">{{_id}}</td>
+                                                                <td field="uraian">{{uraian}}</td>
+                                                                <td field="vol"></td>
+                                                                <td field="sat"></td>
+                                                                <td field="harga_satuan"></td>
+                                                                <td field="jumlah"></td>
+                                                            </tr>
+
+                                                            {{#each ../../../data.get_komponen}}
+
+                                                                {{#if_eq output ../_id}} 
+
+                                                                    <tr id="{{_id}}" coll="pok_komponen">
+                                                                        <td style="padding-left: 6em" field="_id">{{_id}}</td>
+                                                                        <td field="uraian">{{uraian}}</td>
+                                                                        <td field="vol"></td>
+                                                                        <td field="sat"></td>
+                                                                        <td field="harga_satuan"></td>
+                                                                        <td field="jumlah"></td>
+                                                                    </tr>
+                                                                    {{#each ../../../../data.get_akun}}
+                                                                        {{#if_eq komp ../_id}}
+                                                                            <tr id="{{_id}}" coll="pok_akun">
+                                                                                <td style="padding-left: 8em" field="kdakun">{{kdakun}}</td>
+                                                                                <td field="uraian">{{uraian}}</td>
+                                                                                <td field="vol"></td>
+                                                                                <td field="sat"></td>
+                                                                                <td field="harga_satuan"></td>
+                                                                                <td field="jumlah"></td>
+                                                                            </tr>
+                                                                            {{#each ../../../../../data.get_detail_belanja}}
+                                                                                {{#if_eq akun ../kdakun}}
+                                                                                    <tr id="{{_id}}" coll="pok_detailBelanja">
+                                                                                        <td field="_id"></td>
+                                                                                        <td field="uraian" class="uraian">{{nmr}}. {{uraian}}</td>
+                                                                                        <td field="vol" class="text-center">{{vol}}</td>
+                                                                                        <td field="sat" class="text-center">{{sat}}</td>
+                                                                                        <td field="harga_satuan" class="money">{{harga_satuan}}</td>
+                                                                                        <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                                    </tr>
+                                                                                {{/if_eq}} {{! If Detail Belanja }}
+
+                                                                            {{/each}}    {{! Each Detail Belanja }}
+
+                                                                        {{/if_eq}} {{! If Akun }}
+
+                                                                    {{/each}}  {{! Each Akun }}
+
+                                                                {{/if_eq}} {{! If Komponen }}
+
+                                                            {{/each}}  {{! Each Komponen }}
+
+                                                        {{/if_eq}} {{! If Output }} 
+
+                                                    {{/each}}  {{! Each Output }}
+
+                                                {{/if_eq}} {{! If Kegiatan }} 
+
+                                            {{/each}}  {{! Each Kegiatan }} 
+
+                                        {{/each}}  {{! Each Program }}                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="uploadTabchild" role="tabpanel">
+                                    <div class="form-group row">
+                                        <div class="col-md-5">
+                                            <form id="pok_upload" enctype="multipart/form-data" method="post" action="/pok/upload_pok">
+                                                <div class="input-group">
+                                                    <input name="pok_file" type="file" class="form-control" required/>
+                                                    <span class="input-group-btn">
+                                                        <button id="upload_button" type="submit" class="btn btn-primary">Unggah</button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                            <br>
+                                            <div class="progress">
+                                              <div id="bar" class="progress-bar" role="progressbar" aria-valuenow="0"
+                                              aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                                <span id="percent">0</span>%
+                                              </div>
+                                            </div>
+                                            <div id="message"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/jquery.toaster.js"></script>
+
+<script src="/js/jquery.form.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+
+<script src="/js/mindmup-editabletable.js"></script>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
+    $(document).ready(function(){
+        $('#pok_table').DataTable({
+            aaSorting: [],
+            rowReorder: {
+                enable: false
+            }
+        });
+
+        $('#pok_table').editableTableWidget();
+
+        $('#pok_table').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+
+        $('table td').on('change', function(evt, newValue) {
+            // do something with the new cell value 
+            if (newValue == "") { 
+                return false; // reject change
+            }
+
+            var coll = $(this).closest('tr').attr('coll');
+
+            var kolom = $(this).attr('field');
+
+            if (kolom == 'money') {
+
+                newValue = newValue.replace(/\./g, '');
+
+            }
+
+            $.ajax({
+                url : "/pok/edit",
+                type: "POST",
+                data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
+                success: function (data) {
+                    $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+                },
+                error: function (jXHR, textStatus, errorThrown) {
+                    $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+                }
+            });
+        });
+
+        var options = { 
+            beforeSend: function(){
+                $("#progress").show();
+                //clear everything
+                $("#bar").width('0%');
+                $("#message").html("");
+                $("#percent").html("0");
+            },
+            uploadProgress: function(event, position, total, percentComplete){
+                $("#bar").width(percentComplete+'%');
+                $("#percent").html(percentComplete);
+         
+            },
+            success: function(){
+                $("#bar").width('100%');
+                $("#percent").html('100');
+         
+            },
+            complete: function(response){
+                $("#message").html("<font color='green'>"+response.responseText+"</font>");
+            },
+            error: function(){
+                $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
+         
+            }
+         
+        }; 
+     
+        $("#pok_upload").ajaxForm(options);
+
+        $('th').css({
+            'vertical-align': 'middle',
+            'text-align':'center'
+        });
+
+        $('.money').css('text-align','right');
+
+        $('.uraian').css({
+          'text-indent': '-1em',
+          'padding-left': '2em'
+        });
+
+        $('.money').formatUang();
+     
+    });
+
+    $.fn.formatUang = function () {
+        return this.each(function(){
+            $(this).text($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        })
+    }
+
+    $(document).on('click', 'a.paginate_button', function () {
+        $('.money').formatUang();
+        $('.money').css('text-align','right');
+        $('#pok_table').editableTableWidget();
+
+        $('#pok_table').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+
+        $('table td').on('change', function(evt, newValue) {
+            // do something with the new cell value 
+            if (newValue == "") { 
+                return false; // reject change
+            }
+
+            var coll = $(this).closest('tr').attr('coll');
+
+            var kolom = $(this).attr('field');
+
+            if (kolom == 'money') {
+
+                newValue = newValue.replace(/\./g, '');
+
+            }
+
+            $.ajax({
+                url : "/pok/edit",
+                type: "POST",
+                data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
+                success: function (data) {
+                    $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+                },
+                error: function (jXHR, textStatus, errorThrown) {
+                    $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+                }
+            });
+        });
+    });
+
+</script>

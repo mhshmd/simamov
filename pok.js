@@ -1,5 +1,10 @@
 use simamov_2017;
 
+
+Program > Kegiatan > Output() > Komponen () > Akun() > Detail_belanja ()
+
+
+
 db.pok.insert({
 	version: '2',
 	version_comment: 'ganti nama program',

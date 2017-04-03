@@ -86,6 +86,9 @@ app.use('/', index); //root menggunakan dialihkan ke index.js
 //SPPD
 var sppd = require('./controllers/sppd.js'); //route index
 app.use('/sppd', sppd); //root menggunakan dialihkan ke index.js
+//POK
+var pok = require('./controllers/pok.js'); //route index
+app.use('/pok', pok); //root menggunakan dialihkan ke index.js
 
 //====== ERROR HANDLER ======//
 //jika ada error, tampilkan di console

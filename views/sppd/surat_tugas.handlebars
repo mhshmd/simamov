@@ -16,7 +16,7 @@
                                 </div>                          
                                 <div class="form-group row">
                                     <label for="search">Nama</label>
-                                    <input id="nama_lengkap" type="text" id="search" name="nama_lengkap" class="form-control" placeholder="Nama" required>
+                                    <input id="nama_lengkap" type="text" id="search" name="nama_lengkap" class="form-control" placeholder="Nama" required autofocus>
                                 </div>                      
                                 <div class="form-group row">
                                     <label for="pok_output">Output/Komponen</label>
@@ -48,10 +48,10 @@
                                     <label for="datetimepicker1">Waktu</label>
                                     <div class="form-group row">
                                         <div class="col-md-6">
-                                            <input type='text-input' class="form-control input-group date" name="tgl_berangkat" placeholder=" Berangkat" id="datetimepicker1" required>
+                                            <input type='text-input' class="form-control date" name="tgl_berangkat" placeholder=" Berangkat" id="datetimepicker1" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type='text-input' class="form-control input-group date" name="tgl_kembali" placeholder="Kembali" id="datetimepicker2" required>
+                                            <input type='text-input' class="form-control date" name="tgl_kembali" placeholder="Kembali" id="datetimepicker2" required>
                                             <input style="display: none;" type="text" id="jumlah_hari" name="jumlah_hari" value="">
                                         </div>
                                     </div>
@@ -62,10 +62,10 @@
                                         <label for="radio1" class="radio-inline">
                                             <input type="radio" id="radio1" name="jenis_ang" value="Plane" checked="checked">  Plane
                                         </label>
-                                        <label for="radio1" class="radio-inline">
+                                        <label for="radio2" class="radio-inline">
                                             <input type="radio" id="radio2" name="jenis_ang" value="Kereta Api">  Kereta Api
                                         </label>
-                                        <label for="radio1" class="radio-inline">
+                                        <label for="radio3" class="radio-inline">
                                             <input type="radio" id="radio3" name="jenis_ang" value="Kendaraan Umum">  Kendaraan Umum
                                         </label>
                                     </div>
@@ -92,21 +92,17 @@
                                     <input style="display: none;" type="text" id="ttd_surat_tugas_jabatan" name="ttd_surat_tugas_jabatan" value="">
                                     <input style="display: none;" type="text" id="ttd_surat_tugas_nip" name="ttd_surat_tugas_nip" value="{{#with ttdST.[0]}}{{nip}}{{/with}}">
                                 </div>                                    
-                                <div class="form-group row">
-                                    <label for="datetimepicker1">Tanggal Tanda Tangan</label>                                   
-                                    <div class="form-group row">
-                                        <div class="col-md-6">                                                
-                                            <input type="text-input" id="tgl_ttd_st" class="form-control input-group date tgl_ttd" name="tgl_ttd_st" value="" placeholder="Surat tugas">
-                                        </div> 
-                                        <div class="col-md-6">                                                
-                                            <input type="text-input" id="tgl_ttd_ppk" class="form-control input-group date tgl_ttd" name="tgl_ttd_ppk" value="" placeholder="PPK">
-                                        </div> 
-                                    </div>
+                                <div class="form-group row">     
+                                    <div class="col-md-6" style="padding-left: 0">    
+                                        <label for="tgl_ttd_st">Tanggal Tanda Tangan</label>
+                                        <input type="text-input" id="tgl_ttd_st" class="form-control date tgl_ttd" name="tgl_ttd_st" value="">
+                                    </div>                                                 
+                                    <input style="display: none;" type="text-input" id="tgl_ttd_ppk" class="form-control input-group date tgl_ttd" name="tgl_ttd_ppk" value="" placeholder="PPK">
                                 </div>
                                 <div class="row">
                                     <button id="generateLetter" type="submit" class="btn btn-primary px-2">Buat Surat</button><span><pre> </pre></span>
                                     <button id="reset" class="btn btn-secondary px-2">Reset</button>
-                                </div>                                
+                                </div>                         
                             </form>                            
                         </div>
                     </div>
@@ -160,7 +156,7 @@
     $('.tgl_ttd').datetimepicker({
         locale: 'id',
         format: 'D MMMM YYYY',
-        useCurrent: false //Important! See issue #1075
+        useCurrent: false
     });
 
     //Disable tgl sblm tgl berangkat pd input tgl kembali
@@ -169,7 +165,7 @@
     });
 
     //Jumlah hari berangkat
-    $(".input-group.date").on("dp.change", function (e) {
+    $(".date").on("dp.change", function (e) {
         $("#jumlah_hari").val(moment($('#datetimepicker2').val(), "DD MMMM YYYY").diff(moment($('#datetimepicker1').val(), "DD MMMM YYYY"), 'days')+1);
     });
 
@@ -186,7 +182,7 @@
                 $("#realTimeView").attr("src", 'http://'+location.host+data.result);
                 $("#generateLetter").html('Buat Surat');
                 $('#generateLetter').prop('disabled', false);
-                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("html, body").animate({ scrollTop: 72 }, "slow");
             },
             error: function (jXHR, textStatus, errorThrown) {
                 // $.toaster({ priority : 'warning', title : 'Kesalahan', message : 'Terjadi kesalahan, mohon hubungi bagian teknis.'});
@@ -202,34 +198,37 @@
 
     })
     //Autocomplete
-    $('#nama_lengkap').tokenfield({
-      typeahead: [null, { source: function(q, p){
-        {
-            return $.getJSON(
-                '/sppd/ajax/pegawai',
-                { query: q },
-                function (data) {
-                    states = [];
-                    map = {};
+    $(function() {
+        $('#nama_lengkap').tokenfield({
+          typeahead: [null, { source: function(q, p){
+            {
+                return $.getJSON(
+                    '/sppd/ajax/pegawai',
+                    { query: q },
+                    function (data) {
+                        states = [];
+                        map = {};
 
-                    if($('#nama_lengkap').val()){
-                        var regEx = new RegExp(q+"$");
-                        if(regEx.test($('#nama_lengkap').val())){
-                            return p(states);
+                        if($('#nama_lengkap').val()){
+                            var regEx = new RegExp(q+"$");
+                            if(regEx.test($('#nama_lengkap').val())){
+                                return p(states);
+                            }
                         }
-                    }
 
-                    $.each(data, function (i, state) {
-                        map[state.nama] = state;
-                        states.push(state.nama);
+                        $.each(data, function (i, state) {
+                            map[state.nama] = state;
+                            states.push(state.nama);
+                        });
+
+                        var states = $.map(states, function (string) { return { value: string }; });
+
+                        return p(states);
                     });
-
-                    var states = $.map(states, function (string) { return { value: string }; });
-
-                    return p(states);
-                });
-        }
-      }}]
+            }
+          }}]
+        });
+        $('#nama_lengkap-tokenfield').focus()
     });
 
     $('#pok_output').typeahead({
@@ -260,16 +259,42 @@
       }
     });
 
-    $("#pok_output").on("change paste keyup", function() {
-       $('#detail_tugas').val($('#pok_output').val());
+   //  $("#pok_output").on("change paste keyup", function() {
+   //     $('#detail_tugas').val($('#pok_output').val());
 
-       $.getJSON(
-        '/sppd/ajax/pok_komponen',
-        { query: $('#pok_output').val() },
-        function (data) {
-            $('#kode_output').val(data[0]._id);
-        });
-   });
+   //     $.getJSON(
+   //      '/sppd/ajax/pok_komponen',
+   //      { query: $('#pok_output').val() },
+   //      function (data) {
+   //          $('#kode_output').val(data[0]._id);
+   //      });
+   // });
+
+    $('#pok_output').each(function() {
+       var elem = $(this);
+
+       // Save current value of element
+       elem.data('oldVal', elem.val());
+
+       // Look for changes in the value
+       elem.bind("propertychange change click keyup input paste", function(event){
+          // If value has changed...
+          if (elem.data('oldVal') != elem.val()) {
+           // Updated stored value
+           elem.data('oldVal', elem.val());
+
+           // Do action
+           $('#detail_tugas').val($('#pok_output').val());
+
+           $.getJSON(
+            '/sppd/ajax/pok_komponen',
+            { query: $('#pok_output').val() },
+            function (data) {
+                $('#kode_output').val(data[0]._id);
+            });
+         }
+       });
+     });
 
     $('#kabupaten').typeahead({
       hint: true,
@@ -379,8 +404,5 @@
 
         $('#ttd_legalitas_jabatan').val(result[0].jabatan[result[0].sppd_l_index]);
         $('#ttd_legalitas_nip').val(result[0].nip);
-    });
-    $(function() {
-        $("#nama_lengkap").focus();
     });
 </script>

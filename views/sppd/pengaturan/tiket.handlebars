@@ -15,8 +15,8 @@
                                             <col>
                                             <colgroup span="2"></colgroup>
                                             <tr>
-                                                <th width="20%" rowspan="2" class="text-center" style="vertical-align: middle">Kota</th>
-                                                <th colspan="2" scope="colgroup" class="text-center">Pesawat (dari Jakarta)</th>
+                                                <th width="20%" rowspan="2" style="vertical-align: middle">Kota</th>
+                                                <th colspan="2" scope="colgroup">Pesawat (dari Jakarta)</th>
                                             </tr>
                                             <tr>
                                                 <th width="10%" class="text-center">Bisnis</th>
@@ -27,9 +27,18 @@
                                         {{#each kota}}             
                                             <tr name="{{name}}">
                                                 <td>{{label}}</td>
-                                                <td jenis="tiket_jkt_b" class="text-right">{{tiket_jkt_b}}</td>
-                                                <td jenis="tiket_jkt_e" class="text-right">{{tiket_jkt_e}}</td>
+                                                <td jenis="tiket_jkt_b" class="money">{{tiket_jkt_b}}</td>
+                                                <td jenis="tiket_jkt_e" class="money">{{tiket_jkt_e}}</td>
                                             </tr>
                                         {{/each}}                                            
                                         </tbody>
                                     </table>
+
+<script type="text/javascript">                                      
+    $('th').css({
+        'vertical-align': 'middle',
+        'text-align':'center'
+    });
+
+    $('.money').css('text-align','right');
+</script>

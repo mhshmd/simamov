@@ -2,4 +2,4 @@ mongodump -d simamov_2017 -o C:\
 
 mongorestore -d simamov_2017 C:\simamov\simamov_2017
 
-mongorestore --db mydbname --collection mycollection 
+mongorestore --db mydbname --collection mycollection

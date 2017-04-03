@@ -117,7 +117,7 @@
                                 <div class="form-group row">
                                     <label for="tgl_hari_ini">Tanggal Pembuatan Pehitungan</label>  
                                     <div class="col-md-6" style="padding-left: 0">                                                
-                                        <input type="text-input" id="tgl_hari_ini" class="form-control input-group date tgl_ttd" name="tgl_hari_ini" value="" placeholder="Tgl Tanda Tangan" required>
+                                        <input type="text-input" id="tgl_hari_ini" class="form-control date tgl_ttd" name="tgl_hari_ini" value="" placeholder="Tgl Tanda Tangan" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -138,7 +138,7 @@
 
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="home3" role="tabpanel">
-                                        <table class="table table-bordered">
+                                        <table id="list_belum" class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th width="10%">No.</th>
@@ -164,7 +164,7 @@
                                         </table>
                                     </div>
                                     <div class="tab-pane" id="profile3" role="tabpanel">
-                                        <table class="table table-bordered">
+                                        <table id="list_sudah" class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th width="10%">No.</th>
@@ -213,6 +213,8 @@
 
 <script src="/js/typeahead.bundle.min.js"></script>
 
+<script src="/js/jquery.dataTables.min.js"></script>
+
 <script type="text/javascript">
     document.title = 'Perhitungan - SIMAMOV';
     //ubah breadcumb
@@ -224,6 +226,8 @@
     head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
 
     head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/tokenfield-typeahead.css"));
+
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
 
     $("#realTimeView").attr("src", 'http://'+location.host+"/result/sppd_perhitungan.pdf");
 
@@ -374,6 +378,13 @@
 
     }
 
+    $('#list_belum, #list_sudah').DataTable({
+        aaSorting: [],
+        rowReorder: {
+            enable: false
+        }
+    });
+
     $('.numberOnly').on({
         'keypress': function(e){
             var regex = new RegExp("^[0-9]+$");
@@ -417,7 +428,7 @@
                 $("#generateLetter").html('Buat Surat');
                 $('#generateLetter').prop('disabled', false);
                 $("#realTimeView").attr("src", 'http://'+location.host+data.result);
-                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("html, body").animate({ scrollTop: 72 }, "slow");
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);
@@ -445,7 +456,7 @@
             $('#harian_hari').val(data.jumlah_hari);
             $('#hotel_hari').val(parseInt(data.jumlah_hari)-1);
             n_total = parseInt(data.jumlah_hari)-1;
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({ scrollTop: 72 }, "slow");
             $("#nama_lengkap").focus();
         });
     });
@@ -481,7 +492,7 @@
             $('#tgl_hari_ini').val(data.tgl_hari_ini);
 
 
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({ scrollTop: 72 }, "slow");
             $("#nama_lengkap").focus();
         });
     });
@@ -615,4 +626,13 @@
         }
 
     });
+    $(function(){
+
+        setTimeout(function(){
+
+            $('html, body').animate({ scrollTop:  1300 }, 1400);
+
+        }, 200)
+
+    })
 </script>

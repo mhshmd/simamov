@@ -1,0 +1,1323 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes"?>
+<VFPData xml:space="preserve">
+	<xsd:schema id="VFPData" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="VFPData" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="c_kpjm" minOccurs="0" maxOccurs="unbounded">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="thang">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="4"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdjendok">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdsatker">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="6"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kddept">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdunit">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdprogram">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdgiat">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="4"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdoutput">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdlokasi">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdkabkota">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kddekon">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="1"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdsoutput">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdkmpnen">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="3"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdsdana">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="2"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_51">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_51">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_51">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_51">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_52">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_52">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_52">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_52">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_53">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_53">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_53">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_53">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_54">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_54">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_54">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_54">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_55">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_55">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_55">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_55">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_56">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_56">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_56">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_56">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_57">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_57">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_57">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_57">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphmin1_58">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls1_58">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls2_58">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="rphpls3_58">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="volmin1">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="volpls1">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="volpls2">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="kdlevel">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="1"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="volpls3">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:decimal">
+											<xsd:totalDigits value="15"/>
+											<xsd:fractionDigits value="0"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+				<xsd:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>701</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>988470000</rphpls1_52>
+		<rphpls2_52>988470000</rphpls2_52>
+		<rphpls3_52>988470000</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>702</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>2978441000</rphpls1_52>
+		<rphpls2_52>2978441000</rphpls2_52>
+		<rphpls3_52>2978441000</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>703</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>30303143000</rphpls1_53>
+		<rphpls2_53>30303143000</rphpls2_53>
+		<rphpls3_53>30303143000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>707</kdkmpnen>
+		<kdsdana>04</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>7011843000</rphpls1_53>
+		<rphpls2_53>7011843000</rphpls2_53>
+		<rphpls3_53>7011843000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>751</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>133397000</rphpls1_52>
+		<rphpls2_52>133397000</rphpls2_52>
+		<rphpls3_52>133397000</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>752</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>2870210000</rphpls1_53>
+		<rphpls2_53>2870210000</rphpls2_53>
+		<rphpls3_53>2870210000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>004</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>00</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput></kdsoutput>
+		<kdkmpnen></kdkmpnen>
+		<kdsdana></kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>12</volmin1>
+		<volpls1>12</volpls1>
+		<volpls2>12</volpls2>
+		<volpls3>12</volpls3>
+		<kdlevel>3</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>001</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>14148545000</rphpls1_51>
+		<rphpls2_51>14643744000</rphpls2_51>
+		<rphpls3_51>15156275000</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>002</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>6459652000</rphpls1_52>
+		<rphpls2_52>6459652000</rphpls2_52>
+		<rphpls3_52>6459652000</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>01</kdprogram>
+		<kdgiat>2888</kdgiat>
+		<kdoutput>994</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput></kdsoutput>
+		<kdkmpnen></kdkmpnen>
+		<kdsdana></kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>12</volmin1>
+		<volpls1>12</volpls1>
+		<volpls2>12</volpls2>
+		<volpls3>12</volpls3>
+		<kdlevel>3</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>996</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>301</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>590000000</rphpls1_53>
+		<rphpls2_53>590000000</rphpls2_53>
+		<rphpls3_53>590000000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>996</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>302</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>6000000</rphpls1_53>
+		<rphpls2_53>6000000</rphpls2_53>
+		<rphpls3_53>6000000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>996</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput></kdsoutput>
+		<kdkmpnen></kdkmpnen>
+		<kdsdana></kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>1</volmin1>
+		<volpls1>71</volpls1>
+		<volpls2>71</volpls2>
+		<volpls3>71</volpls3>
+		<kdlevel>3</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>997</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>403</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>90000000</rphpls1_53>
+		<rphpls2_53>90000000</rphpls2_53>
+		<rphpls3_53>90000000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>997</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput>001</kdsoutput>
+		<kdkmpnen>404</kdkmpnen>
+		<kdsdana>01</kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>256500000</rphpls1_53>
+		<rphpls2_53>256500000</rphpls2_53>
+		<rphpls3_53>256500000</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>0</volmin1>
+		<volpls1>0</volpls1>
+		<volpls2>0</volpls2>
+		<volpls3>0</volpls3>
+		<kdlevel>5</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+	<c_kpjm>
+		<thang>2016</thang>
+		<kdjendok>01</kdjendok>
+		<kdsatker>690332</kdsatker>
+		<kddept>054</kddept>
+		<kdunit>01</kdunit>
+		<kdprogram>02</kdprogram>
+		<kdgiat>2890</kdgiat>
+		<kdoutput>997</kdoutput>
+		<kdib></kdib>
+		<kdlokasi>01</kdlokasi>
+		<kdkabkota>55</kdkabkota>
+		<kddekon>1</kddekon>
+		<kdsoutput></kdsoutput>
+		<kdkmpnen></kdkmpnen>
+		<kdsdana></kdsdana>
+		<rphmin1_51>0</rphmin1_51>
+		<rphpls1_51>0</rphpls1_51>
+		<rphpls2_51>0</rphpls2_51>
+		<rphpls3_51>0</rphpls3_51>
+		<rphmin1_52>0</rphmin1_52>
+		<rphpls1_52>0</rphpls1_52>
+		<rphpls2_52>0</rphpls2_52>
+		<rphpls3_52>0</rphpls3_52>
+		<rphmin1_53>0</rphmin1_53>
+		<rphpls1_53>0</rphpls1_53>
+		<rphpls2_53>0</rphpls2_53>
+		<rphpls3_53>0</rphpls3_53>
+		<rphmin1_54>0</rphmin1_54>
+		<rphpls1_54>0</rphpls1_54>
+		<rphpls2_54>0</rphpls2_54>
+		<rphpls3_54>0</rphpls3_54>
+		<rphmin1_55>0</rphmin1_55>
+		<rphpls1_55>0</rphpls1_55>
+		<rphpls2_55>0</rphpls2_55>
+		<rphpls3_55>0</rphpls3_55>
+		<rphmin1_56>0</rphmin1_56>
+		<rphpls1_56>0</rphpls1_56>
+		<rphpls2_56>0</rphpls2_56>
+		<rphpls3_56>0</rphpls3_56>
+		<rphmin1_57>0</rphmin1_57>
+		<rphpls1_57>0</rphpls1_57>
+		<rphpls2_57>0</rphpls2_57>
+		<rphpls3_57>0</rphpls3_57>
+		<rphmin1_58>0</rphmin1_58>
+		<rphpls1_58>0</rphpls1_58>
+		<rphpls2_58>0</rphpls2_58>
+		<rphpls3_58>0</rphpls3_58>
+		<volmin1>1</volmin1>
+		<volpls1>3</volpls1>
+		<volpls2>3</volpls2>
+		<volpls3>3</volpls3>
+		<kdlevel>3</kdlevel>
+		<levelrev></levelrev>
+		<revrkaklke></revrkaklke>
+		<revdipake></revdipake>
+	</c_kpjm>
+</VFPData>

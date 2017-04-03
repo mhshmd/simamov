@@ -32,7 +32,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-6" style="padding-left: 0">
                                         <label for="datetimepicker1">Waktu Pelaksanaan</label>
-                                        <input type='text-input' class="form-control input-group date tgl_ttd" name="waktu_pelaksanaan" placeholder="Pelaksanaan" id="datetimepicker1" required>
+                                        <input type='text-input' class="form-control date tgl_ttd" name="waktu_pelaksanaan" placeholder="Pelaksanaan" id="datetimepicker1" required>
                                     </div>
                                 </div>                            
                                 <div class="form-group row">
@@ -58,7 +58,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-6" style="padding-left: 0">
                                         <label for="tgl_ttd_st">Tanggal Tanda Tangan</label>
-                                        <input type="text-input" id="tgl_ttd_st" class="form-control input-group date tgl_ttd" name="tgl_ttd_st" value="" placeholder="Surat tugas">
+                                        <input type="text-input" id="tgl_ttd_st" class="form-control date tgl_ttd" name="tgl_ttd_st" value="" placeholder="Surat tugas">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -188,7 +188,7 @@
                 $("#realTimeView").attr("src", 'http://'+location.host+data.result);
                 $("#generateLetter").html('Buat Surat');
                 $('#generateLetter').prop('disabled', false);
-                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("html, body").animate({ scrollTop: 72 }, "slow");
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);

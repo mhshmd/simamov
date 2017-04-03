@@ -2448,7 +2448,7 @@
     $.fn.datetimepicker.defaults = {
         timeZone: '',
         format: false,
-        dayViewHeaderFormat: 'MMMM YYYY',
+        dayViewHeaderFormat: 'D MMMM YYYY',
         extraFormats: false,
         stepping: 1,
         minDate: false,
@@ -2507,8 +2507,8 @@
         showClear: false,
         showClose: false,
         widgetPositioning: {
-            horizontal: 'auto',
-            vertical: 'auto'
+            horizontal: 'left',
+            vertical: 'top'
         },
         widgetParent: null,
         ignoreReadonly: false,
