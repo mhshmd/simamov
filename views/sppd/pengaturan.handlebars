@@ -174,12 +174,26 @@
             $('.money').formatUang(); 
 
             if(id != 'jabPegTab'){
-                $('#provinsi, #tiket').DataTable({
-                    aaSorting: [],
-                    rowReorder: {
-                        enable: false
-                    }
-                });
+
+                if(id == "tiketPesawatTab"){
+
+                    $('#tiket').DataTable({
+                        aaSorting: [],
+                        rowReorder: {
+                            enable: false
+                        }
+                    });
+
+                } else{
+
+                    $('#provinsi').DataTable({
+                        aaSorting: [],
+                        rowReorder: {
+                            enable: false
+                        }
+                    });
+
+                }
 
                 $('#provinsi, #tiket').editableTableWidget();
 
@@ -365,6 +379,35 @@
             url : "/sppd/pengaturan/index/"+$(this).closest('tr').attr('jenis') || window.location.pathname,
             type: "POST",
             data: {nip : $(this).closest('tr').attr('nip'), index: $(this).find(":selected").attr('index')},
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+            }
+        });
+    });
+
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {        
+        $('#provinsi, #tiket').editableTableWidget();
+
+        $('#provinsi, #tiket').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+    });
+
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {         
+        // do something with the new cell value
+        if (newValue == "") { 
+            return false; // reject change
+        }
+
+        newValue = newValue.replace(/\./g, '');
+
+        $.ajax({
+            url : "/sppd/pengaturan/biaya/"+$(this).attr('jenis'),
+            type: "POST",
+            data: {name : $(this).closest('tr').attr('name'), price: newValue},
             success: function (data) {
                 $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
             },

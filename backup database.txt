@@ -3,3 +3,7 @@ mongodump -d simamov_2017 -o C:\
 mongorestore -d simamov_2017 C:\simamov\simamov_2017
 
 mongorestore --db mydbname --collection mycollection
+
+git remote add origin https://github.com/mhshmd/m.git
+git fetch --all
+git reset --hard origin/master

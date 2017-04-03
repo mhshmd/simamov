@@ -241,8 +241,6 @@
             'text-align':'center'
         });
 
-        $('.money').css('text-align','right');
-
         $('.uraian').css({
           'text-indent': '-1em',
           'padding-left': '2em'
@@ -260,40 +258,39 @@
 
     $(document).on('click keyup', 'a.paginate_button, input, th', function () {
         $('.money').formatUang();
-        $('.money').css('text-align','right');
         $('#pok_table').editableTableWidget();
 
         $('#pok_table').editableTableWidget({
             cloneProperties: ['background', 'border', 'outline']
         });
+    });
 
-        $('table td').on('change', function(evt, newValue) {
-            // do something with the new cell value 
-            if (newValue == "") { 
-                return false; // reject change
+    $(document).on('change', 'table td', function (evt, newValue) {
+        // do something with the new cell value 
+        if (newValue == "") { 
+            return false; // reject change
+        }
+
+        var coll = $(this).closest('tr').attr('coll');
+
+        var kolom = $(this).attr('field');
+
+        if (kolom == 'money') {
+
+            newValue = newValue.replace(/\./g, '');
+
+        }
+
+        $.ajax({
+            url : "/pok/edit",
+            type: "POST",
+            data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
             }
-
-            var coll = $(this).closest('tr').attr('coll');
-
-            var kolom = $(this).attr('field');
-
-            if (kolom == 'money') {
-
-                newValue = newValue.replace(/\./g, '');
-
-            }
-
-            $.ajax({
-                url : "/pok/edit",
-                type: "POST",
-                data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
-                success: function (data) {
-                    $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
-                },
-                error: function (jXHR, textStatus, errorThrown) {
-                    $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
-                }
-            });
         });
     });
 
