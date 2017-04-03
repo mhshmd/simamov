@@ -2,7 +2,8 @@
 //load framework express
 var express = require('express');
 var app = express(); //meload modul express saja
-// app.disable('x-powered-by'); //disable response head powered by express
+
+require('dotenv').config();
 
 //Security
 var helmet = require('helmet');

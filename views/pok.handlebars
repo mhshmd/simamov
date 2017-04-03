@@ -258,7 +258,7 @@
         })
     }
 
-    $(document).on('click', 'a.paginate_button', function () {
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {
         $('.money').formatUang();
         $('.money').css('text-align','right');
         $('#pok_table').editableTableWidget();

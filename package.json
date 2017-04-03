@@ -16,6 +16,7 @@
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
     "docxtemplater": "3.0.6",
+    "dotenv": "4.0.0",
     "express": "4.15.2",
     "express-handlebars": "3.0.0",
     "express-session": "1.15.1",
