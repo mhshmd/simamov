@@ -15,7 +15,7 @@
   border: 1px solid transparent;
 }
 .twitter-typeahead .tt-input {
-  color: #555555;
+  color: #000000;
   z-index: 2;
 }
 .twitter-typeahead .input-sm.tt-input,
