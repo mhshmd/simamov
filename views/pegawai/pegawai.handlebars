@@ -90,7 +90,15 @@
         cloneProperties: ['background', 'border', 'outline']
     });
 
-    $('table td').on('change', function (evt, newValue) {
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {
+        $('#pegawai_edit').editableTableWidget();
+
+        $('#pegawai_edit').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+    });
+
+    $(document).on('change', 'table td', function (evt, newValue) {
         // do something with the new cell value 
         if (newValue == "") { 
             return false; // reject change

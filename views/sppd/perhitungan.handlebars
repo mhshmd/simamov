@@ -37,7 +37,7 @@
                                     <label for="datetimepicker1">Trasport lokal ke tempat tujuan</label>                                  
                                     <div class="form-group row">
                                         <div class="col-md-6">                                                
-                                            <input type="text-input" id="w_dari_t4_tujuan" class="form-control input-group provinsi" name="w_dari_t4_asal" value="" placeholder="Wilayah" required>
+                                            <input type="text-input" id="w_dari_t4_tujuan" class="form-control input-group provinsi" name="w_dari_t4_tujuan" value="" placeholder="Wilayah" required>
                                         </div> 
                                         <div class="col-md-6">                                                
                                             <input type="text-input" id="t_dari_t4_tujuan" class="form-control input-group numberOnly tr ft" name="t_dari_t4_tujuan" value="" placeholder="Biaya Transport" required>                                           
@@ -453,6 +453,7 @@
     $( "#w_dari_t4_tujuan" ).on( "change paste keyup", function(){
         get_price( $(this).val() ).done( function( data ){
             if($( "#w_dari_t4_tujuan" ).val() == 'DKI Jakarta'){
+                $('#t_dari_t4_asal').val(formatUang(parseInt(data.taksi_dn)));
                 $('#t_dari_t4_tujuan').val(formatUang(parseInt(data.taksi_dn)));
             } else{
                 $('#t_dari_t4_tujuan').val(formatUang(2*parseInt(data.taksi_dn)));
@@ -480,26 +481,14 @@
         })
     });
 
-    // $("#w_dari_t4_tujuan").on("change paste keyup", function() {
-    //     get_price( $(this).val() ).done( function( data ){
-    //         $('#t_dari_t4_tujuan').val(formatUang(2*parseInt(data.taksi_dn)));
-
-    //         if(/iv/i.test($('#gol').val())){
-    //             $('#biaya_inap').val(formatUang(data.inap_dn_es3_g4));
-    //         } else if(/iii/i.test($('#gol').val())){
-    //             $('#biaya_inap').val(formatUang(data.inap_dn_es4_g3));
-    //         } else if(/[i|ii]/i.test($('#gol').val())){
-    //             $('#biaya_inap').val(formatUang(data.inap_dn_g12));
-    //         }
-    //         $('#harian_biaya').val(formatUang(data.har_dn_lk));
-    //     })
-    // });
-
     //Total hari menginap/hotel (Inisial)
     var n_total = 0;
 
     //Ambil data SPPD bd nomor
     $(".hitung").click(function(){
+        //reset semua
+        $("#perhitungan").trigger('reset');
+        $('#totalb_inap').val(0);
         ajaxGet('/sppd/perhitungan/load', "POST", {nomor: $(this).closest('tr').attr('nomor')}).done(function(data) {
             console.log(data);
             $('#nomor').val(data._id+"/SPD/STIS/"+data.tahun_ini);//Nomor surat
@@ -526,12 +515,22 @@
                 } else if(/[i|ii]/i.test($('#gol').val())){
                     $('#biaya_inap').val(formatUang(biaya.inap_dn_g12));
                 }
+                $('#w_dari_t4_tujuan').val(data.prov);//Prov tujuan
+                $('#hotel_hari').val(parseInt(data.jumlah_hari)-1);
+                n_total = parseInt(data.jumlah_hari)-1;
                 $('#harian_biaya').val(formatUang(biaya.har_dn_lk));
+                $('#harian_hari').val(data.jumlah_hari);
+                $('#harian_total').val(formatUang(data.jumlah_hari*biaya.har_dn_lk));
+                var total_riil = forceSumInput([$('#t_dari_t4_tujuan'), $('#t_dari_t4_asal'), $('#totalb_inap')]);
+                        
+                $('#total_riil').val(formatUang(total_riil));
+                        
+                $('#total_terbilang').val(terbilang(total_riil));
+
+                var total = forceSumInput([$('#total_riil'), $('#harga_tiket'), $('#harian_total'), $('#hotel_total')]);
+                $('#total_rincian').val(formatUang(total));
+                $('#total_rincian_terbilang').val(terbilang(total));
             })
-            $('#w_dari_t4_tujuan').val(data.prov);//Prov tujuan
-            $('#harian_hari').val(data.jumlah_hari);
-            $('#hotel_hari').val(parseInt(data.jumlah_hari)-1);
-            n_total = parseInt(data.jumlah_hari)-1;
             $("html, body").animate({ scrollTop: 72 }, "slow");
             $("#nama_lengkap").focus();
         });
@@ -630,12 +629,6 @@
     $(".tr").on("change paste keyup", function() {
 
         var total_riil = forceSumInput([$('#t_dari_t4_tujuan'), $('#t_dari_t4_asal'), $('#totalb_inap')]);
-
-        if($(w_dari_t4_tujuan).val() == $(w_dari_t4_asal).val()){
-
-            total_riil -= forceInt($('#t_dari_t4_asal').val());
-
-        }
                 
         $('#total_riil').val(formatUang(total_riil));
                 
