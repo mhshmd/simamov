@@ -18,7 +18,7 @@ use simamov_2017;
 // db.old_pok_kegiatan.drop()
 // db.old_pok_program.drop()
 
-db.pegawai.findOne({})
+db.sppd.findOne({})
 // db.pok_akun.findOne()
 // db.pok_sub_komponen.findOne()
 // db.pok_komponen.findOne()

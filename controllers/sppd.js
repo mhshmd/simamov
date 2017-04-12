@@ -33,6 +33,13 @@ expressions.filters.format_uang = function(input) {
     if(!input) return input;
     return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+var format_uang = function(input) {
+    // This condition should be used to make sure that if your input is undefined, your output will be undefined as well and will not throw an error
+    if(!input) return input;
+    return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 expressions.filters.transportasi_riil = function(input) {
     // This condition should be used to make sure that if your input is undefined, your output will be undefined as well and will not throw an error
     if(!input) return input;
@@ -696,7 +703,7 @@ sppd.post('/perhitungan', function(req, res){
 						result.tabel_riil.push({
 							"no":no,
 							"label":"Transport Lokal",
-							"jumlah": req.body.t_dari_t4_asal
+							"jumlah": format_uang(forceInt(req.body.t_dari_t4_asal)+forceInt(req.body.t_dari_t4_tujuan))
 						})
 
 						no += 1;

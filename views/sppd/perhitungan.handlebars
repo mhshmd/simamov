@@ -37,10 +37,12 @@
                                     <label for="datetimepicker1">Trasport lokal ke tempat tujuan</label>                                  
                                     <div class="form-group row">
                                         <div class="col-md-6">                                                
-                                            <input type="text-input" id="w_dari_t4_tujuan" class="form-control input-group provinsi" name="w_dari_t4_tujuan" value="" placeholder="Wilayah" required>
+                                            <input type="text-input" id="w_dari_t4_tujuan" class="form-control input-group provinsi" name="w_dari_t4_tujuan" required>
+                                            <span class="help-block">wilayah</span>  
                                         </div> 
                                         <div class="col-md-6">                                                
-                                            <input type="text-input" id="t_dari_t4_tujuan" class="form-control input-group numberOnly tr ft" name="t_dari_t4_tujuan" value="" placeholder="Biaya Transport" required>                                           
+                                            <input type="text-input" id="t_dari_t4_tujuan" class="form-control input-group numberOnly tr ft" name="t_dari_t4_tujuan" value="" required>
+                                            <span class="help-block">biaya transport</span>                                             
                                         </div> 
                                     </div>
                                 </div>                                                                      
@@ -48,13 +50,16 @@
                                     <label>B. Penginapan</label>                                  
                                     <div class="form-group row">
                                         <div class="col-md-4">                                                
-                                            <input type="text-input" id="jumlah_menginap" class="form-control input-group numberOnly bp tr ft" name="jumlah_menginap" value="0" placeholder="Jml hari" required>
+                                            <input type="text-input" id="jumlah_menginap" class="form-control input-group numberOnly bp tr ft" name="jumlah_menginap" value="0" required>
+                                            <span class="help-block">jml hari</span>
                                         </div> 
                                         <div class="col-md-4">                                                
-                                            <input type="text-input" id="biaya_inap" class="form-control input-group numberOnly bp tr ft" name="biaya_inap" value="" placeholder="Biaya inap" required>                                           
+                                            <input type="text-input" id="biaya_inap" class="form-control input-group numberOnly bp tr ft" name="biaya_inap" value="" required>
+                                            <span class="help-block">biaya inap</span>                                           
                                         </div> 
                                         <div class="col-md-4">                                                
-                                            <input type="text-input" id="totalb_inap" class="form-control input-group numberOnly tr ft" name="totalb_inap" value="" placeholder="Total b. inap" required>                                           
+                                            <input type="text-input" id="totalb_inap" class="form-control input-group numberOnly tr ft" name="totalb_inap" value="" required>
+                                            <span class="help-block">total b. inap</span>                                           
                                         </div> 
                                     </div>
                                 </div>                                                                   
@@ -79,13 +84,16 @@
                                     <label for="nomor">Uang harian</label>                               
                                     <div class="form-group row">                                    
                                         <div class="col-md-3">      
-                                            <input type="text" id="harian_hari" name="harian_hari" class="form-control ht numberOnly ft" placeholder="hari" value="0" required>
+                                            <input type="text" id="harian_hari" name="harian_hari" class="form-control ht numberOnly ft" value="0" required>
+                                            <span class="help-block">hari</span>  
                                         </div> 
                                         <div class="col-md-4"> 
-                                            <input type="text-input" id="harian_biaya" class="form-control input-group ht numberOnly ft" name="harian_biaya" value="0" placeholder="Biaya harian" required>
+                                            <input type="text-input" id="harian_biaya" class="form-control input-group ht numberOnly ft" name="harian_biaya" value="0" required>
+                                            <span class="help-block">biaya harian</span>  
                                         </div>  
                                         <div class="col-md-5"> 
-                                            <input type="text" id="harian_total" name="harian_total" class="form-control ft numberOnly" placeholder="Total harian" value="0" required> 
+                                            <input type="text" id="harian_total" name="harian_total" class="form-control ft numberOnly" value="0" required> 
+                                            <span class="help-block">total b. harian</span>  
                                         </div> 
                                     </div>
                                 </div>
@@ -93,13 +101,16 @@
                                     <label>Hotel</label>                                
                                     <div class="form-group row">                                    
                                         <div class="col-md-3">      
-                                            <input type="text" id="hotel_hari" name="hotel_hari" class="form-control uh numberOnly ft" placeholder="hari" value="0" required>
+                                            <input type="text" id="hotel_hari" name="hotel_hari" class="form-control uh numberOnly ft" value="0" required>
+                                            <span class="help-block">hari</span> 
                                         </div> 
                                         <div class="col-md-4"> 
-                                            <input type="text-input" id="hotel_biaya" class="form-control input-group uh numberOnly ft" name="hotel_biaya" value="0" placeholder="Biaya hotel" required>                                           
+                                            <input type="text-input" id="hotel_biaya" class="form-control input-group uh numberOnly ft" name="hotel_biaya" value="0" required>
+                                            <span class="help-block">biaya hotel</span>                                            
                                         </div>  
                                         <div class="col-md-5"> 
-                                            <input type="text-input" id="hotel_total" class="form-control input-group ft numberOnly" name="hotel_total" value="0" placeholder="Total Hotel" required>                                           
+                                            <input type="text-input" id="hotel_total" class="form-control input-group ft numberOnly" name="hotel_total" value="0" required>
+                                            <span class="help-block">total b. hotel</span>                                            
                                         </div> 
                                     </div>
                                 </div>                                                                     
@@ -378,6 +389,8 @@
 
     }
 
+    var trasport_jkt = 0;
+
     $('#list_belum, #list_sudah').DataTable({
         aaSorting: [],
         rowReorder: {
@@ -453,9 +466,10 @@
     $( "#w_dari_t4_tujuan" ).on( "change paste keyup", function(){
         get_price( $(this).val() ).done( function( data ){
             if($( "#w_dari_t4_tujuan" ).val() == 'DKI Jakarta'){
-                $('#t_dari_t4_asal').val(formatUang(parseInt(data.taksi_dn)));
+                $('#t_dari_t4_asal').val(formatUang(parseInt(trasport_jkt)));
                 $('#t_dari_t4_tujuan').val(formatUang(parseInt(data.taksi_dn)));
             } else{
+                $('#t_dari_t4_asal').val(formatUang(2*parseInt(trasport_jkt)));
                 $('#t_dari_t4_tujuan').val(formatUang(2*parseInt(data.taksi_dn)));
             }
 
@@ -473,6 +487,7 @@
     //jika field prov berubah
     $("#w_dari_t4_asal").on("change paste keyup", function() {
         get_price( $(this).val() ).done( function( data ){
+            trasport_jkt = data.taksi_dn;
             if($( "#w_dari_t4_tujuan" ).val() == 'DKI Jakarta'){
                 $('#t_dari_t4_asal').val(formatUang(parseInt(data.taksi_dn)));
             } else{
@@ -496,6 +511,7 @@
             $('#gol').val(data.gol);//gol
             get_price( 'DKI Jakarta' ).done( function( biaya ){
                 if(data.prov == 'DKI Jakarta'){
+                    trasport_jkt = biaya.taksi_dn;
                     $('#t_dari_t4_asal').val(formatUang(parseInt(biaya.taksi_dn)));
                 } else{
                     $('#t_dari_t4_asal').val(formatUang(2*parseInt(biaya.taksi_dn)));
@@ -515,7 +531,8 @@
                 } else if(/[i|ii]/i.test($('#gol').val())){
                     $('#biaya_inap').val(formatUang(biaya.inap_dn_g12));
                 }
-                $('#w_dari_t4_tujuan').val(data.prov);//Prov tujuan
+                $('#w_dari_t4_tujuan').typeahead('val', data.prov);//Prov tujuan
+                $('#w_dari_t4_tujuan').typeahead('close');
                 $('#hotel_hari').val(parseInt(data.jumlah_hari)-1);
                 n_total = parseInt(data.jumlah_hari)-1;
                 $('#harian_biaya').val(formatUang(biaya.har_dn_lk));

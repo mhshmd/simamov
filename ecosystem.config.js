@@ -7,6 +7,7 @@ module.exports = {
 
     // First application
     {
+      name : "simamov",
       script    : 'server.js',
       watch: ["controllers", "server.js"],
       env: {
