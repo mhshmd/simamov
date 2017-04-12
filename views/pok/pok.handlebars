@@ -1,0 +1,216 @@
+<div class="animated fadeIn">
+    <div class="card" id="new">
+        <div class="card-header"><i class="icon-shuffle"></i> Petunjuk Operasional Kegiatan (POK)</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="utama" class="nav-link active tabAjax" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-eye"></i> Utama</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="unggahTab" class="nav-link" data-toggle="tab" href="#unggahTabchild" role="tab" aria-controls="unggahTabchild"><i class="icon-link"></i> Unggah</a>
+                            </li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="utamachild" role="tabpanel">
+                                <span><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i></span>
+                            </div>
+                            <div class="tab-pane" id="unggahTabchild" role="tabpanel">
+                                <div class="form-group row">
+                                    <div class="col-md-5">
+                                        <form id="pok_unggah" enctype="multipart/form-data" method="post" action="/pok/unggah_pok">
+                                            <div class="input-group">
+                                                <input name="pok_file" type="file" class="form-control" required/>
+                                                <span class="input-group-btn">
+                                                    <button id="unggah_button" type="submit" class="btn btn-primary">Unggah</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                        <br>
+                                        <div class="progress">
+                                          <div id="bar" class="progress-bar" role="progressbar" aria-valuenow="0"
+                                          aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                            <span id="percent">0</span>%
+                                          </div>
+                                        </div>
+                                        <div id="message"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/jquery.toaster.js"></script>
+
+<script src="/js/jquery.form.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+
+<script src="/js/mindmup-editabletable.js"></script>
+
+<script src="/js/jquery.treetable.js"></script>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
+    function getHtml(tabId) {
+        return $.ajax({
+          url: 'pok/'+tabId,
+          type: "get",
+          data: {tabId}
+        });
+    }
+
+    function formatUang(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function forceInt(x){
+        if(!x) x = '0';
+        return parseInt(x.replace(/\D/g, ""));
+    }
+
+    $(document).ready(function(){
+        $(".tabAjax").click(function(){
+            var tab = $(this);
+
+            var id = tab.attr('id');
+
+            var state = tab.html();
+
+            tab.html(state+'<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>');
+            getHtml(id).done(function(data) {
+                tab.html(state);
+                $('#'+id+'child').html(data); 
+
+                $('#pok_table').DataTable({
+                    aaSorting: [],
+                    rowReorder: {
+                        enable: false
+                    },
+                    paging: false
+                });
+
+                $('#pok_table').editableTableWidget();
+
+                $('#pok_table').editableTableWidget({
+                    cloneProperties: ['background', 'border', 'outline']
+                });
+                $('td[readonly]').click(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+
+                $("#pok_table").treetable({ expandable: true });
+                $("#pok_table").treetable('expandAll');
+
+                var options = { 
+                    beforeSend: function(){
+                        $("#progress").show();
+                        //clear everything
+                        $("#bar").width('0%');
+                        $("#message").html("");
+                        $("#percent").html("0");
+                        $('#unggah_button').prop('disabled', true);
+                        $("#unggah_button").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#unggah_button").text());
+                    },
+                    uploadProgress: function(event, position, total, percentComplete){
+                        $("#bar").width(percentComplete+'%');
+                        $("#percent").html(percentComplete);
+                 
+                    },
+                    success: function(){
+                        $("#bar").width('100%');
+                        $("#percent").html('100');
+                 
+                    },
+                    complete: function(response){
+                        $("#message").html("<font color='green'>"+response.responseText+"</font>");
+                        $('#unggah_button').prop('disabled', false);
+                        $("#unggah_button").html('Unggah');
+                    },
+                    error: function(){
+                        $("#message").html("<font color='red'> ERROR: Gagal unggah file</font>");
+                 
+                    }
+                 
+                }; 
+             
+                $("#pok_unggah").ajaxForm(options);
+
+                $('th').css({
+                    'vertical-align': 'middle',
+                    'text-align':'center'
+                });
+
+                $('.uraian').css({
+                  'text-indent': '-1em',
+                  'padding-left': '2em'
+                });
+
+                $('.money').formatUang();
+                
+            });
+        })
+        $('#utama').trigger('click');
+    });
+
+    $.fn.formatUang = function () {
+        return this.each(function(){
+            $(this).text($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        })
+    }
+
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {
+        $('.money').formatUang();
+        $('#pok_table').editableTableWidget();
+
+        $('#pok_table').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+        $('td[readonly]').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
+    $(document).on('keyup', 'td input', function (evt) {
+        $(this).val(formatUang(forceInt($(this).val())));
+    })
+
+    $(document).on('change', 'table td', function (evt, newValue) {
+        // do something with the new cell value 
+        if (newValue == "") { 
+            return false; // reject change
+        }
+
+        var coll = $(this).closest('tr').attr('coll');
+
+        var kolom = $(this).attr('field');
+
+        if (this.className.indexOf("money") > -1) {
+
+            newValue = newValue.replace(/\./g, '');
+
+        }
+
+        $.ajax({
+            url : "/pok/edit",
+            type: "POST",
+            data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+            }
+        });
+    });
+
+</script>

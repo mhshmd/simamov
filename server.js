@@ -3,6 +3,11 @@
 var express = require('express');
 var app = express(); //meload modul express saja
 
+// //Redis utk cache request client
+// var redis = require('redis');
+// //creates a new client
+// var client = redis.createClient(); 
+
 require('dotenv').config();
 
 //Security
@@ -60,6 +65,13 @@ var handlebars = require('express-handlebars').create({defaultLayout: 'main',
 		        return opts.inverse(this);
 		    }
 		},
+		if_neq: function(a, opts) {
+		    if ( !(a == 'tanpa sub komponen' || a == 'tanpa sub output') ) {
+		        return opts.fn(this);
+		    } else {
+		        return opts.inverse(this);
+		    }
+		},
 		json : function(context) {
 		    return JSON.stringify(context);
 		},
@@ -87,6 +99,9 @@ app.use('/', index); //root menggunakan dialihkan ke index.js
 //SPPD
 var sppd = require('./controllers/sppd.js'); //route index
 app.use('/sppd', sppd); //root menggunakan dialihkan ke index.js
+//PEGAWAI
+var pegawai = require('./controllers/pegawai.js'); //route index
+app.use('/pegawai', pegawai); //root menggunakan dialihkan ke index.js
 //POK
 var pok = require('./controllers/pok.js'); //route index
 app.use('/pok', pok); //root menggunakan dialihkan ke index.js

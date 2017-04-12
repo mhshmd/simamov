@@ -1,0 +1,109 @@
+<table id="pok_table" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="15%">Kode</th>
+                                                <th width="37%">Uraian</th>
+                                                <th width="3%">Volume</th>
+                                                <th width="5%">Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
+                                                <th width="10%">Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each data.get_program}}
+
+                                            <tr id="{{_id}}" coll="pok_program"  data-tt-id="{{_id}}">
+                                                <td field="_id">{{_id}}</td>
+                                                <td field="uraian">{{uraian}}</td>
+                                                <td field="vol"></td>
+                                                <td field="sat"></td>
+                                                <td field="harga_satuan"></td>
+                                                <td field="jumlah"></td>
+                                            </tr>
+
+                                            {{#each ../data.get_kegiatan}}
+
+                                                {{#if_eq prog ../_id}}
+
+                                                    <tr id="{{_id}}" coll="pok_kegiatan" data-tt-parent-id="{{../_id}}">
+                                                        <td style="padding-left: 2em" field="_id">{{_id}}</td>
+                                                        <td field="uraian">{{uraian}}</td>
+                                                        <td field="vol"></td>
+                                                        <td field="sat"></td>
+                                                        <td field="harga_satuan"></td>
+                                                        <td field="jumlah"></td>
+                                                    </tr>
+
+                                                    {{#each ../../data.get_output}}
+
+                                                        {{#if_eq keg ../_id}} 
+
+                                                            <tr id="{{_id}}" coll="pok_output">
+                                                                <td style="padding-left: 4em" field="_id">{{_id}}</td>
+                                                                <td field="uraian">{{uraian}}</td>
+                                                                <td field="vol"></td>
+                                                                <td field="sat"></td>
+                                                                <td field="harga_satuan"></td>
+                                                                <td field="jumlah"></td>
+                                                            </tr>
+
+                                                            {{#each ../../../data.get_komponen}}
+
+                                                                {{#if_eq output ../_id}} 
+
+                                                                    <tr id="{{_id}}" coll="pok_komponen">
+                                                                        <td style="padding-left: 6em" field="_id">{{_id}}</td>
+                                                                        <td field="uraian">{{uraian}}</td>
+                                                                        <td field="vol"></td>
+                                                                        <td field="sat"></td>
+                                                                        <td field="harga_satuan"></td>
+                                                                        <td field="jumlah"></td>
+                                                                    </tr>
+                                                                    {{#each ../../../../data.get_akun}}
+                                                                        {{#if_eq komp ../_id}}
+                                                                            <tr id="{{_id}}" coll="pok_akun">
+                                                                                <td style="padding-left: 8em" field="kdakun">{{kdakun}}</td>
+                                                                                <td field="uraian">{{uraian}}</td>
+                                                                                <td field="vol"></td>
+                                                                                <td field="sat"></td>
+                                                                                <td field="harga_satuan"></td>
+                                                                                <td field="jumlah"></td>
+                                                                            </tr>
+                                                                            {{#each ../../../../../data.get_detail_belanja}}
+                                                                                {{#if_eq akun ../kdakun}}
+                                                                                    <tr id="{{_id}}" coll="pok_detailBelanja">
+                                                                                        <td field="_id"></td>
+                                                                                        <td field="uraian" class="uraian">{{nmr}}. {{uraian}}</td>
+                                                                                        <td field="vol" class="text-center">{{vol}}</td>
+                                                                                        <td field="sat" class="text-center">{{sat}}</td>
+                                                                                        <td field="harga_satuan" class="money">{{harga_satuan}}</td>
+                                                                                        <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                                    </tr>
+                                                                                {{/if_eq}} {{! If Detail Belanja }}
+
+                                                                            {{/each}}    {{! Each Detail Belanja }}
+
+                                                                        {{/if_eq}} {{! If Akun }}
+
+                                                                    {{/each}}  {{! Each Akun }}
+
+                                                                {{/if_eq}} {{! If Komponen }}
+
+                                                            {{/each}}  {{! Each Komponen }}
+
+                                                        {{/if_eq}} {{! If Output }} 
+
+                                                    {{/each}}  {{! Each Output }}
+
+                                                {{/if_eq}} {{! If Kegiatan }} 
+
+                                            {{/each}}  {{! Each Kegiatan }} 
+
+                                        {{/each}}  {{! Each Program }}                                
+                                        </tbody>
+                                    </table>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.treetable.css"));
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.treetable.theme.default.css"));
+</script>

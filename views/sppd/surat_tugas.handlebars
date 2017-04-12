@@ -36,10 +36,13 @@
                                 <div class="form-group row">
                                     <label for="provinsi">Lokasi</label>
                                     <div class="form-group row">
-                                            <div class="col-md-6">
-                                                <input id="provinsi" type="text" name="prov" class="form-control" placeholder="Provinsi/ organisasi">
+                                            <div class="col-md-12">
+                                                <input id="organisasi" type="text" name="organisasi" class="form-control" placeholder="Organisasi/Tempat">
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <input id="provinsi" type="text" name="prov" class="form-control" placeholder="Provinsi" required="">
+                                            </div>
+                                            <div class="col-md-12">
                                                 <input id="kabupaten" type="text" name="kab" class="form-control" placeholder="Kabupaten">
                                             </div>
                                     </div>
@@ -373,6 +376,34 @@
             }
           }
         });
+
+    $('#organisasi').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+        {
+            return $.getJSON(
+                '/sppd/ajax/organisasi',
+                { query: q },
+                function (data) {
+                    states = [];
+                    map = {};
+
+                    $.each(data, function (i, state) {
+                        map[state.label] = state;
+                        states.push(state.query);
+                    });
+
+                    var states = $.map(states, function (string) { return { value: string }; });
+
+                    return p(states);
+                });
+        }
+      }
+    });
 
     var ttdST = {{{json ttdST}}};
     var ttdL = {{{json ttdL}}};

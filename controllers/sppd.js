@@ -209,11 +209,29 @@ sppd.post('/surat_tugas', function(req, res){
 
 				var dt = new Date();
 
-				var lokasi_ = req.body.kab+', '+req.body.prov;
+				var lokasi_ = [];
 
-				if(!(req.body.kab && req.body.prov)){
-					lokasi_ = req.body.kab+req.body.prov;
+				if(req.body.organisasi){
+					lokasi_.push(req.body.organisasi)
+					result.connectDB.collection('sppd_organisasi_qs').findOne({query: req.body.organisasi}, function(err, qs){
+						if(!qs){
+							console.log(qs);
+							result.connectDB.collection('sppd_organisasi_qs').insert({query: req.body.organisasi});
+						}
+					})
 				}
+
+				if (req.body.kab) {
+					lokasi_.push(req.body.kab)
+				}
+
+				if (req.body.prov) {
+					lokasi_.push(req.body.prov)
+				}
+
+				lokasi_ = lokasi_.join(", ")
+
+				console.log(lokasi_)
 
 				var atas_nama_ketua_stis = "";
 
@@ -284,7 +302,7 @@ sppd.post('/surat_tugas', function(req, res){
 
 				callback(null, {pdfNames: pdfNames, outputDocx: outputDocx});
 							
-				result.connectDB.close();
+				// result.connectDB.close();
 
 			}
 
@@ -789,7 +807,7 @@ sppd.post('/perhitungan/load', function(req, res){
 	});
 });
 
-sppd.post('/perhitungan/biaya/:jenis', function(req, res){
+sppd.post('/perhitungan/biaya', function(req, res){
 	var MongoClient = mongodb.MongoClient;
 
 	MongoClient.connect(url, function(err, db){
@@ -1252,6 +1270,20 @@ sppd.get('/ajax/:coll', function(req, res){
 				collection = db.collection('kabupaten');
 
 				collection.find({"label": {$regex: req.query.query, $options:"i"}}, {'label':1, _id:0}).limit(15).toArray(function(err, result){
+					if(err){
+						console.error(err);
+					} else if(result.length){
+						res.send(JSON.stringify(result));
+					} else{
+						res.send('kosong');
+					}
+					console.log(result)
+				})
+				
+			} else if(req.params.coll == "organisasi"){
+				collection = db.collection('sppd_organisasi_qs');
+
+				collection.find({"query": {$regex: req.query.query, $options:"i"}}, {'query':1, _id:0}).limit(15).toArray(function(err, result){
 					if(err){
 						console.error(err);
 					} else if(result.length){

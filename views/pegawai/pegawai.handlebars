@@ -1,0 +1,111 @@
+<div class="animated fadeIn">
+    <div class="card" id="new">
+        <div class="card-header"><i class="icon-people"></i> Pegawai</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="utama" class="nav-link active tabAjax" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-eye"></i> Utama</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="editTab" class="nav-link" data-toggle="tab" href="#editTabchild" role="tab" aria-controls="editTabchild"><i class="icon-note"></i> Edit</a>
+                            </li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="utamachild" role="tabpanel">
+                                <h3 class="text-center">Dosen/ Pegawai STIS</h3>
+                                <table id="pegawai" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="40%">Nama</th>
+                                            <th width="20%">NIP</th>
+                                            <th width="35%">Jabatan</th>
+                                            <th width="5%">Golongan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each peg}}
+                                        <tr id="{{nip}}">
+                                            <td field="nama" class="uraian">{{nama}}</td>
+                                            <td field="nip" class="text-center">{{nip}}</td>
+                                            <td field="jabatan">{{jabatan}}</td>
+                                            <td field="gol" class="text-center">{{gol}}</td>
+                                        </tr>
+                                    {{/each}}                            
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="editTabchild" role="tabpanel">
+                                <h3 class="text-center">Dosen/ Pegawai STIS</h3>
+                                <table id="pegawai_edit" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="40%">Nama</th>
+                                            <th width="20%">NIP</th>
+                                            <th width="35%">Jabatan</th>
+                                            <th width="5%">Golongan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each peg}}
+                                        <tr id="{{nip}}">
+                                            <td field="nama" class="uraian">{{nama}}</td>
+                                            <td field="nip" class="text-center">{{nip}}</td>
+                                            <td field="jabatan">{{jabatan}}</td>
+                                            <td field="gol" class="text-center">{{gol}}</td>
+                                        </tr>
+                                    {{/each}}                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/jquery.toaster.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+
+<script src="/js/mindmup-editabletable.js"></script>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
+
+    $('#pegawai, #pegawai_edit').DataTable({
+        aaSorting: [],
+        rowReorder: {
+            enable: false
+        }
+    });
+
+    $('#pegawai_edit').editableTableWidget();
+
+    $('#pegawai_edit').editableTableWidget({
+        cloneProperties: ['background', 'border', 'outline']
+    });
+
+    $('table td').on('change', function (evt, newValue) {
+        // do something with the new cell value 
+        if (newValue == "") { 
+            return false; // reject change
+        }
+
+        $.ajax({
+            url : "/pegawai/ajax/edit",
+            type: "POST",
+            data: {nip: $(this).closest('tr').attr('id'), jenis : $(this).attr('field'), new_value: newValue},
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+            }
+        });
+    });
+</script>

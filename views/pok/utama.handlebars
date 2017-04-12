@@ -1,0 +1,149 @@
+                                    <h3 class="text-center">POK Revisi 2</h3>
+                                    <table id="pok_table" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="18%">Kode</th>
+                                                <th width="54%">Uraian</th>
+                                                <th width="3%">Volume</th>
+                                                <th width="5%">Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
+                                                <th width="10%">Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each data.get_program}}
+
+                                            <tr id="{{_id}}" coll="pok_program" data-tt-id="{{_id}}">
+                                                <td field="_id" readonly>{{_id}}</td>
+                                                <td field="uraian">{{uraian}}</td>
+                                                <td field="vol"></td>
+                                                <td field="sat"></td>
+                                                <td field="harga_satuan"></td>
+                                                <td field="jumlah" class="money">{{jumlah}}</td>
+                                            </tr>
+
+                                            {{#each ../data.get_kegiatan}}
+
+                                                {{#if_eq prog ../_id}}
+
+                                                    <tr id="{{_id}}" coll="pok_kegiatan" data-tt-id="{{_id}}" data-tt-parent-id="{{../_id}}">
+                                                        <td field="_id" readonly>{{_id}}</td>
+                                                        <td field="uraian">{{uraian}}</td>
+                                                        <td field="vol"></td>
+                                                        <td field="sat"></td>
+                                                        <td field="harga_satuan"></td>
+                                                        <td field="jumlah" class="money">{{jumlah}}</td>
+                                                    </tr>
+
+                                                    {{#each ../../data.get_output}}
+
+                                                        {{#if_eq keg ../_id}} 
+
+                                                            <tr id="{{_id}}" coll="pok_output" data-tt-id="{{_id}}" data-tt-parent-id="{{../_id}}">
+                                                                <td field="_id" readonly>{{_id}}</td>
+                                                                <td field="uraian">{{uraian}}</td>
+                                                                <td field="vol"></td>
+                                                                <td field="sat"></td>
+                                                                <td field="harga_satuan"></td>
+                                                                <td field="jumlah" class="money">{{jumlah}}</td>
+                                                            </tr>
+                                                            {{#each ../../../data.get_sub_output}}
+                                                                {{#if_eq output ../_id}}
+                                                                    {{#if_neq uraian}}
+                                                                        <tr id="{{_id}}" coll="pok_sub_output" data-tt-id="{{_id}}" data-tt-parent-id="{{../_id}}">
+                                                                            <td field="_id" readonly></td>
+                                                                            <td field="uraian"><em>{{soutput}}. {{uraian}}</em></td>
+                                                                            <td field="vol"></td>
+                                                                            <td field="sat"></td>
+                                                                            <td field="harga_satuan"></td>
+                                                                            <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                        </tr>
+                                                                    {{/if_neq}} {{! If sub output }}
+
+                                                                    {{#each ../../../../data.get_komponen}}
+
+                                                                        {{#if_eq soutput ../_id}} 
+
+                                                                            <tr id="{{_id}}" coll="pok_komponen" data-tt-id="{{_id}}" data-tt-parent-id="{{../../_id}}">
+                                                                                <td field="_id" readonly>{{_id}}</td>
+                                                                                <td field="uraian"><strong>{{uraian}}</strong></td>
+                                                                                <td field="vol"></td>
+                                                                                <td field="sat"></td>
+                                                                                <td field="harga_satuan"></td>
+                                                                                <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                            </tr>
+                                                                            {{#each ../../../../../data.get_sub_komponen}}
+                                                                                {{#if_eq komp ../_id}}
+                                                                                    {{#if_neq uraian}}
+                                                                                        <tr id="{{_id}}" coll="pok_sub_komponen" data-tt-id="{{_id}}" data-tt-parent-id="{{../_id}}">
+                                                                                            <td field="_id" readonly></td>
+                                                                                            <td field="uraian"><em>{{skomp}}. {{uraian}}</em></td>
+                                                                                            <td field="vol"></td>
+                                                                                            <td field="sat"></td>
+                                                                                            <td field="harga_satuan"></td>
+                                                                                            <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                                        </tr>
+                                                                                    {{/if_neq}} {{! If sub komponen }}
+
+                                                                                    {{#each ../../../../../../data.get_akun}}
+                                                                                        {{#if_eq skomp ../_id}}
+                                                                                            <tr id="{{_id}}" coll="pok_akun" data-tt-id="{{_id}}" data-tt-parent-id="{{../../_id}}">
+                                                                                                <td field="kdakun" readonly>{{kdakun}}</td>
+                                                                                                <td field="uraian">{{uraian}}</td>
+                                                                                                <td field="vol"></td>
+                                                                                                <td field="sat"></td>
+                                                                                                <td field="harga_satuan"></td>
+                                                                                                <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                                            </tr>
+
+                                                                                            {{#each ../../../../../../../data.get_detail_belanja}}
+
+                                                                                                {{#if_eq akun ../_id}}
+                                                                                                    <tr id="{{_id}}" coll="pok_detailBelanja"  data-tt-id="{{_id}}" data-tt-parent-id="{{../_id}}">
+                                                                                                        <td field="_id" class="text-right" readonly>{{nmr}}</td>
+                                                                                                        <td field="uraian" class="uraian">{{uraian}}</td>
+                                                                                                        <td field="vol" class="text-center">{{vol}}</td>
+                                                                                                        <td field="sat" class="text-center">{{sat}}</td>
+                                                                                                        <td field="harga_satuan" class="money">{{harga_satuan}}</td>
+                                                                                                        <td field="jumlah" class="money">{{jumlah}}</td>
+                                                                                                    </tr>
+                                                                                                {{/if_eq}} {{! If Detail Belanja }}
+
+                                                                                            {{/each}}    {{! Each Detail Belanja }}
+
+                                                                                        {{/if_eq}} {{! If Akun }}
+
+                                                                                    {{/each}}  {{! Each Akun }}
+
+                                                                                {{/if_eq}} {{! If Akun }}
+
+                                                                            {{/each}}  {{! Each sub komponen }}
+
+                                                                        {{/if_eq}} {{! If Komponen }}
+
+                                                                    {{/each}}  {{! Each Komponen }}
+
+                                                                {{/if_eq}} {{! If sub Output }} 
+
+                                                            {{/each}} {{! Each sub Output }} 
+
+                                                        {{/if_eq}} {{! If Output }} 
+
+                                                    {{/each}}  {{! Each Output }}
+
+                                                {{/if_eq}} {{! If Kegiatan }} 
+
+                                            {{/each}}  {{! Each Kegiatan }} 
+
+                                        {{/each}}  {{! Each Program }}                                
+                                        </tbody>
+                                    </table>
+
+
+
+<script src="/js/jquery.treetable.js"></script>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.treetable.css"));
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.treetable.theme.default.css"));
+</script>
