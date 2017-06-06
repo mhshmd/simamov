@@ -37,6 +37,12 @@ var formidable = require('formidable');
 //modul mongodb utk koneksi mongo db keuangan
 var mongo = require('mongodb');
 
+var url = 'mongodb://127.0.0.1:27017/simamov';
+
+var mongoose = require('mongoose');
+
+mongoose.connect(url);
+
 //modul sql utk koneksi db mysql sipadu
 var mysql = require('mysql');
 var connection = mysql.createPool({
@@ -77,6 +83,9 @@ var handlebars = require('express-handlebars').create({defaultLayout: 'main',
 		},
 		"inc" : function(value, options){
 		    return parseInt(value) + 1;
+		},
+		"fullYear" : function(){
+			return (new Date()).getFullYear();
 		}
 	}
 });
@@ -92,26 +101,39 @@ app.use('/img', express.static(__dirname + '/img'));
 app.use('/result', express.static(__dirname + '/template/output'));
 
 //====== ROUTES ======//
+var login = require('./controllers/login.js'); //route index
+app.use('/login', login); //root menggunakan dialihkan ke index.js
+
+//cek login, urutan harus di bawah route login
+var login_check = function (req, res, next) {
+	if(!req.session.username){
+		res.set('login', '0')
+		res.render('login', {layout: false});
+		return;
+	}
+  	next()
+}
+app.use(login_check)
+
 //Home
 var index = require('./controllers/index.js'); //route index
 app.use('/', index); //root menggunakan dialihkan ke index.js
 
 //SPPD
-var sppd = require('./controllers/sppd.js'); //route index
-app.use('/sppd', sppd); //root menggunakan dialihkan ke index.js
+var sppd = require('./controllers/sppd.js');
+app.use('/sppd', sppd); 
 //PEGAWAI
-var pegawai = require('./controllers/pegawai.js'); //route index
-app.use('/pegawai', pegawai); //root menggunakan dialihkan ke index.js
+var pegawai = require('./controllers/pegawai.js');
+app.use('/pegawai', pegawai);
 //POK
-var pok = require('./controllers/pok.js'); //route index
-app.use('/pok', pok); //root menggunakan dialihkan ke index.js
-
-//====== ERROR HANDLER ======//
-//jika ada error, tampilkan di console
-app.use(function(err, req, res, next){
-	console.log("Error: "+err.message);
-	next(); //diteruskan ke route selanjutnya/ di bawah
-});
+var pok = require('./controllers/pok.js');
+app.use('/pok', pok);
+//ADMIN
+var admin = require('./controllers/admin.js');
+app.use('/admin', admin);
+//LOGOUT
+var logout = require('./controllers/logout.js');
+app.use('/logout', logout);
 
 //route jika halaman tidak ditemukan
 app.use(function(req, res){

@@ -28,13 +28,21 @@
                                 <div class="form-group row">
                                     <label for="provinsi">Lokasi</label>
                                     <input id="lokasi" type="text" name="lokasi" class="form-control" placeholder="Lokasi">
-                                </div>                                                         
+                                </div>
                                 <div class="form-group row">
-                                    <div class="col-md-6" style="padding-left: 0">
-                                        <label for="datetimepicker1">Waktu Pelaksanaan</label>
-                                        <input type='text-input' class="form-control date tgl_ttd" name="waktu_pelaksanaan" placeholder="Pelaksanaan" id="datetimepicker1" required>
+                                    <label for="datetimepicker1">Waktu Pelaksanaan</label>
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <input type='text-input' class="form-control date" name="waktu_pelaksanaan1" id="datetimepicker1" required>
+                                            <span class="help-block">mulai</span> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type='text-input' class="form-control date" name="waktu_pelaksanaan2" id="datetimepicker2" required>
+                                            <span class="help-block">selesai</span>
+                                            <input style="display: none;" type="text" id="jumlah_hari" name="jumlah_hari" value="">
+                                        </div>
                                     </div>
-                                </div>                            
+                                </div>                           
                                 <div class="form-group row">
                                     <label for="ttd_legalitas">Penanda Tangan Legalitas</label>
                                     <select list="ttd_legalitasb"  id="ttd_legalitas" name="ttd_legalitas" class="form-control input-lg" size="1">
@@ -194,6 +202,16 @@
         locale: 'id',
         format: 'D MMMM YYYY'
     });
+    $('#datetimepicker2').datetimepicker({
+        locale: 'id',
+        format: 'D MMMM YYYY'
+    });
+
+    //Jumlah hari berangkat
+    $(".date").on("dp.change", function (e) {
+        $("#jumlah_hari").val(moment($('#datetimepicker2').val(), "DD MMMM YYYY").diff(moment($('#datetimepicker1').val(), "DD MMMM YYYY"), 'days')+1);
+    });
+    
     $('.tgl_ttd').datetimepicker({
         locale: 'id',
         format: 'D MMMM YYYY',

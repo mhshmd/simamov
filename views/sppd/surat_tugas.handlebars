@@ -12,7 +12,7 @@
                             <form id="suratTugas" action="/sppd/surat_tugas" method="POST">  
                                 <div class="form-group row">
                                     <label for="nomor">Nomor</label>
-                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="{{last_nomor}}/SPD/STIS/2017" required>
+                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="{{last_nomor}}/SPD/STIS/{{fullYear}}" required>
                                 </div>                          
                                 <div class="form-group row">
                                     <label for="search">Nama</label>
@@ -39,7 +39,7 @@
                                     <label for="provinsi">Lokasi</label>
                                     <div class="form-group row">
                                             <div class="col-md-12">
-                                                <input id="organisasi" type="text" name="organisasi" class="form-control" placeholder="Organisasi/Tempat (boleh kosong)">
+                                                <input id="organisasi" type="text" name="org" class="form-control" placeholder="Organisasi/Tempat (boleh kosong)">
                                             </div>
                                             <div class="col-md-12">
                                                 <input id="provinsi" type="text" name="prov" class="form-control" placeholder="Provinsi" required="">
@@ -74,6 +74,9 @@
                                         </label>
                                         <label for="radio3" class="radio-inline">
                                             <input type="radio" id="radio3" name="jenis_ang" value="Kendaraan Umum">  Kendaraan Umum
+                                        </label>
+                                        <label for="radio4" class="radio-inline">
+                                            <input type="radio" id="radio4" name="jenis_ang" value="Kendaraan Dinas">  Kendaraan Dinas
                                         </label>
                                     </div>
                                 </div>                             

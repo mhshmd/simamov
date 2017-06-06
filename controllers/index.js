@@ -6,11 +6,11 @@ var express = require('express');
 var index = express.Router();
 
 index.get('/', function(req, res){
-	res.render('blank', {title: ''})
+	res.render('blank', {display_name: req.session.username});
 });
 
 index.get('/home', function(req, res){
-	res.render('home', {layout: false, title: "Home"});
+	res.render('pok/pok', {layout: false, title: "Home"});
 });
 
 module.exports = index;

@@ -18,6 +18,10 @@ var JSZip = require('jszip');
 var mongodb = require('mongodb');
 var url = 'mongodb://127.0.0.1:27017/simamov_2017';
 
+var SuratTugas = require(__dirname+"/../model/SuratTugas.model");
+var SPPDQuickSearch = require(__dirname+"/../model/SPPDQuickSearch.model");
+var Pegawai = require(__dirname+"/../model/Pegawai.model");
+
 //PDF Merge
 var PDFMerge = require('pdf-merge');
 var pdftkPath = 'C:\\Program Files (x86)\\PDFtk Server\\bin\\pdftk.exe';
@@ -28,6 +32,7 @@ var msopdf = require('node-msoffice-pdf');
 
 //Angular advanced docx parser
 var expressions= require('angular-expressions');
+
 expressions.filters.format_uang = function(input) {
     // This condition should be used to make sure that if your input is undefined, your output will be undefined as well and will not throw an error
     if(!input) return input;
@@ -162,7 +167,7 @@ sppd.get('/surat_tugas', function(req, res){
 });
 
 sppd.post('/surat_tugas', function(req, res){
-	var sppdTemplate = fs.readFileSync(__dirname+"/../template/sppd.docx","binary");
+	var sppdTemplate = fs.readFileSync(__dirname+"/../template/surat_tugas.docx","binary");
 
 	var last_nomor = parseInt(req.body.nomor.match(/^\d{1,5}/));
 
@@ -192,11 +197,9 @@ sppd.post('/surat_tugas', function(req, res){
 
 		},
 
-		getPegawai: ['connectDB', function(result, callback){
+		getPegawai: function(callback){
 
-			console.log(">>>>>>>>", nama);
-
-			result.connectDB.collection('pegawai').find({nama : {$in: nama}},{jabatan:1, gol: 1, nip: 1, sppd_surat:1, _id:0}).sort({nama:1}).toArray(function(err, result){
+			Pegawai.find({nama : {$in: nama}}, 'nama jabatan gol nip sppd_surat', function(err, result){
 
 				if(err){
 
@@ -210,106 +213,92 @@ sppd.post('/surat_tugas', function(req, res){
 
 			});
 
-		}],
+		},
 
 		generateSuratDocx: ['connectDB', 'getPegawai', function(result, callback){
 
 				var dt = new Date();
 
-				var lokasi_ = [];
+				if(req.body.org){
+					var query = new SPPDQuickSearch({query: req.body.org});
 
-				if(req.body.organisasi){
-					lokasi_.push(req.body.organisasi)
-					result.connectDB.collection('sppd_organisasi_qs').findOne({query: req.body.organisasi}, function(err, qs){
-						if(!qs){
-							console.log(qs);
-							result.connectDB.collection('sppd_organisasi_qs').insert({query: req.body.organisasi});
+					query.isExist(function(err, res){
+
+						if(!res){
+							query.save();
 						}
 					})
-				}
-
-				if (req.body.kab) {
-					lokasi_.push(req.body.kab)
-				}
-
-				if (req.body.prov) {
-					lokasi_.push(req.body.prov)
-				}
-
-				lokasi_ = lokasi_.join(", ")
-
-				console.log(lokasi_)
-
-				var atas_nama_ketua_stis = "";
-
-				if(req.body.ttd_surat_tugas_jabatan !== "Ketua STIS"){
-					atas_nama_ketua_stis = "A.n. Ketua Sekolah Tinggi Ilmu Statistik";
-				} else{
-					req.body.ttd_surat_tugas_jabatan = "Ketua Sekolah Tinggi Ilmu Statistik";
 				}
 
 				var pdfNames = [];
 				var outputDocx = [];
 
-				var data = {
-				    tahun_ini: dt.getFullYear(),
-				    type: "surat tugas",
-				    tugas: req.body.tugas,
-				    lokasi: lokasi_,
-				    prov : req.body.prov,
-				    tgl_berangkat: req.body.tgl_berangkat,
-				    tgl_kembali: req.body.tgl_kembali,
-				    jumlah_hari: req.body.jumlah_hari,
-				    jenis_ang: req.body.jenis_ang,
-				    ttd_surat_tugas: req.body.ttd_surat_tugas,
-				    ttd_legalitas: req.body.ttd_legalitas,
-				    tgl_ttd_st: req.body.tgl_ttd_st,
-				    tgl_ttd_ppk: req.body.tgl_ttd_ppk,
-				    output: req.body.output,
-				    atas_nama_ketua_stis: atas_nama_ketua_stis,
-				    ttd_surat_tugas_jabatan: req.body.ttd_surat_tugas_jabatan,
-				    ttd_surat_tugas_nip: req.body.ttd_surat_tugas_nip,
-				    ppk_nip: req.body.ppk_nip,
-				    ppk_nama: req.body.ppk_nama,
-				    kode_output: req.body.kode_output,
-				    ttd_legalitas_jabatan: req.body.ttd_legalitas_jabatan,
-				    ttd_legalitas_nip: req.body.ttd_legalitas_nip
-				};
+				var surtug = new SuratTugas({
+				    "tahun" : dt.getFullYear(),
+
+				    "tugas" : req.body.tugas,
+				    "output" : req.body.output,
+				    "kode_output" : req.body.kode_output,
+
+				    "org" : req.body.org,
+				    "prov" : req.body.prov,
+				    "kab" : req.body.kab,
+
+				    "tgl_berangkat" : req.body.tgl_berangkat,
+				    "tgl_kembali" : req.body.tgl_kembali,
+				    "jumlah_hari" : req.body.jumlah_hari,
+
+				    "jenis_ang" : req.body.jenis_ang,
+
+				    "ttd_surat_tugas" : req.body.ttd_surat_tugas,
+				    "ttd_legalitas" : req.body.ttd_legalitas,
+				    "tgl_ttd_st" : req.body.tgl_ttd_st,
+				    "tgl_ttd_ppk" : req.body.tgl_ttd_ppk,
+
+				    "ttd_surat_tugas_jabatan" : req.body.ttd_surat_tugas_jabatan,
+				    "ttd_surat_tugas_nip" : req.body.ttd_surat_tugas_nip,
+
+				    "ppk_nip" : req.body.ppk_nip,
+				    "ppk_nama" : req.body.ppk_nama,
+
+				    "ttd_legalitas_jabatan" : req.body.ttd_legalitas_jabatan,
+				    "ttd_legalitas_nip" : req.body.ttd_legalitas_nip
+				});
 
 				result.getPegawai.forEach(function(value,key){
 
 					var zip = new JSZip(sppdTemplate);
 					var doc = new Docxtemplater().loadZip(zip);
 
-					data._id = last_nomor+key;
-				    data.nomor_surat= last_nomor+key;
-				    data.nama_lengkap= nama[key];
-				    data.jabatan= value.jabatan[value.sppd_surat];
-				    data.gol= value.gol;
-				    data.nip= value.nip;
+					surtug._id = last_nomor+key;
+				    surtug.nomor_surat= last_nomor+key;
+				    surtug.nama_lengkap= value.nama;
+				    surtug.jabatan= value.jabatan[value.sppd_surat];
+				    surtug.gol= value.gol;
+				    surtug.nip= value.nip;
 
-					result.connectDB.collection('sppd').save(data);
+					// result.connectDB.collection('sppd').save(surtug);
 
-					result.connectDB.collection('pengaturan').update({type:'sppd'}, {$set:{last_nomor: data._id}});
+					surtug.save();
 
-					doc.setData(data);
+					result.connectDB.collection('pengaturan').update({type:'sppd'}, {$set:{last_nomor: surtug._id}});
+
+					doc.setData(surtug);
 
 					doc.render();
 
 					var buf = doc.getZip()
 					             .generate({type:"nodebuffer"});
 
-					outputDocx[key] = __dirname+"/../template/output/sppd/"+data.nomor_surat+"-SPD-STIS-"+data.tahun_ini+"-"+data.nama_lengkap+".docx";
+					outputDocx[key] = __dirname+"/../template/output/sppd/"+surtug._id+"-SPD-STIS-"+surtug.tahun+"-"+surtug.nama_lengkap+".docx";
 
 					fs.writeFileSync(outputDocx[key],buf);
 
-					pdfNames[key] = __dirname+"/../template/output/sppd/"+data.nomor_surat+"-SPD-STIS-"+data.tahun_ini+"-"+data.nama_lengkap+".pdf";
+					pdfNames[key] = __dirname+"/../template/output/sppd/"+surtug._id+"-SPD-STIS-"+surtug.tahun+"-"+surtug.nama_lengkap+".pdf";
 
 				});
 
 				callback(null, {pdfNames: pdfNames, outputDocx: outputDocx});
-							
-				// result.connectDB.close();
 
 			}
 
@@ -342,8 +331,6 @@ sppd.post('/surat_tugas', function(req, res){
 
 				       	}
 
-				       	console.log(">>>>>>>>>>>>>>>>>", result);
-
 						var pdfMerge = new PDFMerge(result.generateSuratDocx.pdfNames, pdftkPath);
 
 						pdfMerge.asBuffer().merge(function(error, buffer) {
@@ -370,14 +357,12 @@ sppd.post('/surat_tugas', function(req, res){
 
 		}
 
-		// res.send({last_nomor: last_nomor+result.pdfNames.length, result: "/result/sppd/merged.pdf"});
-
 	});
 	
 });
 
 sppd.post('/surat_tugas_biasa', function(req, res){
-	var sppd_biasa_template = fs.readFileSync(__dirname+"/../template/sppd_biasa.docx","binary");
+	var sppd_biasa_template = fs.readFileSync(__dirname+"/../template/surat_tugas_biasa.docx","binary");
 
 	var last_nomor = parseInt(req.body.nomor.match(/\d{1,5}$/));
 
@@ -453,7 +438,9 @@ sppd.post('/surat_tugas_biasa', function(req, res){
 				    type: "surat tugas biasa",
 				    tugas: req.body.tugas,
 				    lokasi: req.body.lokasi,
-				    waktu_pelaksanaan: req.body.waktu_pelaksanaan,
+				    waktu_pelaksanaan1: req.body.waktu_pelaksanaan1,
+				    waktu_pelaksanaan2: req.body.waktu_pelaksanaan2,
+				    jumlah_hari: req.body.jumlah_hari,
 				    ttd_surat_tugas: req.body.ttd_surat_tugas,
 				    ttd_legalitas: req.body.ttd_legalitas,
 				    tgl_ttd_st: req.body.tgl_ttd_st,
@@ -480,6 +467,18 @@ sppd.post('/surat_tugas_biasa', function(req, res){
 				result.connectDB.collection('sppd').save(data);
 
 				result.connectDB.collection('pengaturan').update({type:'sppd'}, {$set:{last_nomor: data._id}});
+
+				if(data.waktu_pelaksanaan1 == data.waktu_pelaksanaan2){
+					data.waktu_pelaksanaan = data.waktu_pelaksanaan1;
+				} else{
+					data.waktu_pelaksanaan = data.waktu_pelaksanaan1+' - '+data.waktu_pelaksanaan2;
+				}
+
+				data.pelaksanaan = [];
+
+				for (var i = 0; i < data.jumlah_hari; i++) {
+					data.pelaksanaan.push({tgl: (i+1)+' Mei 2017'})
+				}
 
 				doc.setData(data);
 
@@ -596,9 +595,9 @@ sppd.get('/perhitungan', function(req, res){
 		if(err){
 			console.log('Unable to connect to server');
 		} else{
-			var sppd = db.collection('sppd');
+			var sppd = db.collection('surat_tugas');
 
-			sppd.find({type: {$ne: "surat tugas biasa"}}).toArray(function(err, result){
+			sppd.find({}).toArray(function(err, result){
 				if(err){
 					console.error(err);
 					return;
@@ -624,7 +623,7 @@ sppd.post('/perhitungan', function(req, res){
 			console.log('Unable to connect to server');
 		} else{
 
-			db.collection('sppd').findOne({_id : parseInt(req.body.nomor)}, function(err, result){
+			db.collection('surat_tugas').findOne({_id : parseInt(req.body.nomor)}, function(err, result){
 					if(err){
 						console.error(err);
 						return;
@@ -642,7 +641,7 @@ sppd.post('/perhitungan', function(req, res){
 					result.bendahara_nama = req.body.bendahara_nama;
 					result.bend_nip = req.body.bend_nip;
 
-					result.harga_tiket = parseInt(req.body.harga_tiket.replace(/\D/g, ""))
+					result.harga_tiket = req.body.harga_tiket;
 					result.harian_hari = req.body.harian_hari;
 					result.harian_biaya = req.body.harian_biaya;
 					result.harian_total = req.body.harian_total;
@@ -752,12 +751,14 @@ sppd.post('/perhitungan', function(req, res){
 					var buf = doc.getZip()
 					             .generate({type:"nodebuffer"});
 
-					outputDocx = __dirname+"/../template/output/perhitungan/"+result.nomor_surat+"-Perhitungan-SPD-STIS-"+result.tahun_ini+"-"+result.nama_lengkap+".docx";
+					outputDocx = __dirname+"/../template/output/perhitungan/"+result.nomor_surat+"-Perhitungan-SPD-STIS-"+
+						result.tahun_ini+"-"+result.nama_lengkap+".docx";
 
 					fs.writeFileSync(outputDocx,buf);
 
 					msopdf(null, function(error, office) {
-						var pdfNames = __dirname+"/../template/output/perhitungan/"+result.nomor_surat+"-Perhitungan-SPD-STIS-"+result.tahun_ini+"-"+result.nama_lengkap+".pdf";
+						var pdfNames = __dirname+"/../template/output/perhitungan/"+result.nomor_surat+"-Perhitungan-SPD-STIS-"+
+							result.tahun_ini+"-"+result.nama_lengkap+".pdf";
 						office.word({input: outputDocx, output: pdfNames}, function(error, pdf) {
 					      if (error) {
 					        	res.send("Error");
@@ -770,8 +771,6 @@ sppd.post('/perhitungan', function(req, res){
 					           console.log("Woops", error);
 					       } else {
 								res.send({result: "/result/perhitungan/"+result.nomor_surat+"-Perhitungan-SPD-STIS-"+result.tahun_ini+"-"+result.nama_lengkap+".pdf"});
-
-								db.collection('sppd').update({_id : result.nomor_surat}, {$set : {done : 1}})
 									
 								db.close();
 					       }
@@ -790,7 +789,7 @@ sppd.post('/perhitungan/load', function(req, res){
 		if(err){
 			console.log('Unable to connect to server');
 		} else{
-			var sppd = db.collection('sppd');
+			var sppd = db.collection('surat_tugas');
 
 			sppd.findOne({_id : parseInt(req.body.nomor)}, function(err, result){
 				if(err){

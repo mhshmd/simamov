@@ -1,0 +1,224 @@
+<div class="animated fadeIn">
+    <div class="card" id="new">
+        <div class="card-header"><i class="icon-lock-open"></i> Administrator</div>
+            <div class="card-block"> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="User" class="nav-link active" data-toggle="tab" href="#Userchild" role="tab" aria-control="Userchild"><i class="icon-user"></i> Pengguna</a>
+                            </li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Userchild" role="tabpanel">
+                                <h5><i class="icon-user-follow"></i> Tambah Pengguna:</h5>
+                                <form id="tambah_user" action="/admin/tambah_user" method="POST">
+                                    <div class="row">
+
+                                            <div class="form-group col-sm-2">
+                                                <label for="username">Nama Pengguna</label>
+                                                <input type="text" class="form-control" id="username" name='_id' required>
+                                            </div>
+
+                                            <div class="form-group col-sm-2">
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" name='password' required>
+                                            </div>
+
+                                            <div class="form-group col-sm-2">
+
+                                                <label for="jenis_user">Jenis</label>
+                                                <select id="jenis_user" name="jenis" class="form-control" size="1" id='jenis_user'>
+                                                    <option value="1">Administrator</option>
+                                                    <option value="0">Editor</option>
+                                                </select>
+
+                                            </div>
+
+                                            <div class="form-group col-sm-2">
+                                                <label for="cvv">&nbsp;</label>
+                                                <input type="submit" class="btn btn-primary form-control" value="Buat">
+                                            </div>
+
+                                    </div> 
+                                <!--/.row-->    
+                                </form>
+                                <h5>Administrator</h5>
+                                <table id="adm_table" class="table table-bordered" style="width: 80%">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Nama Pengguna</th>
+                                            <th width="10%">Alamat IP terakhir</th>
+                                            <th width="20%">Waktu login terakhir</th>
+                                            <th width="10%">Pilihan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                            
+                                    {{#each adm_user}}
+                                        <tr>
+                                            <td class='username'>{{_id}}</td>
+                                            <td>{{ip_address}}</td>
+                                            <td>{{last_login_time}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal"><i class="icon-pencil"></i></button>
+                                                <button type="button" class="btn btn-primary del"><i class="icon-user-unfollow"></i></button>
+                                            </td>
+                                        </tr>
+                                    {{/each}}  
+                                    </tbody>
+                                </table> 
+                                <h5>Editor</h5>
+                                <table id="editor_table" class="table table-bordered" style="width: 80%">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Nama Pengguna</th>
+                                            <th width="10%">Alamat IP terakhir</th>
+                                            <th width="20%">Waktu login terakhir</th>
+                                            <th width="10%">Pilihan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                            
+                                    {{#each editor_user}}
+                                        <tr>
+                                            <td class='username'>{{_id}}</td>
+                                            <td>{{ip_address}}</td>
+                                            <td>{{last_login_time}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#editModal"><i class="icon-pencil"></i></button>
+                                                <button type="button" class="btn btn-primary del"><i class="icon-user-unfollow"></i></button>
+                                            </td>
+                                        </tr>
+                                    {{/each}}  
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <form id="edit_user" action="/admin/edit/" method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit pengguna</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding: 15px">
+                        <div class="form-group row">
+                            <label for="username">Nama Pengguna</label>
+                            <input type="text" class="form-control" id="username_edit" name='_id' disabled>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password">Password</label>
+                            <input data-animation="false" data-toggle="tooltip" title="Kosongkan jika tidak ingin diubah" type="password" class="form-control" id="password_edit" name='password'>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="jenis_user">Jenis</label>
+                            <select id="jenis_user_edit" name="jenis" class="form-control" size="1" id='jenis_user'>
+                                <option value="1">Administrator</option>
+                                <option value="0">Editor</option>
+                            </select>
+
+                        </div> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script src="/js/jquery.toaster.js"></script>
+
+<script type="text/javascript">
+    //tambah user
+    $('#tambah_user').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url : $(this).attr('action'),
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                if(data == 'added'){
+                    $.toaster({ priority : 'success', title : 'Ket', message : 'Pengguna berhasil dibuat.'});
+                    if($('#jenis_user').val() == '1'){
+                        $('#adm_table > tbody:last-child').append('<tr><td class="username">'+$('#username').val()+'</td><td></td><td></td><td><button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#editModal"><i class="icon-pencil"></i></button><button type="button" class="btn btn-danger del"><i class="icon-user-unfollow"></i></button></td></tr>');
+                    } else{
+                        $('#editor_table > tbody:last-child').append('<tr><td class="username">'+$('#username').val()+'</td><td></td><td></td><td><button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#editModal"><i class="icon-pencil"></i></button><button type="button" class="btn btn-danger del"><i class="icon-user-unfollow"></i></button></td></tr>');
+                    }
+                    $('#tambah_user')[0].reset();
+                } else if(data == 'existed'){
+                    $.toaster({ priority : 'success', title : 'Ket', message : 'Pengguna sudah ada.'});
+                } else{
+                    $.toaster({ priority : 'warning', title : 'Ket', message : data});
+                }
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Perhatian', message : 'Jaringan dalam gangguan. Harap hubungi admin.'});
+            }
+        });
+    });
+
+    //edit user
+    $('table').on('click', '.edit', function () {
+        if($(this).closest('table').attr('id') == 'adm_table') $('#jenis_user_edit').val(1)
+            else $('#jenis_user_edit').val(0);
+        var target = $(this).closest('tr');
+        $('#edit_user').attr('action', '/admin/edit/'+target.children('td.username').text())
+        $('#username_edit').val(target.children('td.username').text());
+        $('#password_edit').val('');
+    })
+    $('#edit_user').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url : $(this).attr('action'),
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Ket', message : 'Pengguna berhasil diedit.'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Perhatian', message : 'Jaringan dalam gangguan. Harap hubungi admin.'});
+            }
+        });
+    });
+
+    //hapus user
+    $('table').on('click', '.del', function () {
+        var target = $(this).closest('tr');
+        $.ajax({
+            url: '/admin/hapus_user/'+target.children('td.username').text(),
+            type: 'DELETE',
+            success: function(data) {
+                $.toaster({ priority : 'success', title : 'Ket', message : data});
+                target.remove()
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Perhatian', message : 'Jaringan dalam gangguan. Harap hubungi admin.'});
+            }
+        });
+    })
+
+    //tooltip utk pass edit
+    $('#password_edit').tooltip({
+            placement: "right"
+        });
+</script>

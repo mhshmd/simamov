@@ -8,6 +8,7 @@
     $.defaultPage = 'home';
     $.subPagesDirectory = '/';
     $.page404 = '404';
+    $.login = 'login';
     $.mainContent = $('#ui-view');
 
     //Main navigation
@@ -163,7 +164,11 @@ function loadPage(url) {
     beforeSend : function() {
       $.mainContent.css({ opacity : 0 });
     },
-    success : function() {
+    success : function(data, textStatus, xhr) {
+      if(xhr.getResponseHeader('login')){
+        window.location.href = $.login+'?href='+url;
+        return;
+      }
       Pace.restart();
       $('html, body').animate({ scrollTop: 0 }, 0);
       $.mainContent.load($.subPagesDirectory + url, null, function (responseText) {

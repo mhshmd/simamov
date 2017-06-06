@@ -23,98 +23,97 @@ var parseString = require('xml2js').parseString;
 //Mongo db
 var mongodb = require('mongodb');
 
-var url = 'mongodb://127.0.0.1:27017/simamov_2017';
+var DetailBelanja = require(__dirname+"/../model/DetailBelanja.model");
+var Akun = require(__dirname+"/../model/Akun.model");
+var Komponen = require(__dirname+"/../model/Komponen.model");
+var SubKomponen = require(__dirname+"/../model/SubKomponen.model");
+var Output = require(__dirname+"/../model/Output.model");
+var SubOutput = require(__dirname+"/../model/SubOutput.model");
+var Kegiatan = require(__dirname+"/../model/Kegiatan.model");
+var Program = require(__dirname+"/../model/Program.model");
+
+
+var POK = require(__dirname+"/../library/POK");
 
 pok.get('/', function(req, res){
+	DetailBelanja.find();	
 	res.render('pok/pok', {layout: false});
 })
 
 pok.get('/utama', function(req, res){
-	async.auto({
-			connect_db : function(callback){
-				var MongoClient = mongodb.MongoClient;
-
-				MongoClient.connect(url, function(err, db){
-					if(err){
-						console.log('Unable to connect to server');
+	async.parallel({
+			get_detail_belanja: function(callback){
+				DetailBelanja.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
-					callback(null, db);
-				})
+					callback(null, result);
+				});
 			},
-			get_detail_belanja: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_detailBelanja').find().sort({nmr:1}).toArray(function(err, result){
-					if(err){
+			get_akun: function(callback){
+				Akun.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_akun: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_akun').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_sub_komponen: function(callback){
+				SubKomponen.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_sub_komponen: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_sub_komponen').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_komponen: function(callback){
+				Komponen.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_komponen: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_komponen').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_sub_output: function(callback){
+				SubOutput.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_sub_output: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_sub_output').find().sort({soutput:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_output: function(callback){
+				Output.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_output: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_output').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_kegiatan: function(callback){
+				Kegiatan.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_kegiatan: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_kegiatan').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
+				});
+			},
+			get_program: function(callback){
+				Program.getAll(function(err, result) {
+				  	if(err){
 						callback(err, null)
 						return;
 					}
 					callback(null, result);
-				})
-			}],
-			get_program: ['connect_db', function(result, callback){
-				result.connect_db.collection('pok_program').find().sort({_id:1}).toArray(function(err, result){
-					if(err){
-						callback(err, null)
-						return;
-					}
-					callback(null, result);
-				})
-			}]
+				});
+			}
 		},
 		function(err, result){
 			res.render('pok/utama', {layout: false, data: result});
@@ -158,6 +157,8 @@ pok.post('/unggah_pok', function(req, res){
 		        		callback(err, null);
 		        		return;
 		        	}
+
+		        	var POK = new POK(entries)
 		        	var program = [];
 
 					var kegiatan = [];
@@ -176,7 +177,9 @@ pok.post('/unggah_pok', function(req, res){
 
 					var akun_xml;
 
-					var detailb_xml;					
+					var detailb_xml;	
+
+					var current_timestamp = Math.round(new Date().getTime()/1000);
 
 					for (var i = 0; i < entries.length; i++) {
 					    var name = entries[i].name;
@@ -229,82 +232,76 @@ pok.post('/unggah_pok', function(req, res){
 										result.VFPData.c_item.forEach(function(value, key){
 											//tambahkan ke tasks
 											tasks.push(
-													function(detail_child_callback){									    	
-												        var detailBelanja = {};
-
-												        detailBelanja._id = value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, '')+'.'+value['kdakun'][0]+'.'+value['noitem'][0];
-
-												        detailBelanja.nmr = parseInt(value['noitem'][0]);
-
-												        detailBelanja.prog = value['kdprogram'][0];
-
-												        detailBelanja.keg = value['kdgiat'][0];
-
-												        detailBelanja.output = value['kdoutput'][0];
-
-												        detailBelanja.komp = value['kdkmpnen'][0];
-
-											        	detailBelanja.skomp = value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, '');
-
-												        detailBelanja.akun = value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, '')+'.'+value['kdakun'][0];
-
-												        detailBelanja.uraian = value['nmitem'][0].replace(/^\s*/, '');
-
-												        detailBelanja.vol = value['volkeg'][0];
-
-												        detailBelanja.sat = value['satkeg'][0];
-
-												        detailBelanja.harga_satuan = parseInt(value['hargasat'][0]);
-
-												        detailBelanja.jumlah = parseInt(value['jumlah'][0]);
+													function(detail_child_callback){	
+														var detailBelanja = new DetailBelanja({
+															_id: value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, '')+'.'+value['kdakun'][0]+'.'+value['noitem'][0],
+														    nmr: value['noitem'][0],
+														    prog: value['kdprogram'][0],
+														    keg: value['kdgiat'][0],
+														    output: value['kdoutput'][0],
+														    komp: value['kdkmpnen'][0],
+														    skomp: value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, ''),
+														    akun: value['kdkmpnen'][0]+"."+value['kdskmpnen'][0].replace(/\s/g, '')+'.'+value['kdakun'][0],
+														    uraian: value['nmitem'][0].replace(/^\s*/, ''),
+														    vol: value['volkeg'][0],
+														    sat: value['satkeg'][0],
+														    harga_satuan: value['hargasat'][0],
+														    jumlah: value['jumlah'][0]
+														});
 
 												        //save to db
 												        //cek jika sdh ada
-												        db.connect_db.collection( 'pok_detailBelanja' ).findOne( { _id: detailBelanja._id}, function( err, result ){
-												        	//jk sdh ada
-												        	if( result ){												        		
-												        		var old = {};
+												        detailBelanja.isExist(function(err, result) {
+														  	if( err )
+																console.log('Error detailBelanja isExist');
+															else{
+																if( result ){												        		
+													        		var old = {};
 
-											        			for( var i in result ){
-											        				if( result[i] ){
-												        				if( result[i] === detailBelanja[i] ){
-												        					// delete detailBelanja[i];
+												        			for( var i in detailBelanja ){
+												        				if( result[i] ){
+													        				if( result[i] == detailBelanja[i] ){
+													        					// delete detailBelanja[i];
 
-												        				} else{
-												        					old[i] = result[i];
-												        					result[i] = detailBelanja[i];
+													        				} else{
+													        					old[i] = result[i];
+													        					result[i] = detailBelanja[i];
 
-												        				}											        					
-											        				}
-											        			}
-											        			if( JSON.stringify(old) != '{}' ){
-											        				old.timestamp = Math.round(new Date().getTime()/1000);
+													        				}											        					
+												        				}
+												        			}
+												        			if( JSON.stringify(old) != '{}' ){
+												        				old.timestamp = result.timestamp;
 
-											        				db.connect_db.collection( 'old_pok_detailBelanja' ).update( { _id: detailBelanja._id }, { $push: { history: old } }, { upsert: true }, function( err, obj ){
-											        					db.connect_db.collection( 'pok_detailBelanja' ).save(result, function( err, obj ){
-																    		if (err) {
-																    			console.log(err);
-															    				return;
-																    		}
-																    		//end function with callback
-																    		detail_child_callback(null, obj);
-																    	});
-											        				});
-											        			} else{
-											        				detail_child_callback(null, "None change");
-											        			}
-												        	} else{
-												        		//jika blm ada												        
-													    		db.connect_db.collection( 'pok_detailBelanja' ).update( { _id: detailBelanja._id }, detailBelanja, { upsert: true }, function( err, obj ){
-														    		if (err) {
-														    			console.log(err);
-													    				return;
-														    		}
-														    		//end function with callback
-														    		detail_child_callback(null, obj);
-														    	});
-												        	}
-												        });
+												        				result.timestamp = current_timestamp;
+
+												        				db.connect_db.collection( 'old_pok_detailBelanja' ).update( { _id: detailBelanja._id }, { $push: { history: old } }, { upsert: true }, function( err, obj ){
+
+												        					db.connect_db.collection( 'pok_detailBelanja' ).save(result, function( err, obj ){
+																	    		if (err) {
+																	    			console.log(err);
+																    				return;
+																	    		}
+																	    		//end function with callback
+																	    		detail_child_callback(null, obj);
+																	    	});
+												        				});
+												        			} else{
+												        				detail_child_callback(null, "None change");
+												        			}
+													        	} else{
+													        		//jika blm ada	
+													        		detailBelanja.timestamp = current_timestamp;
+
+													        		DetailBelanja.create( detailBelanja, function( err, result ){
+																		if( err )
+																			res.send( 'Error man....' );
+																		else
+																			detail_child_callback(null, result);
+																	} )
+													        	}
+															}
+														});
 													}
 											)	
 									    });
@@ -314,7 +311,8 @@ pok.post('/unggah_pok', function(req, res){
 									    		console.log(err);
 									    		return;
 									    	}
-									    	detail_parent_callback(err, detailb_result)
+									    	detail_parent_callback(err, detailb_result);
+									    	console.log("Detail belanja finished");
 									    })
 									});
 								});
@@ -363,20 +361,43 @@ pok.post('/unggah_pok', function(req, res){
 
 											        //save to db
 											        //cek jika sdh ada
-											        db.connect_db.collection('pok_akun').findOne({_id:newAkun._id}, {_id : 0, uraian: 1}, function(err, result){
+											        db.connect_db.collection('pok_akun').findOne({_id:newAkun._id}, function(err, result){
 											        	//jk sdh ada
 											        	if(result){
-											        		db.connect_db.collection('pok_akun').update({_id:newAkun._id}, {$set: newAkun}, function( err, obj ){
-													    		if (err) {
-													    			console.log(err);
-												    				return;
-													    		}
-													    		//end function with callback
-													    		akun_child_callback(null, obj);
-													    	});
+													    	var old = {};
+
+										        			for( var i in newAkun ){
+										        				if( result[i] ){
+											        				if( result[i] != newAkun[i] ){
+											        					old[i] = result[i];
+
+											        					result[i] = newAkun[i];
+
+											        				}											        					
+										        				}
+										        			}
+										        			if( JSON.stringify(old) != '{}' ){
+										        				old.timestamp = result.timestamp;
+
+										        				result.timestamp = current_timestamp;
+
+										        				db.connect_db.collection( 'old_pok_akun' ).update( { _id: newAkun._id }, { $push: { history: old } }, { upsert: true }, function( err, obj ){
+										        					db.connect_db.collection( 'pok_akun' ).save(result, function( err, obj ){
+															    		if (err) {
+															    			console.log(err);
+														    				return;
+															    		}
+															    		//end function with callback
+															    		akun_child_callback(null, obj);
+															    	});
+										        				});
+										        			} else{
+										        				akun_child_callback(null, "None change");
+										        			}
 											        	} else{
 											        		//jika blm ada
 											        		 newAkun.uraian = "(blm ada)";
+											        		 newAkun.timestamp = current_timestamp;
 
 											        		 db.connect_db.collection('pok_akun').update({_id:newAkun._id}, newAkun, { upsert : true }, function( err, obj ){
 													    		if (err) {
@@ -418,6 +439,7 @@ pok.post('/unggah_pok', function(req, res){
 											    		return;
 											    	}
 											        akun_parent_callback(err, akun_result);
+									    			console.log("Akun finished");
 												})
 
 									        })
@@ -508,6 +530,7 @@ pok.post('/unggah_pok', function(req, res){
 											    		return;
 											    	}
 											        sub_komponen_parent_callback(err, sub_komponen_result)
+									    			console.log("Sub komponen finished");
 												})
 									        })
 									    })
@@ -592,7 +615,8 @@ pok.post('/unggah_pok', function(req, res){
 											    		console.log(err);
 											    		return;
 											    	}
-											        komponen_parent_callback(err, komponen_result)
+											        komponen_parent_callback(err, komponen_result);
+									    			console.log("Komponen finished");
 												})
 									        })
 									    })
@@ -677,7 +701,8 @@ pok.post('/unggah_pok', function(req, res){
 											    		console.log(err);
 											    		return;
 											    	}
-											        sub_output_parent_callback(err, sub_output_result)
+											        sub_output_parent_callback(err, sub_output_result);
+									    			console.log("Sub output finished");
 												})
 									        })
 									    })
@@ -737,18 +762,42 @@ pok.post('/unggah_pok', function(req, res){
 											        }
 											        //save to db
 											        //cek jika sdh ada
-											    	db.connect_db.collection('pok_output').findOne({_id:newOutput._id}, {_id : 0, uraian: 1}, function(err, result){
+											    	db.connect_db.collection('pok_output').findOne({_id:newOutput._id}, function(err, result){
 											        	if(result){
-											        		db.connect_db.collection('pok_output').update({_id:newOutput._id}, {$set: newOutput}, function( err, obj ){
-													    		if (err) {
-													    			console.log(err);
-												    				return;
-													    		}
-													    		//end function with callback
-													    		output_child_callback(null, obj);
-													    	});
+													    	var old = {};
+
+										        			for( var i in newOutput ){
+										        				if( result[i] ){
+											        				if( result[i] != newOutput[i] ){
+											        					old[i] = result[i];
+
+											        					result[i] = newOutput[i];
+
+											        				}											        					
+										        				}
+										        			}
+										        			if( JSON.stringify(old) != '{}' ){
+										        				old.timestamp = result.timestamp;
+
+										        				result.timestamp = current_timestamp;
+
+										        				db.connect_db.collection( 'old_pok_output' ).update( { _id: newOutput._id }, { $push: { history: old } }, { upsert: true }, function( err, obj ){
+										        					db.connect_db.collection( 'pok_output' ).save(result, function( err, obj ){
+															    		if (err) {
+															    			console.log(err);
+														    				return;
+															    		}
+															    		//end function with callback
+															    		output_child_callback(null, obj);
+															    	});
+										        				});
+										        			} else{
+										        				output_child_callback(null, "None change");
+										        			}
 											        	} else{
 											        		 newOutput.uraian = "(blm ada)";
+
+										        			 newOutput.timestamp = current_timestamp;
 
 											        		 db.connect_db.collection('pok_output').update({_id:newOutput._id}, newOutput, { upsert : true }, function( err, obj ){
 													    		if (err) {
@@ -788,7 +837,8 @@ pok.post('/unggah_pok', function(req, res){
 											    		console.log(err);
 											    		return;
 											    	}
-											        output_parent_callback(err, output_result)
+											        output_parent_callback(err, output_result);
+									    			console.log("Output finished");
 												})
 									        })
 									    })
@@ -818,6 +868,8 @@ pok.post('/unggah_pok', function(req, res){
 										    		//end function with callback
 										    		kegiatan_child_callback(null, obj);
 										    	});
+							        		} else{
+							        			kegiatan_child_callback(null, "Not changed");
 							        		}
 							        	})
 									}
@@ -848,7 +900,8 @@ pok.post('/unggah_pok', function(req, res){
 								    		console.log(err);
 								    		return;
 								    	}
-								        kegiatan_parent_callback(err, kegiatan_result)
+								        kegiatan_parent_callback(err, kegiatan_result);
+									    console.log("Kegiatan finished");
 									})
 						        })
 						    })
@@ -873,6 +926,8 @@ pok.post('/unggah_pok', function(req, res){
 										    		//end function with callback
 										    		program_child_callback(null, obj);
 										    	});
+							        		} else{
+							        			program_child_callback(null, "Not changed");
 							        		}
 							        	})
 									}
@@ -903,7 +958,8 @@ pok.post('/unggah_pok', function(req, res){
 								    		console.log(err);
 								    		return;
 								    	}
-								        program_parent_callback(err, program_result)
+								        program_parent_callback(err, program_result);
+									    console.log("Program finished");
 									})
 						        })
 						    })

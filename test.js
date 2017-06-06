@@ -16,7 +16,7 @@ var a = {m1: "ok", m2: "no", m3: {l:21, p:992}};
 
 // a[Math.round(new Date().getTime()/1000)] = "ya"
 var dt = new Date(1491717541*1000);
-console.log(dt.toString());
+console.log(5=='5');
 
 // for (var i in a){
 // 	console.log(a[i]);
