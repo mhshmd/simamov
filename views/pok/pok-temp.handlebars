@@ -1,0 +1,307 @@
+<div class="animated fadeIn">
+    <div class="card" id="new">
+        <div class="card-header"><i class="icon-shuffle"></i> Petunjuk Operasional Kegiatan (POK)</div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="entry" class="nav-link active" data-toggle="tab" href="#entrychild" role="tab" aria-control="entrychild"><i class="icon-eye"></i> Entry</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="utama" class="nav-link" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-note"></i> Edit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="unggahTab" class="nav-link" data-toggle="tab" href="#unggahTabchild" role="tab" aria-controls="unggahTabchild"><i class="icon-link"></i> Unggah</a>
+                            </li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="entrychild" role="tabpanel">
+                                <p>Hello world</p>
+                            </div>
+                            <div class="tab-pane" id="utamachild" role="tabpanel">
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <form id="tambah_pok" method="post" action="/pok/tambah_pok">
+                                            <div class="form-group row">
+                                                <label for="jenis_item">Tambah Item</label>
+                                                <select id="jenis_item" name="jenis_item" class="form-control" size="1">
+                                                    <option value="program">Program</option>
+                                                    <option value="kegiatan">Kegiatan</option>
+                                                    <option value="komponen">Komponen</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="tbh_kode">Kode</label>
+                                                <input name="tbh_kode" type="text" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="tbh_uraian">Uraian</label>
+                                                <input name="tbh_uraian" type="text" class="form-control" required/>
+                                            </div> 
+                                            <div class="row">
+                                                <button id="unggah_button" type="submit" class="btn btn-primary">Tambah</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <table id="pok_table" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="18%">Kode</th>
+                                                <th width="54%">Uraian</th>
+                                                <th width="3%">Volume</th>
+                                                <th width="5%">Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
+                                                <th width="10%">Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td field="_id" readonly>054.01.01</td>
+                                                <td field="uraian">Program Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya BPS</td>
+                                                <td field="vol">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan">-</td>
+                                                <td field="jumlah" class="money">62,104,520,000</td>
+                                            </tr> 
+                                            <tr>
+                                                <td field="_id" readonly>2888</td>
+                                                <td field="uraian">Penyelenggaraan Sekolah Tinggi Ilmu Statistik (STIS)</td>
+                                                <td field="vol">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan">-</td>
+                                                <td field="jumlah" class="money">62,104,520,000</td>
+                                            </tr> 
+                                            <tr>
+                                                <td field="_id" readonly>2888.004</td>
+                                                <td field="uraian">MAHASISWA STIS YANG BERKUALITAS DAN UNGGUL [Base Line]</td>
+                                                <td field="vol">12</td>
+                                                <td field="sat">Orang</td>
+                                                <td field="harga_satuan">-</td>
+                                                <td field="jumlah" class="money">42,386,449,000</td>
+                                            </tr> 
+                                            <tr>
+                                                <td field="_id" readonly>701</td>
+                                                <td field="uraian">RISET/JURNAL DOSEN</td>
+                                                <td field="vol">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan">-</td>
+                                                <td field="jumlah" class="money">872,993,000</td>
+                                            </tr> 
+                                            <tr>
+                                                <td field="_id" readonly>     521211</td>
+                                                <td field="uraian">Belanja Bahan</td>
+                                                <td field="vol">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan">-</td>
+                                                <td field="jumlah" class="money">777,450,000</td>
+                                            </tr>   
+                                            <tr>
+                                                <td field="_id" readonly></td>
+                                                <td field="uraian">    -     konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                            </tr>                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="unggahTabchild" role="tabpanel">
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <form id="pok_unggah" enctype="multipart/form-data" method="post" action="/pok/unggah_pok">
+                                            <div class="form-group row">
+                                                <label for="nomor">Nama</label>
+                                                <input type="text" id="pok_name" name="pok_name" class="form-control" placeholder="Nama..." value="POK Revisi 1" required>
+                                            </div> 
+                                            <div class="form-group row">
+                                                <label for="nomor">File</label>
+                                                <input name="pok_file" type="file" class="form-control" required/>
+                                            </div> 
+                                            <div class="row">
+                                                <button id="unggah_button" type="submit" class="btn btn-primary">Unggah</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/jquery.toaster.js"></script>
+
+<script src="/js/jquery.form.js"></script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
+
+<script src="/js/mindmup-editabletable.js"></script>
+
+<script src="/js/jquery.treetable.js"></script>
+
+<script type="text/javascript">
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
+    function getHtml(tabId) {
+        return $.ajax({
+          url: 'pok/'+tabId,
+          type: "get",
+          data: {tabId}
+        });
+    }
+
+    function formatUang(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function forceInt(x){
+        if(!x) x = '0';
+        return parseInt(x.replace(/\D/g, ""));
+    }
+
+    $(document).ready(function(){
+        $(".tabAjax").click(function(){
+            var tab = $(this);
+
+            var id = tab.attr('id');
+
+            var state = tab.html();
+
+            tab.html(state+'<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>');
+            getHtml(id).done(function(data) {
+                tab.html(state);
+                $('#'+id+'child').html(data); 
+
+                $('#pok_table').DataTable({
+                    aaSorting: [],
+                    rowReorder: {
+                        enable: false
+                    },
+                    paging: false,
+                    "pageLength": 50
+                });
+
+                $('#pok_table').editableTableWidget();
+
+                $('#pok_table').editableTableWidget({
+                    cloneProperties: ['background', 'border', 'outline']
+                });
+                $('td[readonly]').click(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+
+                $("#pok_table").treetable({ expandable: true });
+                $("#pok_table").treetable('expandAll');
+
+                var options = { 
+                    beforeSend: function(){
+                        $("#progress").show();
+                        //clear everything
+                        $("#bar").width('0%');
+                        $("#message").html("");
+                        $("#percent").html("0");
+                        $('#unggah_button').prop('disabled', true);
+                        $("#unggah_button").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#unggah_button").text());
+                    },
+                    uploadProgress: function(event, position, total, percentComplete){
+                        $("#bar").width(percentComplete+'%');
+                        $("#percent").html(percentComplete);
+                 
+                    },
+                    success: function(){
+                        $("#bar").width('100%');
+                        $("#percent").html('100');
+                 
+                    },
+                    complete: function(response){
+                        $("#message").html("<font color='green'>"+response.responseText+"</font>");
+                        $('#unggah_button').prop('disabled', false);
+                        $("#unggah_button").html('Unggah');
+                    },
+                    error: function(){
+                        $("#message").html("<font color='red'> ERROR: Gagal unggah file</font>");
+                 
+                    }
+                 
+                }; 
+             
+                $("#pok_unggah").ajaxForm(options);
+
+                $('th').css({
+                    'vertical-align': 'middle',
+                    'text-align':'center'
+                });
+
+                $('.uraian').css({
+                  'text-indent': '-1em',
+                  'padding-left': '2em'
+                });
+
+                $('.money').formatUang();
+                
+            });
+        })
+    });
+
+    $.fn.formatUang = function () {
+        return this.each(function(){
+            $(this).text($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        })
+    }
+
+    $(document).on('click keyup', 'a.paginate_button, input, th', function () {
+        $('.money').formatUang();
+        $('#pok_table').editableTableWidget();
+
+        $('#pok_table').editableTableWidget({
+            cloneProperties: ['background', 'border', 'outline']
+        });
+        $('td[readonly]').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
+    $(document).on('keyup', 'td input', function (evt) {
+        $(this).val(formatUang(forceInt($(this).val())));
+    })
+
+    $(document).on('change', 'table td', function (evt, newValue) {
+        // do something with the new cell value 
+        if (newValue == "") { 
+            return false; // reject change
+        }
+
+        var coll = $(this).closest('tr').attr('coll');
+
+        var kolom = $(this).attr('field');
+
+        if (this.className.indexOf("money") > -1) {
+
+            newValue = newValue.replace(/\./g, '');
+
+        }
+
+        $.ajax({
+            url : "/pok/edit",
+            type: "POST",
+            data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
+            success: function (data) {
+                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+            }
+        });
+    });
+
+</script>

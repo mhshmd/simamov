@@ -9,7 +9,7 @@
                                 <a id="entry" class="nav-link active" data-toggle="tab" href="#entrychild" role="tab" aria-control="entrychild"><i class="icon-eye"></i> Entry</a>
                             </li>
                             <li class="nav-item">
-                                <a id="utama" class="nav-link tabAjax" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-note"></i> Edit</a>
+                                <a id="utama" class="nav-link" data-toggle="tab" href="#utamachild" role="tab" aria-control="utamachild"><i class="icon-note"></i> Edit</a>
                             </li>
                             <li class="nav-item">
                                 <a id="unggahTab" class="nav-link" data-toggle="tab" href="#unggahTabchild" role="tab" aria-controls="unggahTabchild"><i class="icon-link"></i> Unggah</a>
@@ -17,31 +17,269 @@
                         </ul> 
                         <div class="tab-content">
                             <div class="tab-pane active" id="entrychild" role="tabpanel">
-                                <span><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i></span>
                                 <p>Hello world</p>
                             </div>
                             <div class="tab-pane" id="utamachild" role="tabpanel">
-                                <span><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i></span>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label for="jenis_item" class="col-md-3 form-control-label" style="padding-left: 0;">Tambah:</label>
+                                            <select class="col-md-9" id="jenis_item" name="jenis_item" size="1">
+                                                <option value="none" selected="selected">--pilih--</option>
+                                                <option value="program">Program</option>
+                                                <option value="kegiatan">Kegiatan</option>
+                                                <option value="output">Output</option>
+                                                <option value="sub_output">Sub Output</option>
+                                                <option value="komponen">Komponen</option>
+                                                <option value="sub_komponen">Sub Komponen</option>
+                                                <option value="akun">Akun</option>
+                                                <option value="detail_blnj">Detail Belanja</option>
+                                            </select>
+                                        </div>
+                                        <form id="tambah_pok" method="post" action="/pok/tambah_pok">
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="text-center" style="margin-bottom: 30px">
+                                            <span>POK Revisi 1&nbsp;</span><i class="fa fa-pencil fa-sm mt-2 edit"></i><input id="pok_title" type="text" value="POK Revisi 1" />
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div id="main_section" class="row">
+                                    <div class="col-md-12" style="padding-left: 0;">                                    
+                                    <table id="pok_table" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th id="default_sort_column" width="15%">Kode</th>
+                                                <th width="49%">Uraian</th>
+                                                <th width="3%">Volume</th>
+                                                <th width="5%">Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
+                                                <th width="10%">Jumlah</th>
+                                                <th width="8%">Pilihan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr type="program">
+                                                <td field="_id">054.01.01</td>
+                                                <td field="uraian">Program Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya BPS</td>
+                                                <td field="vol" class="money">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">62,104,520,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary tambah"><i class="icon-plus"></i></button>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr> 
+                                            <tr type="kegiatan">
+                                                <td class="level1" field="_id">2888</td>
+                                                <td field="uraian">Penyelenggaraan Sekolah Tinggi Ilmu Statistik (STIS)</td>
+                                                <td field="vol" class="money">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">62,104,520,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary tambah"><i class="icon-plus"></i></button>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr> 
+                                            <tr type="output">
+                                                <td class="level2" field="_id">2888.004</td>
+                                                <td field="uraian">MAHASISWA STIS YANG BERKUALITAS DAN UNGGUL [Base Line]</td>
+                                                <td field="vol" class="money">12</td>
+                                                <td field="sat">Orang</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">42,386,449,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <span class="dropdown">
+                                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="icon-plus"></i>
+                                                      <span class="caret"></span></button>
+                                                      <ul class="dropdown-menu">
+                                                        <li><a subitem="sub_output" class="tambah" href="#">Sub Output</a></li>
+                                                        <li><a subitem="komponen" class="tambah" href="#">Komponen</a></li>
+                                                      </ul>
+                                                    </span>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>  
+                                            <tr type="sub_output">
+                                                <td class="level3" field="_id">A</td>
+                                                <td field="uraian">Pembayaran Gaji dan Tunjangan</td>
+                                                <td field="vol" class="money">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">2,386,449,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary tambah"><i class="icon-plus"></i></button>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr> 
+                                            <tr type="komponen">
+                                                <td class="level4" field="_id">701</td>
+                                                <td field="uraian">RISET/JURNAL DOSEN</td>
+                                                <td field="vol" class="money">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">872,993,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <span class="dropdown">
+                                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="icon-plus"></i>
+                                                      <span class="caret"></span></button>
+                                                      <ul class="dropdown-menu">
+                                                        <li><a subitem="sub_komponen" class="tambah" href="#">Sub Komponen</a></li>
+                                                        <li><a subitem="akun" class="tambah" href="#">Akun</a></li>
+                                                      </ul>
+                                                    </span>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr> 
+                                            <tr type="akun">
+                                                <td class="level6" field="_id">     521211</td>
+                                                <td field="uraian">Belanja Bahan</td>
+                                                <td field="vol" class="money">-</td>
+                                                <td field="sat">-</td>
+                                                <td field="harga_satuan" class="money">-</td>
+                                                <td field="jumlah" class="money">777,450,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary tambah"><i class="icon-plus"></i></button>
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>   
+                                            <tr type="detail_blnj">
+                                                <td class="level7 edit-disabled" field="_id"></td>
+                                                <td field="uraian">konsumsi seminar proposal penelitian (Snack)</td>
+                                                <td field="vol" class="money">275</td>
+                                                <td field="sat">O-K</td>
+                                                <td field="harga_satuan" class="money">18,000</td>
+                                                <td field="jumlah" class="money">4,950,000</td>
+                                                <td class="edit-disabled text-center">
+                                                    <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>
+                                                </td>
+                                            </tr>                          
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane" id="unggahTabchild" role="tabpanel">
                                 <div class="form-group row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <form id="pok_unggah" enctype="multipart/form-data" method="post" action="/pok/unggah_pok">
-                                            <div class="input-group">
+                                            <div class="form-group row">
+                                                <label for="nomor">Nama</label>
+                                                <input type="text" id="pok_name" name="pok_name" class="form-control" placeholder="Nama..." value="POK Revisi 1" required>
+                                            </div> 
+                                            <div class="form-group row">
+                                                <label for="nomor">File</label>
                                                 <input name="pok_file" type="file" class="form-control" required/>
-                                                <span class="input-group-btn">
-                                                    <button id="unggah_button" type="submit" class="btn btn-primary">Unggah</button>
-                                                </span>
+                                            </div> 
+                                            <div class="row">
+                                                <button id="unggah_button" type="submit" class="btn btn-primary">Unggah</button>
                                             </div>
                                         </form>
-                                        <br>
-                                        <div class="progress">
-                                          <div id="bar" class="progress-bar" role="progressbar" aria-valuenow="0"
-                                          aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                                            <span id="percent">0</span>%
-                                          </div>
-                                        </div>
-                                        <div id="message"></div>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +292,7 @@
     <!--/.row-->
 </div>
 
-<script src="/js/jquery.toaster.js"></script>
+<script src="/js/jquery.toast.min.js"></script>
 
 <script src="/js/jquery.form.js"></script>
 
@@ -65,158 +303,234 @@
 <script src="/js/jquery.treetable.js"></script>
 
 <script type="text/javascript">
-    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
-    function getHtml(tabId) {
-        return $.ajax({
-          url: 'pok/'+tabId,
-          type: "get",
-          data: {tabId}
-        });
-    }
+    //css
+    var head = $('head');
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.dataTables.min.css"));
+    head.append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/jquery.toast.min.css"));
 
-    function formatUang(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+    ///////// init ///////////
+    //table
+    var tabel_pok = $('#pok_table');
 
-    function forceInt(x){
-        if(!x) x = '0';
-        return parseInt(x.replace(/\D/g, ""));
-    }
+    //search & sort
+    tabel_pok.DataTable({
+        aaSorting: [],
+        rowReorder: {
+            enable: false
+        },
+        aoColumnDefs: [ 
+            { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "pageLength": 100
+    });
 
-    $(document).ready(function(){
-        $(".tabAjax").click(function(){
-            var tab = $(this);
+    //editable
+    tabel_pok.editableTableWidget({disableClass: "edit-disabled"});
 
-            var id = tab.attr('id');
+    //title direct edit
+    $('#pok_title').hide();
+    $('.edit').click(function(){
+        $(this).hide();
+        $(this).prev().hide();
+        $(this).next().show();
+        $(this).next().select();
+    });
+    $('#pok_title').blur(function() {
+         if ($.trim(this.value) == ''){
+             this.value = (this.defaultValue ? this.defaultValue : '');
+         }
+         else{
+             $(this).prev().prev().html(this.value);
+         }
+ 
+         $(this).hide();
+         $(this).prev().show();
+         $(this).prev().prev().show();
+    });
+    $('#pok_title').keypress(function(event) {
+          if (event.keyCode == '13') {
+              if ($.trim(this.value) == ''){
+                 this.value = (this.defaultValue ? this.defaultValue : '');
+             }
+             else
+             {
+                 $(this).prev().prev().html(this.value);
+             }
 
-            var state = tab.html();
+             $(this).hide();
+             $(this).prev().show();
+             $(this).prev().prev().show();
+          }
+    });
 
-            tab.html(state+'<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>');
-            getHtml(id).done(function(data) {
-                tab.html(state);
-                $('#'+id+'child').html(data); 
+    //tambah item (cara 1)
+    $('#jenis_item').change(function(){
+        var selected = $(this).val();
+        var submit = '<div class="row"><button id="unggah_button" type="submit" class="btn btn-primary">Tambah</button></div>';
+        var kode = '<div class="form-group row"><label for="tbh_kode">Kode</label><input id="tbh_kode" name="tbh_kode" type="text" class="form-control" required/></div>';
+        var uraian = '<div class="form-group row"><label for="tbh_uraian">Uraian</label><input name="tbh_uraian" type="text" class="form-control" required/></div>';
+        var vol = '<div class="form-group row"><label for="tbh_vol">Volume</label><input name="tbh_vol" type="text" class="form-control" required/></div>';
+        var sat = '<div class="form-group row"><label for="tbh_sat">Satuan</label><input name="tbh_sat" type="text" class="form-control" required/></div>';
+        var hrg_satuan = '<div class="form-group row"><label for="tbh_hrg_satuan">Harga Satuan</label><input name="tbh_hrg_satuan" type="text" class="form-control" required/></div>';
+        var jlh = '<div class="form-group row"><label for="tbh_jlh">Jumlah</label><input name="tbh_jlh" type="text" class="form-control" required/></div>';
+        
+        var prog = '<div class="form-group row"><label for="tbh_program">Program</label><select id="tbh_program" name="tbh_program" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var keg = '<div class="form-group row"><label for="tbh_kegiatan">Kegiatan</label><select id="tbh_kegiatan" name="tbh_kegiatan" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var outp = '<div class="form-group row"><label for="tbh_outp">Output</label><select id="tbh_outp" name="tbh_outp" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var s_outp = '<div class="form-group row"><label for="tbh_s_outp">Sub Output</label><select id="tbh_s_outp" name="tbh_s_outp" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var komp = '<div class="form-group row"><label for="tbh_komponen">Komponen</label><select id="tbh_komponen" name="tbh_komponen" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var s_komp = '<div class="form-group row"><label for="tbh_s_komp">Sub Komponen</label><select id="tbh_s_komp" name="tbh_s_komp" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
+        var akun = '<div class="form-group row"><label for="tbh_akun">Akun</label><select id="tbh_akun" name="tbh_akun" class="form-control" size="1"><option value="none" selected="selected">--pilih--</option></select></div>';
 
-                $('#pok_table').DataTable({
-                    aaSorting: [],
-                    rowReorder: {
-                        enable: false
-                    },
-                    paging: false
-                });
-
-                $('#pok_table').editableTableWidget();
-
-                $('#pok_table').editableTableWidget({
-                    cloneProperties: ['background', 'border', 'outline']
-                });
-                $('td[readonly]').click(function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                });
-
-                $("#pok_table").treetable({ expandable: true });
-                $("#pok_table").treetable('expandAll');
-
-                var options = { 
-                    beforeSend: function(){
-                        $("#progress").show();
-                        //clear everything
-                        $("#bar").width('0%');
-                        $("#message").html("");
-                        $("#percent").html("0");
-                        $('#unggah_button').prop('disabled', true);
-                        $("#unggah_button").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#unggah_button").text());
-                    },
-                    uploadProgress: function(event, position, total, percentComplete){
-                        $("#bar").width(percentComplete+'%');
-                        $("#percent").html(percentComplete);
-                 
-                    },
-                    success: function(){
-                        $("#bar").width('100%');
-                        $("#percent").html('100');
-                 
-                    },
-                    complete: function(response){
-                        $("#message").html("<font color='green'>"+response.responseText+"</font>");
-                        $('#unggah_button').prop('disabled', false);
-                        $("#unggah_button").html('Unggah');
-                    },
-                    error: function(){
-                        $("#message").html("<font color='red'> ERROR: Gagal unggah file</font>");
-                 
-                    }
-                 
-                }; 
-             
-                $("#pok_unggah").ajaxForm(options);
-
-                $('th').css({
-                    'vertical-align': 'middle',
-                    'text-align':'center'
-                });
-
-                $('.uraian').css({
-                  'text-indent': '-1em',
-                  'padding-left': '2em'
-                });
-
-                $('.money').formatUang();
+        var show = '';
+        
+        if(selected == 'program'){
+            show = kode+uraian;
+        } else if(selected == 'kegiatan'){
+            show = prog+kode+uraian;
+        } else if(selected == 'output'){
+            if(sub_select == 'output'){
+                show = prog+keg+kode+uraian+vol+sat;
+            } else {
                 
-            });
-        })
-    });
+            }
+            show = prog+keg+kode+uraian+vol+sat;
+        } else if(selected == 'sub_output'){
+            show = prog+keg+outp+kode+uraian+vol+sat;
+        } else if(selected == 'komponen'){
+            show = prog+keg+outp+s_outp+kode+uraian;
+        } else if(selected == 'sub_komponen'){
+            show = prog+keg+outp+s_outp+komp+kode+uraian;
+        } else if(selected == 'akun'){
+            show = prog+keg+outp+s_outp+komp+s_komp+kode+uraian;
+        } else if(selected == 'detail_blnj'){
+            show = prog+keg+outp+s_outp+komp+s_komp+akun+kode+uraian+vol+sat+hrg_satuan+jlh;
+        } else {
+            $('#tambah_pok').html('');
+            return;
+        }
 
-    $.fn.formatUang = function () {
-        return this.each(function(){
-            $(this).text($(this).text().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
-        })
-    }
-
-    $(document).on('click keyup', 'a.paginate_button, input, th', function () {
-        $('.money').formatUang();
-        $('#pok_table').editableTableWidget();
-
-        $('#pok_table').editableTableWidget({
-            cloneProperties: ['background', 'border', 'outline']
-        });
-        $('td[readonly]').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    });
-
-    $(document).on('keyup', 'td input', function (evt) {
-        $(this).val(formatUang(forceInt($(this).val())));
+        $('#tambah_pok').html(show+submit);
+        $('#tbh_kode').focus();
     })
 
-    $(document).on('change', 'table td', function (evt, newValue) {
-        // do something with the new cell value 
-        if (newValue == "") { 
-            return false; // reject change
-        }
+    //Tambah item (cara 2)
+    var state_active_type = '';
+    state_subitem_selected = '';
+    tabel_pok.on('click keyup', '.tambah', function () {
+        var type = $(this).closest('tr').attr('type');
 
-        var coll = $(this).closest('tr').attr('coll');
+        var keg = '<tr type="kegiatan"><td class="level1"';
+        var outp = '<tr type="output"><td class="level2"';
+        var s_outp = '<tr type="sub_output"><td class="level3"';
+        var komp = '<tr type="komponen"><td class="level4"';
+        var s_komp = '<tr type="sub_komponen"><td class="level5"';
+        var akun = '<tr type="akun"><td class="level6"';
+        var detail_blnj = '<tr type="detail_blnj"><td class="level7 edit-disabled"';
 
-        var kolom = $(this).attr('field');
+        var show = '';
 
-        if (this.className.indexOf("money") > -1) {
-
-            newValue = newValue.replace(/\./g, '');
-
-        }
-
-        $.ajax({
-            url : "/pok/edit",
-            type: "POST",
-            data: {col: coll, _id : $(this).closest('tr').attr('id'), field: kolom, value: newValue},
-            success: function (data) {
-                $.toaster({ priority : 'success', title : 'Sukses', message : 'Berhasil diubah'});
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                $.toaster({ priority : 'warning', title : 'Gagal', message : 'Gagal diubah'});
+        state_active_type = type;
+        state_subitem_selected = $(this).attr('subitem');
+        
+        if(type == 'program'){
+            show = keg;
+        } else if(type == 'kegiatan'){
+            show = outp;
+        } else if(type == 'output'){
+            if(state_subitem_selected == 'sub_output'){
+                show = s_outp;
+            } else{
+                show = komp;
             }
-        });
-    });
+        } else if(type == 'sub_output'){
+            show = komp;
+        } else if(type == 'komponen'){
+            if(state_subitem_selected == 'sub_komponen'){
+                show = s_komp;
+            } else{
+                show = akun;
+            }
+        } else if(type == 'sub_komponen'){
+            show = akun;
+        } else if(type == 'akun'){
+            show = detail_blnj;
+        }
+
+        show += ' field="_id"></td><td field="uraian"></td><td field="vol" class="money"></td><td field="sat"></td><td field="harga_satuan" class="money"></td><td field="jumlah" class="money"></td><td class="edit-disabled text-center"><button type="button" class="btn btn-success simpan-baru"><i class="icon-check"></i></button> <button type="button" class="btn btn-primary del"> <i class="icon-close"></i></button></td></tr>'
+
+        $(this).closest('tr').after(
+            show
+        );
+
+        //refresh register event editable table
+        tabel_pok.editableTableWidget({disableClass: "edit-disabled"});
+    })
+    //Lanjutan cara 2 (Simpan)
+    tabel_pok.on('click keyup', '.simpan-baru', function () {
+        var add_only = ['program','komponen','sub_komponen'];
+        var multiple_add = ['kegiatan','output', 'sub_output'];
+
+        var button = '';
+
+        console.log(state_active_type, state_subitem_selected)
+
+        if(add_only.includes(state_active_type) || state_subitem_selected == 'sub_output'){
+            button = '<button type="button" class="btn btn-primary tambah"><i class="icon-plus"></i></button> <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>'
+        } else if(multiple_add.includes(state_active_type)){
+            if(state_active_type == 'kegiatan'){
+                button = '<span class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="icon-plus"></i><span class="caret"></span></button><ul class="dropdown-menu"><li><a subitem="sub_output" class="tambah" href="#">Sub Output</a></li><li><a subitem="komponen" class="tambah" href="#">Komponen</a></li></ul></span> <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>'
+            } else if(state_subitem_selected == 'komponen'){
+                button = '<span class="dropdown"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="icon-plus"></i><span class="caret"></span></button><ul class="dropdown-menu"><li><a subitem="sub_komponen" class="tambah" href="#">Sub Komponen</a></li><li><a subitem="akun" class="tambah" href="#">Akun</a></li></ul></span> <button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>'
+            }
+        } else {
+             button = '<button type="button" class="btn btn-primary del"><i class="icon-close"></i></button>';
+        }
+
+        $(this).closest('td').html(button)
+    })
+
+    //hapus item/ batalkan penambahan
+    tabel_pok.on('click', '.del', function () {
+        var item = $(this).closest('tr');
+        item.hide();
+        $.toast({
+            text: 'Terhapus | <a id="undo_delete" href="#"><i class="fa fa-undo fa-sm mt-2"></i> Batal</a>',
+            textAlign: 'right', 
+            hideAfter: 4000,
+            loader: false,
+            stack: false,
+            position: 'bottom-right',
+            allowToastClose: false
+        })
+        $('#undo_delete').click(function(){
+            item.show();
+            $.toast().reset('all');
+        })
+    })
+
+    //sorting to default
+    $('#default_sort_column').click(function(){
+        tabel_pok.dataTable().fnSortNeutral();
+    })
+
+    /////////// plug in ////////////
+    //reset sorting table
+    jQuery.fn.dataTableExt.oApi.fnSortNeutral = function ( oSettings )
+    {
+        /* Remove any current sorting */
+        oSettings.aaSorting = [];
+
+        /* Sort display arrays so we get them in numerical order */
+        oSettings.aiDisplay.sort( function (x,y) {
+            return x-y;
+        } );
+        oSettings.aiDisplayMaster.sort( function (x,y) {
+            return x-y;
+        } );
+
+        /* Redraw */
+        oSettings.oApi._fnReDraw( oSettings );
+    };
 
 </script>
