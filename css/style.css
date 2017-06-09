@@ -269,8 +269,8 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.875rem;
+  /*font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
+  font-size: 12px;
   font-weight: normal;
   line-height: 1.5;
   color: #000000;
@@ -1497,7 +1497,7 @@ pre {
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 12px;
   line-height: 1.25;
   color: #000000;
   background-color: #fff;
@@ -3686,7 +3686,7 @@ button.close {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 5px;
   border-bottom: 1px solid #cfd8dc; }
 
 .modal-title {
@@ -3702,7 +3702,7 @@ button.close {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 15px;
+  padding: 5px;
   border-top: 1px solid #cfd8dc; }
   .modal-footer > :not(:first-child) {
     margin-left: .25rem; }

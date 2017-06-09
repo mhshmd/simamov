@@ -56,6 +56,19 @@
         .money{
           text-align: right;
         }
+
+        .nl{
+            padding-left: 0 !important;
+        }
+
+        body{
+            counter-reset: Serial;           /* Set the Serial counter to 0 */
+        }
+
+        .table-auto-number tbody tr td:first-child:before{
+          counter-increment: Serial;      /* Increment the Serial counter */
+          content: counter(Serial); /* Display the counter */
+        }
     </style>
 
 </head>
