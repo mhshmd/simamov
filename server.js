@@ -3,6 +3,11 @@
 var express = require('express');
 var app = express(); //meload modul express saja
 
+var server = require('http').createServer(app);  
+var io = require('socket.io')(server);
+//clients connection
+var connections = {};
+
 // //Redis utk cache request client
 // var redis = require('redis');
 // //creates a new client
@@ -31,9 +36,6 @@ app.use(cookieParser(credentials.cookieSecret));
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 
-//modul formidable utk parse POST gambar
-var formidable = require('formidable');
-
 //modul mongodb utk koneksi mongo db keuangan
 var mongo = require('mongodb');
 
@@ -43,31 +45,27 @@ var mongoose = require('mongoose');
 
 mongoose.connect(url);
 
-//modul sql utk koneksi db mysql sipadu
-var mysql = require('mysql');
-var connection = mysql.createPool({
-	connectionLimit: 50,
-	host: '127.0.0.1',
-	user: 'root',
-	password: '',
-	database: 'sipadu_db'
-});
-
 //modul session utk tracking visitor
-var session = require('express-session');
-app.use(session({
+var session = require('express-session')({
 	resave: false,
 	saveUninitialized: true,
 	secret: credentials.cookieSecret
-}));
+});
+var sharedsession = require("express-socket.io-session");
+app.use(session);
+io.use(sharedsession(session, {
+    autoSave:true
+})); 
 
 //modul handlebars utk dynamic page render
 var handlebars = require('express-handlebars').create({defaultLayout: 'main',
 	helpers:{
 		if_eq: function(a, b, opts) {
 		    if (a == b) {
+		    	// console.log('booooooooooom')
 		        return opts.fn(this);
 		    } else {
+		    	// console.log('sssssssssssss booooooooooom')
 		        return opts.inverse(this);
 		    }
 		},
@@ -106,13 +104,20 @@ app.use('/login', login); //root menggunakan dialihkan ke index.js
 
 //cek login, urutan harus di bawah route login
 var login_check = function (req, res, next) {
-	if(!req.session.username){
-		res.set('login', '0')
-		res.render('login', {layout: false});
-		return;
-	}
+	// if(!req.session.username){
+
+	// 	res.set('login', '0')
+	// 	res.render('login', {layout: false});
+	// 	return;
+	// }
+	io.on('connection', function(client) {
+		if(req.session)
+			connections[req.session.username] = client;
+	})
+
   	next()
 }
+
 app.use(login_check)
 
 //Home
@@ -121,12 +126,19 @@ app.use('/', index); //root menggunakan dialihkan ke index.js
 
 //SPPD
 var sppd = require('./controllers/sppd.js');
+sppd.socket(io, connections);
 app.use('/sppd', sppd); 
+//SPJ
+var spj = require('./controllers/spj.js');
+spj.socket(io, connections);
+app.use('/spj', spj);
 //PEGAWAI
 var pegawai = require('./controllers/pegawai.js');
+pegawai.socket(io, connections);
 app.use('/pegawai', pegawai);
 //POK
 var pok = require('./controllers/pok.js');
+pok.socket(io, connections);
 app.use('/pok', pok);
 //ADMIN
 var admin = require('./controllers/admin.js');
@@ -148,9 +160,21 @@ app.use(function(err, req, res, next){
 	res.render('500', {layout: false});
 });
 
-//set port server
-app.set('port', process.env.PORT || 3000);
-//run server
-app.listen(app.get('port'), function(){
-	console.log('Server listening on '+app.get('port'));
+server.listen(process.env.PORT || 3000, function(){
+	console.log('Server listening on '+(process.env.PORT || 3000));
 });
+
+io.on('connection', function(client) {
+
+	// if(!client.handshake.session.username){
+
+	// 	client.emit('login_required', 'Anda harus login.');
+	// 	return;
+
+	// }
+
+	client.on('join', function(data) {
+    	console.log(data);
+    	client.emit('messages', 'Terhubung ke server.');
+    });
+})

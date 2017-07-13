@@ -113,16 +113,15 @@ var async = require('async');
 
 async.auto({
 	login: function(callback){
-		console.log('Login now');
+		callback("Suksesn login", null);
+		return;
 		callback(null, "Suksesn login");
 	},
 	kerja: function(callback){
-		console.log("Kerja sekarang guys");
 		callback(null, "Ok, so now you work???")
 	},
 	connect: ['kerja', function(result, callback){
-		console.log(result);
-		callback("ok");
+		callback("ok",null);
 	}]
 }, function(err, result){
 	console.log(result);

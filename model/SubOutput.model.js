@@ -3,18 +3,23 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var SubOutputSchema = new Schema({
-    _id: String,
-    prog: String,
-    keg: String,
-    output: String,
-    soutput: String,
-    uraian: String,
+    'kdprogram': String,
+    'kdgiat': String,
+    'kdoutput': String,
+    'kdsoutput': String,
+    'ursoutput': String,
     jumlah: Number,
-    timestamp: String
+    timestamp: Number,
+    active: {
+        default: true,
+        type: Boolean
+    },
+    old: []
 }, { collection: 'pok_sub_output' });
 
 SubOutputSchema.methods.isExist = function(cb) {
-  return this.model('SubOutput').findOne({ _id: this._id }, cb);
+    return this.model('SubOutput').findOne({ 'kdprogram': this.kdprogram, 'kdgiat': this.kdgiat, 'kdoutput': this.kdoutput, 
+        'kdsoutput': this.kdsoutput }, cb);
 };
 
 SubOutputSchema.statics.getAll = function(cb) {

@@ -3,17 +3,25 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var SubKompSchema = new Schema({
-    _id: String,
-    prog: String,
-    keg: String,
-    output: String,
-    komp: String,
-    skomp: String,
-    uraian: String
+    'kdprogram': String,
+    'kdgiat': String,
+    'kdoutput': String,
+    'kdsoutput': String,
+    'kdkmpnen': String,
+    'kdskmpnen': String,
+    'urskmpnen': String,
+    jumlah: Number,
+    timestamp: Number,
+    active: {
+        default: true,
+        type: Boolean
+    },
+    old: []
 }, { collection: 'pok_sub_komponen' });
 
 SubKompSchema.methods.isExist = function(cb) {
-  return this.model('SubKomponen').findOne({ _id: this._id }, cb);
+    return this.model('SubKomponen').findOne({ 'kdprogram': this.kdprogram, 'kdgiat': this.kdgiat, 'kdoutput': this.kdoutput, 
+        'kdsoutput': this.kdsoutput, 'kdkmpnen': this.kdkmpnen, 'kdskmpnen': this.kdskmpnen }, cb);
 };
 
 SubKompSchema.statics.getAll = function(cb) {

@@ -7,64 +7,66 @@
                         <div class="card-block">
                         <div class="row">
                             <h3><i class="icon-plane"></i> Surat Tugas</h3>
-                            <p class="text-muted">Buat Surat Tugas, SPD, dan Pengesahan</p>
                         </div>
                             <form id="suratTugas" action="/sppd/surat_tugas" method="POST">  
                                 <div class="form-group row">
-                                    <label for="nomor">Nomor</label>
-                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="{{last_nomor}}/SPD/STIS/{{fullYear}}" required>
+                                    <label for="nomor">Nomor Surat</label>
+                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="{{last_nomor}}/SPD/STIS/{{fullYear}}" readonly="readonly">
                                 </div>                          
                                 <div class="form-group row">
-                                    <label for="search">Nama</label>
-                                    <input id="nama_lengkap" type="text" id="search" name="nama_lengkap" class="form-control" placeholder="Nama" required autofocus>
+                                    <label for="search">Nama<span> *</span></label>
+                                    <input id="nama_lengkap" type="text" name="nama_lengkap" class="form-control" required autofocus>
                                 </div>                      
                                 <div class="form-group row">
-                                    <label for="pok_output">Output/Komponen</label>
+                                    <label for="pok_output">Output/Komponen<span> *</span></label>
                                     <div class="form-group row">
                                         <div class="col-md-9">
                                             <input id="pok_output" type="text" name="output" class="form-control" required>
-                                            <span class="help-block">uraian</span> 
+                                            <span class="help-block text-muted">uraian</span> 
                                         </div>
                                         <div class="col-md-3">
                                             <input id="kode_output" type="text" name="kode_output" class="form-control">
-                                            <span class="help-block">kode</span> 
+                                            <span class="help-block text-muted">kode</span> 
                                         </div>
                                     </div>
                                 </div>                                 
                                 <div class="form-group row">
-                                    <label for="detail_tugas">Tujuan/Tugas</label>
-                                    <input id="detail_tugas" type="text" name="tugas" class="form-control" placeholder="Tujuan/Tugas" required>
+                                    <label for="detail_tugas">Tujuan/Tugas<span> *</span></label>
+                                    <input id="detail_tugas" type="text" name="tugas" class="form-control" required>
                                 </div>                        
                                 <div class="form-group row">
                                     <label for="provinsi">Lokasi</label>
                                     <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="organisasi" type="text" name="org" class="form-control" placeholder="Organisasi/Tempat (boleh kosong)">
+                                            <label class="col-md-3" for="provinsi">Provinsi<span> *</span></label>
+                                            <div class="col-md-9" style="margin-bottom: 2px">
+                                                <input id="provinsi" type="text" name="prov" class="form-control" required="">
                                             </div>
-                                            <div class="col-md-12">
-                                                <input id="provinsi" type="text" name="prov" class="form-control" placeholder="Provinsi" required="">
+                                            <label class="col-md-3" for="kabupaten">Kabupaten</label>
+                                            <div class="col-md-9" style="margin-bottom: 2px">
+                                                <input id="kabupaten" type="text" name="kab" class="form-control">
                                             </div>
-                                            <div class="col-md-12">
-                                                <input id="kabupaten" type="text" name="kab" class="form-control" placeholder="Kabupaten (boleh kosong)">
+                                            <label class="col-md-3" for="organisasi">Organisasi</label>
+                                            <div class="col-md-9">
+                                                <input id="organisasi" type="text" name="org" class="form-control">
                                             </div>
                                     </div>
                                 </div>                                                         
                                 <div class="form-group row">
-                                    <label for="datetimepicker1">Waktu</label>
+                                    <label for="tgl_berangkat">Waktu<span> *</span></label>
                                     <div class="form-group row">
                                         <div class="col-md-6">
-                                            <input type='text-input' class="form-control date" name="tgl_berangkat" id="datetimepicker1" required>
-                                            <span class="help-block">berangkat</span> 
+                                            <input type='text-input' class="form-control date" name="tgl_berangkat" id="tgl_berangkat" required>
+                                            <span class="help-block text-muted">berangkat</span> 
                                         </div>
                                         <div class="col-md-6">
-                                            <input type='text-input' class="form-control date" name="tgl_kembali" id="datetimepicker2" required>
-                                            <span class="help-block">kembali</span> 
+                                            <input type='text-input' class="form-control date" name="tgl_kembali" id="tgl_kembali" required>
+                                            <span class="help-block text-muted">kembali</span> 
                                             <input style="display: none;" type="text" id="jumlah_hari" name="jumlah_hari" value="">
                                         </div>
                                     </div>
                                 </div>    
                                 <div class="form-group row">
-                                    <label for="jenis_ang">Angkutan</label>
+                                    <label for="jenis_ang">Angkutan<span> *</span></label>
                                     <div style="margin-left: 15px">
                                         <label for="radio1" class="radio-inline">
                                             <input type="radio" id="radio1" name="jenis_ang" value="Plane" checked="checked">  Plane
@@ -83,35 +85,28 @@
                                 <div class="form-group row">
                                     <label for="ttd_legalitas">Penanda Tangan Legalitas</label>
                                     <select list="ttd_legalitasb"  id="ttd_legalitas" name="ttd_legalitas" class="form-control input-lg" size="1">
-                                        {{#each ttdL}}
-                                            <option value="{{nama}}" {{#if_eq nip ../l.nip}}selected{{/if_eq}}>{{nama}}</option>
+                                        {{#each setting.ttd_st}}
+                                            <option value="{{_id}}" {{#if_eq _id ../setting.ttd_st_default}}selected{{/if_eq}}>{{nama}}</option>
                                         {{/each}}
                                     </select>
-                                    <input style="display: none;" type="text" id="ttd_legalitas_jabatan" name="ttd_legalitas_jabatan" value="">
-                                    <input style="display: none;" type="text" id="ttd_legalitas_nip" name="ttd_legalitas_nip" value="{{#with ttdL.[0]}}{{nip}}{{/with}}">
-                                    <input style="display: none;" type="text" id="ppk_nama" name="ppk_nama" value="{{#with ppk}}{{nama}}{{/with}}">
-                                    <input style="display: none;" type="text" id="ppk_nama" name="ppk_nip" value="{{#with ppk}}{{nip}}{{/with}}">
                                 </div>                                                                                  
                                 <div class="form-group row">
                                     <label for="ttd_surat_tugas">Penanda Tangan Surat Tugas</label>
                                     <select id="ttd_surat_tugas" name="ttd_surat_tugas" class="form-control input-lg" size="1">
-                                        {{#each ttdST}}
-                                            <option value="{{nama}}" {{#if_eq nip ../st.nip}}selected{{/if_eq}}>{{nama}}</option>
+                                        {{#each setting.ttd_leg}}
+                                            <option value="{{_id}}" {{#if_eq _id ../setting.ttd_leg_default}}selected{{/if_eq}}>{{nama}}</option>
                                         {{/each}}
                                     </select>
-                                    <input style="display: none;" type="text" id="ttd_surat_tugas_jabatan" name="ttd_surat_tugas_jabatan" value="">
-                                    <input style="display: none;" type="text" id="ttd_surat_tugas_nip" name="ttd_surat_tugas_nip" value="{{#with ttdST.[0]}}{{nip}}{{/with}}">
                                 </div>                                    
                                 <div class="form-group row">     
                                     <div class="col-md-6" style="padding-left: 0">    
                                         <label for="tgl_ttd_st">Tanggal Tanda Tangan</label>
                                         <input type="text-input" id="tgl_ttd_st" class="form-control date tgl_ttd" name="tgl_ttd_st" value="">
-                                    </div>                                                 
-                                    <input style="display: none;" type="text-input" id="tgl_ttd_ppk" class="form-control input-group date tgl_ttd" name="tgl_ttd_ppk" value="" placeholder="PPK">
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <button id="generateLetter" type="submit" class="btn btn-primary px-2">Buat Surat</button><span><pre> </pre></span>
-                                    <button id="reset" class="btn btn-secondary px-2">Reset</button>
+                                    <button id="generateLetter" type="submit" class="px-2">Buat Surat</button><span><pre> </pre></span>
+                                    <button id="reset" class="px-2">Reset</button>
                                 </div>                         
                             </form>                            
                         </div>
@@ -126,321 +121,189 @@
     <!--/.row-->
 </div>
 
-<script src="/js/moment.min.js"></script>
-
-<script src="/js/id.js"></script>
-
-<script src="/js/bootstrap-datetimepicker.js"></script>
-
 <script src="/js/bootstrap-tokenfield.js"></script>
 
-<script src="/js/typeahead.bundle.min.js"></script>
-
 <script type="text/javascript">
-    document.title = 'Surat Tugas - SIMAMOV';
-    //ubah breadcumb
-    $('#level3').text('SPPD / Surat Tugas');
-    //load css timepicker
-    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-datetimepicker.min.css"));
+    $(document).ready(function(){
+        $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
 
-    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
+        //function
+        $.fn.serializeObject = function()
+        {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
 
-    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/tokenfield-typeahead.css"));
+        var SPPD = {};
     
-    //Inisialisasi pdf viewer
-    $("#realTimeView").attr("src", 'http://'+location.host+'/result/surat_tugas.pdf');
+        //Inisialisasi pdf viewer
+        $("#realTimeView").attr("src", 'http://'+location.host+'/result/surat_tugas.pdf');
 
-    //Input tgl sekarang utk ttd
-    $(".tgl_ttd").val(moment().format('D MMMM YYYY'));
-
-    //Inisialisasi input tgl Brgkt & Kembali
-    $('#datetimepicker1').datetimepicker({
+        //Inisialisasi input tgl Brgkt & Kembali
+        $('#tgl_berangkat').datetimepicker({
+                locale: 'id',
+                format: 'D MMMM YYYY'
+            });
+        $('#tgl_kembali').datetimepicker({
             locale: 'id',
-            format: 'D MMMM YYYY'
+            format: 'D MMMM YYYY',
+            useCurrent: false //Important! See issue #1075
         });
-    $('#datetimepicker2').datetimepicker({
-        locale: 'id',
-        format: 'D MMMM YYYY',
-        useCurrent: false //Important! See issue #1075
-    });
-    $('.tgl_ttd').datetimepicker({
-        locale: 'id',
-        format: 'D MMMM YYYY',
-        useCurrent: false
-    });
-
-    //Disable tgl sblm tgl berangkat pd input tgl kembali
-    $("#datetimepicker1").on("dp.change", function (e) {
-        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-    });
-
-    //Jumlah hari berangkat
-    $(".date").on("dp.change", function (e) {
-        $("#jumlah_hari").val(moment($('#datetimepicker2').val(), "DD MMMM YYYY").diff(moment($('#datetimepicker1').val(), "DD MMMM YYYY"), 'days')+1);
-    });
-
-    //Reload pdf viewer
-    $('#suratTugas').on('submit', function(e) {
-        e.preventDefault();
-        $('#generateLetter').prop('disabled', true);
-        $("#generateLetter").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#generateLetter").text());
-        $.ajax({
-            url : $(this).attr('action') || window.location.pathname,
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
-                $("#realTimeView").attr("src", 'http://'+location.host+data.result);
-                $("#generateLetter").html('Buat Surat');
-                $('#generateLetter').prop('disabled', false);
-                $("html, body").animate({ scrollTop: 72 }, "slow");
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                // $.toaster({ priority : 'warning', title : 'Kesalahan', message : 'Terjadi kesalahan, mohon hubungi bagian teknis.'});
-                $("#generateLetter").html('Buat Surat');
-                $('#generateLetter').prop('disabled', false);
-            }
+        $('.tgl_ttd').datetimepicker({
+            locale: 'id',
+            format: 'D MMMM YYYY',
+            useCurrent: false
         });
-    });
 
-    $('#reset').click(function(){
+        //Input tgl sekarang utk ttd
+        $(".tgl_ttd").val(moment().format('D MMMM YYYY'));
 
-        $('#suratTugasMenu').trigger('click');
+        //Disable tgl sblm tgl berangkat pd input tgl kembali
+        $("#tgl_berangkat").on("dp.change", function (e) {
+            $('#tgl_kembali').data("DateTimePicker").minDate(e.date);
+        });
 
-    })
-    //Autocomplete
-    $(function() {
+        //Jumlah hari berangkat
+        $(".date").on("dp.change", function (e) {
+            $("#jumlah_hari").val(moment($('#tgl_kembali').val(), "DD MMMM YYYY").diff(moment($('#tgl_berangkat').val(), "DD MMMM YYYY"), 'days')+1);
+        });
+
+        $('#reset').click(function(){
+
+            $('#suratTugasMenu').trigger('click');
+
+        })
+        //Autocomplete
         $('#nama_lengkap').tokenfield({
           typeahead: [null, { source: function(q, p){
             {
-                return $.getJSON(
-                    '/sppd/ajax/pegawai',
-                    { query: q },
-                    function (data) {
-                        states = [];
-                        map = {};
-
-                        if($('#nama_lengkap').val()){
-                            var regEx = new RegExp(q+"$");
-                            if(regEx.test($('#nama_lengkap').val())){
-                                return p(states);
-                            }
-                        }
-
-                        $.each(data, function (i, state) {
-                            map[state.nama] = state;
-                            states.push(state.nama);
-                        });
-
-                        var states = $.map(states, function (string) { return { value: string }; });
-
-                        return p(states);
-                    });
+                socket.emit('penerima_list', {'query': q, 'type': 'pegawai_and_bps'}, function (data) {
+                    return p(_.map(data, function(peg){ return {_id: peg._id, value: peg.nama}}))
+                });
             }
           }}]
         });
-        $('#nama_lengkap-tokenfield').focus()
-    });
+        $('#nama_lengkap-tokenfield').focus();
 
-    $('#pok_output').typeahead({
-      hint: true,
-      highlight: true,
-      minLength: 1
-    },
-    {
-      source: function(q, p){
-        {
-            return $.getJSON(
-                '/sppd/ajax/pok_komponen',
-                { query: q },
-                function (data) {
-                    states = [];
-                    map = {};
+        var nama_sppd = [];
+        $("#nama_lengkap").on("tokenfield:createdtoken", function(e) {
+            delete e.attrs.label;
+            nama_sppd.push(e.attrs)
+        });
+        $("#nama_lengkap").on("tokenfield:removetoken", function(e) {
+            nama_sppd = _.without(nama_sppd, _.findWhere(nama_sppd, {
+              _id: e.attrs._id
+            }));
+        });
 
-                    $.each(data, function (i, state) {
-                        map[state.uraian] = state;
-                        states.push(state.uraian);
-                    });
+        //Reload pdf viewer
+        $('#suratTugas').on('submit', function(e) {
+            e.preventDefault();
+            $('#generateLetter').prop('disabled', true);
+            $("#generateLetter").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#generateLetter").text());
 
-                    var states = $.map(states, function (string) { return { value: string }; });
+            var data = $('#suratTugas').serializeObject();
+            data.nama_lengkap = nama_sppd;
 
-                    return p(states);
-                });
-        }
-      }
-    });
+            console.log(data);
+            socket.emit('surat_tugas', data, 
+                function(status){
+                    if(status == 'sukses'){
+                        generalAlert('Surat dibuat.');
+                    } else {
+                        generalAlert('Gagal buat surat. Hubungi Admin.');
+                    }
+            })
 
-   //  $("#pok_output").on("change paste keyup", function() {
-   //     $('#detail_tugas').val($('#pok_output').val());
 
-   //     $.getJSON(
-   //      '/sppd/ajax/pok_komponen',
-   //      { query: $('#pok_output').val() },
-   //      function (data) {
-   //          $('#kode_output').val(data[0]._id);
-   //      });
-   // });
+            $("#generateLetter").html('Buat Surat');
+            $('#generateLetter').prop('disabled', false);
+        });
 
-    $('#pok_output').each(function() {
-       var elem = $(this);
-
-       // Save current value of element
-       elem.data('oldVal', elem.val());
-
-       // Look for changes in the value
-       elem.bind("propertychange change click keyup input paste", function(event){
-          // If value has changed...
-          if (elem.data('oldVal') != elem.val()) {
-           // Updated stored value
-           elem.data('oldVal', elem.val());
-
-           // Do action
-           $('#detail_tugas').val($('#pok_output').val());
-
-           $.getJSON(
-            '/sppd/ajax/pok_komponen',
-            { query: $('#pok_output').val() },
-            function (data) {
-                $('#kode_output').val(data[0]._id);
-            });
-         }
-       });
-     });
-
-    $('#kabupaten').typeahead({
-      hint: true,
-      highlight: true,
-      minLength: 1
-    },
-    {
-      source: function(q, p){
-            {
-                return $.getJSON(
-                    '/sppd/ajax/kabupaten',
-                    { query: q, prov: $('#provinsi').val()},
-                    function (data) {
-                        states = [];
-                        map = {};
-
-                        if($('#provinsi').val()){
-                            var data = $.map( data, function(e,i){
-                                var dataTemp = $.map( e, function(et,i){
-                                    var regEx = new RegExp(".*"+q+".*", "i");
-                                    if(regEx.test(et.label)){
-                                        return et;
-                                    }
-                                }); 
-                                var regEx = new RegExp(".*"+q+".*", "i");
-                                if(regEx.test(e.label)){
-                                    return e;
-                                }
-                            }); 
-                        } else{
-                            var data = $.map( data, function(e,i){
-                                var regEx = new RegExp(".*"+q+".*", "i");
-                                if(regEx.test(e.label)){
-                                    return e;
-                                }
-                            }); 
+        $('#pok_output').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                source: function(q, p){
+                        {
+                            socket.emit('komponen_list', q, function (data) {
+                                return p(_.map(data, function(peg){ return {kdkmpnen: peg.kdkmpnen, value: peg.urkmpnen}}))
+                            });
                         }
-
-                        $.each(data, function (i, state) {
-                            map[state.label] = state;
-                            states.push(state.label);
-                        });
-
-                        var states = $.map(states, function (string) { return { value: string }; });
-
-                        return p(states);
-                    });
+                }
             }
-          }
+        );
+
+        $("#pok_output").on("typeahead:selected typeahead:autocompleted", function(e, datum) {
+            $("#kode_output").val(datum.kdkmpnen);
+            $("#detail_tugas").val(datum.value);
         });
 
-    $('#provinsi').typeahead({
-      hint: true,
-      highlight: true,
-      minLength: 1
-    },
-    {
-      source: function(q, p){
-            {
-                return $.getJSON(
-                    '/sppd/ajax/provinsi',
-                    { query: q },
-                    function (data) {
-                        states = [];
-                        map = {};
-
-                        $.each(data, function (i, state) {
-                            map[state.label] = state;
-                            states.push(state.label);
-                        });
-
-                        var states = $.map(states, function (string) { return { value: string }; });
-
-                        return p(states);
-                    });
+        $('#kabupaten').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                source: function(q, p){
+                        {
+                            socket.emit('kab_list', q, function (data) {
+                                return p(_.map(data, function(kab){ return {_id: kab._id, value: kab.nama}}))
+                            });
+                        }
+                }
             }
-          }
-        });
+        );
 
-    $('#organisasi').typeahead({
-      hint: true,
-      highlight: true,
-      minLength: 1
-    },
-    {
-      source: function(q, p){
-        {
-            return $.getJSON(
-                '/sppd/ajax/organisasi',
-                { query: q },
-                function (data) {
-                    states = [];
-                    map = {};
+        $('#provinsi').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                source: function(q, p){
+                        {
+                            socket.emit('prov_list', q, function (data) {
+                                return p(_.map(data, function(prov){ return {_id: prov._id, value: prov.nama}}))
+                            });
+                        }
+                }
+            }
+        );
 
-                    $.each(data, function (i, state) {
-                        map[state.label] = state;
-                        states.push(state.query);
-                    });
+        $('#organisasi').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                source: function(q, p){
+                        {
+                            socket.emit('org_list', q, function (data) {
+                                return p(_.map(data, function(org){ return {_id: org._id, value: org.nama}}))
+                            });
+                        }
+                }
+            }
+        );
 
-                    var states = $.map(states, function (string) { return { value: string }; });
-
-                    return p(states);
-                });
+        function generalAlert(message){
+            $.toast({
+                text: message,
+                textAlign: 'left', 
+                hideAfter: 4000,
+                loader: false,
+                position: 'bottom-right'
+            })
         }
-      }
-    });
-
-    var ttdST = {{{json ttdST}}};
-    var ttdL = {{{json ttdL}}};
-
-
-    var result = $.grep(ttdST, function(e){ return e.nama == $("#ttd_surat_tugas").val();});
-    // var index = $.grep(jabIndexST, function(e){ return e.nip == result[0].nip;});
-
-    $('#ttd_surat_tugas_jabatan').val(result[0].jabatan[result[0].sppd_st_index]);
-
-
-    var result2 = $.grep(ttdL, function(e){ return e.nama == $("#ttd_legalitas").val();});
-    // var index2 = $.grep(jabIndexL, function(e){ return e.nip == result2[0].nip;});
-
-    $('#ttd_legalitas_jabatan').val(result2[0].jabatan[result2[0].sppd_l_index]);
-
-    $("#ttd_surat_tugas").on("change paste keyup", function() {
-        var result = $.grep(ttdST, function(e){ return e.nama == $("#ttd_surat_tugas").val();});
-        // var index = $.grep(jabIndexST, function(e){ return e.nip == result[0].nip;});
-
-        $('#ttd_surat_tugas_jabatan').val(result[0].jabatan[result[0].sppd_st_index]);
-        $('#ttd_surat_tugas_nip').val(result[0].nip);
-        console.log($('#ttd_surat_tugas_nip').val());
-    });
-
-    $("#ttd_legalitas").on("change paste keyup", function() {
-        var result = $.grep(ttdL, function(e){ return e.nama == $("#ttd_legalitas").val();});
-        // var index = $.grep(jabIndexL, function(e){ return e.nip == result[0].nip;});
-
-        $('#ttd_legalitas_jabatan').val(result[0].jabatan[result[0].sppd_l_index]);
-        $('#ttd_legalitas_nip').val(result[0].nip);
     });
 </script>

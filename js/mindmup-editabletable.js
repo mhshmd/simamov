@@ -14,8 +14,17 @@ $.fn.editableTableWidget = function (options) {
 			active,
 			showEditor = function (select) {
 				active = element.find('td:focus');
+				// if(active.hasClass('format-uang')){
+				// 	editor.attr('class', 'format-uang');
+				// } else {
+				// 	if(editor.hasClass('format-uang')){
+				// 		editor.removeClass();
+				// 		editor.autoNumeric('destroy');
+				// 	}
+				// }
 				if (active.length && !active.hasClass(activeOptions.disableClass)) {
-					editor.val(active.text())
+					editor
+						.val(active.text())
 						.removeClass('error')
 						.show()
 						.offset(active.offset())

@@ -1,0 +1,423 @@
+<div class="animated fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card-group mb-0">
+                    <div class="card p-2">
+                        <div class="card-block">
+                        <div class="row">
+                            <h3><i class="icon-plane"></i> Surat Tugas</h3>
+                            <p class="text-muted">Buat Surat Tugas, SPD, dan Pengesahan</p>
+                        </div>
+                            <form id="suratTugas" action="/sppd/surat_tugas" method="POST">  
+                                <div class="form-group row">
+                                    <label for="nomor">Nomor Surat</label>
+                                    <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="{{last_nomor}}/SPD/STIS/{{fullYear}}">
+                                </div>                          
+                                <div class="form-group row">
+                                    <label for="search">Nama<span> *</span></label>
+                                    <input id="nama_lengkap" type="text" id="search" name="nama_lengkap" class="form-control" placeholder="Nama" required autofocus>
+                                </div>                      
+                                <div class="form-group row">
+                                    <label for="pok_output">Output/Komponen<span> *</span></label>
+                                    <div class="form-group row">
+                                        <div class="col-md-9">
+                                            <input id="pok_output" type="text" name="output" class="form-control" required>
+                                            <span class="help-block">uraian</span> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input id="kode_output" type="text" name="kode_output" class="form-control">
+                                            <span class="help-block">kode</span> 
+                                        </div>
+                                    </div>
+                                </div>                                 
+                                <div class="form-group row">
+                                    <label for="detail_tugas">Tujuan/Tugas<span> *</span></label>
+                                    <input id="detail_tugas" type="text" name="tugas" class="form-control" placeholder="Tujuan/Tugas" required>
+                                </div>                        
+                                <div class="form-group row">
+                                    <label for="provinsi">Lokasi<span> *</span></label>
+                                    <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <input id="organisasi" type="text" name="org" class="form-control" placeholder="Organisasi/Tempat">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input id="provinsi" type="text" name="prov" class="form-control" placeholder="Provinsi" required="">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input id="kabupaten" type="text" name="kab" class="form-control" placeholder="Kabupaten">
+                                            </div>
+                                    </div>
+                                </div>                                                         
+                                <div class="form-group row">
+                                    <label for="datetimepicker1">Waktu<span> *</span></label>
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <input type='text-input' class="form-control date" name="tgl_berangkat" id="datetimepicker1" required>
+                                            <span class="help-block">berangkat</span> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type='text-input' class="form-control date" name="tgl_kembali" id="datetimepicker2" required>
+                                            <span class="help-block">kembali</span> 
+                                            <input style="display: none;" type="text" id="jumlah_hari" name="jumlah_hari" value="">
+                                        </div>
+                                    </div>
+                                </div>    
+                                <div class="form-group row">
+                                    <label for="jenis_ang">Angkutan<span> *</span></label>
+                                    <div style="margin-left: 15px">
+                                        <label for="radio1" class="radio-inline">
+                                            <input type="radio" id="radio1" name="jenis_ang" value="Plane" checked="checked">  Plane
+                                        </label>
+                                        <label for="radio2" class="radio-inline">
+                                            <input type="radio" id="radio2" name="jenis_ang" value="Kereta Api">  Kereta Api
+                                        </label>
+                                        <label for="radio3" class="radio-inline">
+                                            <input type="radio" id="radio3" name="jenis_ang" value="Kendaraan Umum">  Kendaraan Umum
+                                        </label>
+                                        <label for="radio4" class="radio-inline">
+                                            <input type="radio" id="radio4" name="jenis_ang" value="Kendaraan Dinas">  Kendaraan Dinas
+                                        </label>
+                                    </div>
+                                </div>                             
+                                <div class="form-group row">
+                                    <label for="ttd_legalitas">Penanda Tangan Legalitas</label>
+                                    <select list="ttd_legalitasb"  id="ttd_legalitas" name="ttd_legalitas" class="form-control input-lg" size="1">
+                                        {{#each ttdL}}
+                                            <option value="{{nama}}" {{#if_eq nip ../l.nip}}selected{{/if_eq}}>{{nama}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <input style="display: none;" type="text" id="ttd_legalitas_jabatan" name="ttd_legalitas_jabatan" value="">
+                                    <input style="display: none;" type="text" id="ttd_legalitas_nip" name="ttd_legalitas_nip" value="{{#with ttdL.[0]}}{{nip}}{{/with}}">
+                                    <input style="display: none;" type="text" id="ppk_nama" name="ppk_nama" value="{{#with ppk}}{{nama}}{{/with}}">
+                                    <input style="display: none;" type="text" id="ppk_nama" name="ppk_nip" value="{{#with ppk}}{{nip}}{{/with}}">
+                                </div>                                                                                  
+                                <div class="form-group row">
+                                    <label for="ttd_surat_tugas">Penanda Tangan Surat Tugas</label>
+                                    <select id="ttd_surat_tugas" name="ttd_surat_tugas" class="form-control input-lg" size="1">
+                                        {{#each ttdST}}
+                                            <option value="{{nama}}" {{#if_eq nip ../st.nip}}selected{{/if_eq}}>{{nama}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <input style="display: none;" type="text" id="ttd_surat_tugas_jabatan" name="ttd_surat_tugas_jabatan" value="">
+                                    <input style="display: none;" type="text" id="ttd_surat_tugas_nip" name="ttd_surat_tugas_nip" value="{{#with ttdST.[0]}}{{nip}}{{/with}}">
+                                </div>                                    
+                                <div class="form-group row">     
+                                    <div class="col-md-6" style="padding-left: 0">    
+                                        <label for="tgl_ttd_st">Tanggal Tanda Tangan</label>
+                                        <input type="text-input" id="tgl_ttd_st" class="form-control date tgl_ttd" name="tgl_ttd_st" value="">
+                                    </div>                                                 
+                                    <input style="display: none;" type="text-input" id="tgl_ttd_ppk" class="form-control input-group date tgl_ttd" name="tgl_ttd_ppk" value="" placeholder="PPK">
+                                </div>
+                                <div class="row">
+                                    <button id="generateLetter" type="submit" class="px-2">Buat Surat</button><span><pre> </pre></span>
+                                    <button id="reset" class="px-2">Reset</button>
+                                </div>                         
+                            </form>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <iframe id="realTimeView" class="preview-pane" type="application/pdf" width="100%" height="690" frameborder="0" style="position:relative;z-index:999;" src=""></iframe>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script src="/js/bootstrap-tokenfield.js"></script>
+
+<script type="text/javascript">
+    document.title = 'Surat Tugas - SIMAMOV';
+    //ubah breadcumb
+    $('#level3').text('SPPD / Surat Tugas');
+
+    $('head').append( $('<link rel="stylesheet" type="text/css"/>').attr('href', "/css/bootstrap-tokenfield.css"));
+    
+    //Inisialisasi pdf viewer
+    $("#realTimeView").attr("src", 'http://'+location.host+'/result/surat_tugas.pdf');
+
+    //Input tgl sekarang utk ttd
+    $(".tgl_ttd").val(moment().format('D MMMM YYYY'));
+
+    //Inisialisasi input tgl Brgkt & Kembali
+    $('#datetimepicker1').datetimepicker({
+            locale: 'id',
+            format: 'D MMMM YYYY'
+        });
+    $('#datetimepicker2').datetimepicker({
+        locale: 'id',
+        format: 'D MMMM YYYY',
+        useCurrent: false //Important! See issue #1075
+    });
+    $('.tgl_ttd').datetimepicker({
+        locale: 'id',
+        format: 'D MMMM YYYY',
+        useCurrent: false
+    });
+
+    //Disable tgl sblm tgl berangkat pd input tgl kembali
+    $("#datetimepicker1").on("dp.change", function (e) {
+        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+    });
+
+    //Jumlah hari berangkat
+    $(".date").on("dp.change", function (e) {
+        $("#jumlah_hari").val(moment($('#datetimepicker2').val(), "DD MMMM YYYY").diff(moment($('#datetimepicker1').val(), "DD MMMM YYYY"), 'days')+1);
+    });
+
+    //Reload pdf viewer
+    $('#suratTugas').on('submit', function(e) {
+        e.preventDefault();
+        $('#generateLetter').prop('disabled', true);
+        $("#generateLetter").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>'+$("#generateLetter").text());
+        $.ajax({
+            url : $(this).attr('action') || window.location.pathname,
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                $("#realTimeView").attr("src", 'http://'+location.host+data.result);
+                $("#generateLetter").html('Buat Surat');
+                $('#generateLetter').prop('disabled', false);
+                $("html, body").animate({ scrollTop: 72 }, "slow");
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                // $.toaster({ priority : 'warning', title : 'Kesalahan', message : 'Terjadi kesalahan, mohon hubungi bagian teknis.'});
+                $("#generateLetter").html('Buat Surat');
+                $('#generateLetter').prop('disabled', false);
+            }
+        });
+    });
+
+    $('#reset').click(function(){
+
+        $('#suratTugasMenu').trigger('click');
+
+    })
+    //Autocomplete
+    $(function() {
+        $('#nama_lengkap').tokenfield({
+          typeahead: [null, { source: function(q, p){
+            {
+                return $.getJSON(
+                    '/sppd/ajax/pegawai',
+                    { query: q },
+                    function (data) {
+                        states = [];
+                        map = {};
+
+                        if($('#nama_lengkap').val()){
+                            var regEx = new RegExp(q+"$");
+                            if(regEx.test($('#nama_lengkap').val())){
+                                return p(states);
+                            }
+                        }
+
+                        $.each(data, function (i, state) {
+                            map[state.nama] = state;
+                            states.push(state.nama);
+                        });
+
+                        var states = $.map(states, function (string) { return { value: string }; });
+
+                        return p(states);
+                    });
+            }
+          }}]
+        });
+        $('#nama_lengkap-tokenfield').focus()
+    });
+
+    $('#pok_output').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+        {
+            return $.getJSON(
+                '/sppd/ajax/pok_komponen',
+                { query: q },
+                function (data) {
+                    states = [];
+                    map = {};
+
+                    $.each(data, function (i, state) {
+                        map[state.uraian] = state;
+                        states.push(state.uraian);
+                    });
+
+                    var states = $.map(states, function (string) { return { value: string }; });
+
+                    return p(states);
+                });
+        }
+      }
+    });
+
+    $('#pok_output').each(function() {
+       var elem = $(this);
+
+       // Save current value of element
+       elem.data('oldVal', elem.val());
+
+       // Look for changes in the value
+       elem.bind("propertychange change click keyup input paste", function(event){
+          // If value has changed...
+          if (elem.data('oldVal') != elem.val()) {
+           // Updated stored value
+           elem.data('oldVal', elem.val());
+
+           // Do action
+           $('#detail_tugas').val($('#pok_output').val());
+
+           $.getJSON(
+            '/sppd/ajax/pok_komponen',
+            { query: $('#pok_output').val() },
+            function (data) {
+                $('#kode_output').val(data[0]._id);
+            });
+         }
+       });
+     });
+
+    $('#kabupaten').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+            {
+                return $.getJSON(
+                    '/sppd/ajax/kabupaten',
+                    { query: q, prov: $('#provinsi').val()},
+                    function (data) {
+                        states = [];
+                        map = {};
+
+                        if($('#provinsi').val()){
+                            var data = $.map( data, function(e,i){
+                                var dataTemp = $.map( e, function(et,i){
+                                    var regEx = new RegExp(".*"+q+".*", "i");
+                                    if(regEx.test(et.label)){
+                                        return et;
+                                    }
+                                }); 
+                                var regEx = new RegExp(".*"+q+".*", "i");
+                                if(regEx.test(e.label)){
+                                    return e;
+                                }
+                            }); 
+                        } else{
+                            var data = $.map( data, function(e,i){
+                                var regEx = new RegExp(".*"+q+".*", "i");
+                                if(regEx.test(e.label)){
+                                    return e;
+                                }
+                            }); 
+                        }
+
+                        $.each(data, function (i, state) {
+                            map[state.label] = state;
+                            states.push(state.label);
+                        });
+
+                        var states = $.map(states, function (string) { return { value: string }; });
+
+                        return p(states);
+                    });
+            }
+          }
+        });
+
+    $('#provinsi').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+            {
+                return $.getJSON(
+                    '/sppd/ajax/provinsi',
+                    { query: q },
+                    function (data) {
+                        states = [];
+                        map = {};
+
+                        $.each(data, function (i, state) {
+                            map[state.label] = state;
+                            states.push(state.label);
+                        });
+
+                        var states = $.map(states, function (string) { return { value: string }; });
+
+                        return p(states);
+                    });
+            }
+          }
+        });
+
+    $('#organisasi').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      source: function(q, p){
+        {
+            return $.getJSON(
+                '/sppd/ajax/organisasi',
+                { query: q },
+                function (data) {
+                    states = [];
+                    map = {};
+
+                    $.each(data, function (i, state) {
+                        map[state.label] = state;
+                        states.push(state.query);
+                    });
+
+                    var states = $.map(states, function (string) { return { value: string }; });
+
+                    return p(states);
+                });
+        }
+      }
+    });
+
+    var ttdST = {{{json ttdST}}};
+    var ttdL = {{{json ttdL}}};
+
+
+    var result = $.grep(ttdST, function(e){ return e.nama == $("#ttd_surat_tugas").val();});
+    // var index = $.grep(jabIndexST, function(e){ return e.nip == result[0].nip;});
+
+    $('#ttd_surat_tugas_jabatan').val(result[0].jabatan[result[0].sppd_st_index]);
+
+
+    var result2 = $.grep(ttdL, function(e){ return e.nama == $("#ttd_legalitas").val();});
+    // var index2 = $.grep(jabIndexL, function(e){ return e.nip == result2[0].nip;});
+
+    $('#ttd_legalitas_jabatan').val(result2[0].jabatan[result2[0].sppd_l_index]);
+
+    $("#ttd_surat_tugas").on("change paste keyup", function() {
+        var result = $.grep(ttdST, function(e){ return e.nama == $("#ttd_surat_tugas").val();});
+        // var index = $.grep(jabIndexST, function(e){ return e.nip == result[0].nip;});
+
+        $('#ttd_surat_tugas_jabatan').val(result[0].jabatan[result[0].sppd_st_index]);
+        $('#ttd_surat_tugas_nip').val(result[0].nip);
+        console.log($('#ttd_surat_tugas_nip').val());
+    });
+
+    $("#ttd_legalitas").on("change paste keyup", function() {
+        var result = $.grep(ttdL, function(e){ return e.nama == $("#ttd_legalitas").val();});
+        // var index = $.grep(jabIndexL, function(e){ return e.nip == result[0].nip;});
+
+        $('#ttd_legalitas_jabatan').val(result[0].jabatan[result[0].sppd_l_index]);
+        $('#ttd_legalitas_nip').val(result[0].nip);
+    });
+</script>

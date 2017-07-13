@@ -10,7 +10,7 @@
                         </div>
                             <form id="suratTugas" action="/sppd/surat_tugas_biasa" method="POST">  
                                 <div class="form-group row">
-                                    <label for="nomor">Nomor</label>
+                                    <label for="nomor">Nomor<span> *</span></label>
                                     <input type="text" id="nomor" name="nomor" class="form-control" placeholder="Nomor surat" value="02722.{{last_nomor}}" required>
                                 </div>                          
                                 <div class="form-group row">
@@ -70,8 +70,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <button id="generateLetter" type="submit" class="btn btn-primary px-2">Buat Surat</button><span><pre> </pre></span>
-                                    <button id="reset" class="btn btn-secondary px-2">Reset</button>
+                                    <button id="generateLetter" type="submit" class="px-2">Buat Surat</button><span><pre> </pre></span>
+                                    <button id="reset" class="px-2">Reset</button>
                                 </div>                                
                             </form>                            
                         </div>

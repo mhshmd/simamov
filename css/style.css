@@ -270,7 +270,7 @@ html {
 
 body {
   /*font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
-  font-size: 12px;
+  font-size: 11px;
   font-weight: normal;
   line-height: 1.5;
   color: #000000;
@@ -1371,7 +1371,7 @@ pre {
   margin-bottom: 1rem; }
   .table th,
   .table td {
-    padding: 0.75rem;
+    padding: 7px;
     vertical-align: top;
     border-top: 1px solid #cfd8dc; }
   .table thead th {
@@ -3725,7 +3725,7 @@ button.close {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 800px; } }
+    max-width: 1000px; } }
 
 .modal-primary .modal-content {
   border-color: #20a8d8; }

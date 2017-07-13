@@ -15,15 +15,15 @@
     <link href="/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Main styles for this application <link href="/css/bootstrap.min.css" rel="stylesheet"> -->    
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">  
+    <link href="/css/jquery.dataTables.css" rel="stylesheet"> 
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet"> 
+    <link href="/css/fixedColumns.bootstrap.min.css" rel="stylesheet">  
+    <link href="/css/jquery.toast.min.css" rel="stylesheet"> 
+    <link href="/css/tokenfield-typeahead.css" rel="stylesheet"> 
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <style type="text/css">
-        th {
-          vertical-align: middle;
-          text-align: center;
-          border: 1px solid black;
-        }
-
         .table > tbody > tr > td {
              vertical-align: middle;
              border: 1px solid black;
@@ -53,21 +53,61 @@
           text-indent: 40px;
         }
 
-        .money{
-          text-align: right;
+        .format-uang{
+          text-align: right !important;
         }
 
-        .nl{
+        .no-left-padding{
             padding-left: 0 !important;
         }
 
         body{
             counter-reset: Serial;           /* Set the Serial counter to 0 */
-        }
+        }tbl_riwayat
 
         .table-auto-number tbody tr td:first-child:before{
           counter-increment: Serial;      /* Increment the Serial counter */
           content: counter(Serial); /* Display the counter */
+        }
+
+        #pok_table_entry th, #pok_table_entry td { white-space: nowrap; }
+
+        div#pok_table_entry_wrapper.dataTables_wrapper {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        div#tbl_riwayat_wrapper{
+            width: 100%;
+            margin: 0 auto;
+        }
+        div#tbl_tambah_penerima_wrapper{
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        label span{
+            color: red;
+        }
+
+        .htContextMenu.handsontable {
+            z-index: 1100;
+        }
+        #tbl_pegawai_stis .twitter-typeahead .tt-dropdown-menu {
+          top: 35px !important;
+          left: auto !important;
+          right: 990px !important;
+        }
+
+        #tbl_riwayat .twitter-typeahead .tt-dropdown-menu{
+          top: 35px !important;
+          left: auto !important;
+          right: 600px !important;
+        }
+
+        #tbl_tambah_penerima .twitter-typeahead .tt-dropdown-menu{
+          top: 35px !important;
+          left: auto !important;
+          right: 565px !important;
         }
     </style>
 
@@ -125,7 +165,7 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="pok"><i class="icon-shuffle"></i> POK</a>
+                        <a id="pok_menu" class="nav-link" href="pok"><i class="icon-shuffle"></i> POK</a>
                     </li>
                     <li class="nav-title">
                         Surat-Surat
@@ -147,8 +187,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-doc"></i> SPJ</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a id="suratTugasMenu" class="nav-link" href="spj/honor"><i class="fa fa-credit-card"></i> Honor Dosen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="suratTugasBiasaMenu" class="nav-link" href="spj/transport"><i class="fa fa-bus"></i> Transport Dosen</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pegawai"><i class="icon-people"></i> Pegawai</a>
+                        <a class="nav-link" href="pegawai" id="pegawai_menu"><i class="icon-people"></i> Pegawai</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin"><i class="icon-lock-open"></i> Administrator</a>
@@ -190,9 +241,70 @@
     <!-- Plugins and scripts required by all views -->
     <script src="/js/Chart.min.js"></script>
 
-
     <!-- GenesisUI main scripts -->
-    <script src="/js/app.js"></script>    
+    <script src="/js/app.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/underscore-min.js"></script>
+    <!-- Plugins format uang -->
+    <script src="/js/autoNumeric.min.js"></script>
+
+    <script src="/js/jquery.toast.min.js"></script>
+
+    <script src="/js/jquery.dataTables.js"></script>
+
+    <script src="/js/dataTables.fixedColumns.min.js"></script>
+
+    <script src="/js/typeahead.bundle.min.js"></script>
+
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/id.js"></script>
+    <script src="/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+        var socket = io.connect($(location).attr('host'));
+
+        if(!socket) location.reload();
+
+        $(document).ready(function(){
+            $('#ui-view').on('focus', 'input.format-uang', function () {
+                $(this).autoNumeric('init', {digitGroupSeparator: ',', decimalCharacter: '.', decimalPlacesOverride: '0'});
+            })
+
+            function GlobalAlert(message){
+                $.toast({
+                    text: message,
+                    textAlign: 'left', 
+                    hideAfter: 4000,
+                    loader: false,
+                    position: 'bottom-right'
+                })
+            }
+
+            socket.on('connect', function(data) {
+                socket.emit('join', 'Hello World from client');
+            });
+
+            socket.on('login_required', function(data) {
+                $.toast({
+                    text: data,
+                    textAlign: 'left', 
+                    hideAfter: 2000,
+                    loader: false,
+                    position: 'bottom-right',
+                    allowToastClose: true,
+                    afterHidden: function () {
+                        window.location.replace("http://"+$(location).attr('host')+"/login");
+                    }
+                })
+            });
+
+            socket.on('messages', function(data) {
+                GlobalAlert(data)
+            });
+
+        })
+        
+    </script>   
 </body>
 
 </html>

@@ -3,13 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PegawaiSchema = new Schema({
+	"_id": String,
     "nama" : String,
     "nip" : String,
-    "jabatan" : [String],
+    "jabatan" : String,
     "gol" : String,
-    "sppd_surat" : Number,
-    "sppd_ttdSuratT" : Number,
-    "sppd_st_index" : Number
+    "kode_dosen" : String
 }, { collection: 'pegawai' });
 
 PegawaiSchema.methods.isExist = function(cb) {

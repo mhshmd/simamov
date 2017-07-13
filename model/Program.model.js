@@ -3,14 +3,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProgramSchema = new Schema({
-    _id: String,
+    'kdprogram': String,
     uraian: String,
     jumlah: Number,
-    timestamp: String
+    timestamp: Number,
+    active: {
+        default: true,
+        type: Boolean
+    },
+    old: []
 }, { collection: 'pok_program' });
 
 ProgramSchema.methods.isExist = function(cb) {
-  return this.model('Program').findOne({ _id: this._id }, cb);
+    return this.model('Program').findOne({ 'kdprogram': this.kdprogram }, cb);
 };
 
 ProgramSchema.statics.getAll = function(cb) {

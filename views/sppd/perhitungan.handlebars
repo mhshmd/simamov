@@ -30,7 +30,7 @@
                                             <span class="help-block">wilayah</span>  
                                         </div> 
                                         <div class="col-md-6">                                                
-                                            <input type="text" id="t_dari_t4_asal" class="form-control input-group numberOnly tr" name="t_dari_t4_asal" value="" placeholder="Biaya Transport" required>
+                                            <input type="text" id="t_dari_t4_asal" class="form-control input-group format-uang tr" name="t_dari_t4_asal" value="" placeholder="Biaya Transport" required>
                                             <span class="help-block">biaya transport</span>
                                         </div> 
                                     </div>
@@ -43,7 +43,7 @@
                                             <span class="help-block">wilayah</span>  
                                         </div> 
                                         <div class="col-md-6">                                                
-                                            <input type="text" id="t_dari_t4_tujuan" class="form-control input-group numberOnly tr ft" name="t_dari_t4_tujuan" value="" required>
+                                            <input type="text" id="t_dari_t4_tujuan" class="form-control input-group format-uang tr ft" name="t_dari_t4_tujuan" value="" required>
                                             <span class="help-block">biaya transport</span>                                             
                                         </div> 
                                     </div>
@@ -52,15 +52,15 @@
                                     <label>B. Penginapan</label>                                  
                                     <div class="form-group row">
                                         <div class="col-md-4">                                                
-                                            <input type="text" id="jumlah_menginap" class="form-control input-group numberOnly bp tr ft" name="jumlah_menginap" value="0" required>
+                                            <input type="text" id="jumlah_menginap" class="form-control input-group format-uang bp tr ft" name="jumlah_menginap" value="0" required>
                                             <span class="help-block">jml hari</span>
                                         </div> 
                                         <div class="col-md-4">                                                
-                                            <input type="text" id="biaya_inap" class="form-control input-group numberOnly bp tr ft" name="biaya_inap" value="" required>
+                                            <input type="text" id="biaya_inap" class="form-control input-group format-uang bp tr ft" name="biaya_inap" value="" required>
                                             <span class="help-block">biaya inap</span>                                           
                                         </div> 
                                         <div class="col-md-4">                                                
-                                            <input type="text" id="totalb_inap" class="form-control input-group numberOnly tr ft" name="totalb_inap" value="" required>
+                                            <input type="text" id="totalb_inap" class="form-control input-group format-uang tr ft" name="totalb_inap" value="" required>
                                             <span class="help-block">total b. inap</span>                                           
                                         </div> 
                                     </div>
@@ -69,7 +69,7 @@
                                     <label for="datetimepicker1">Total Riil</label>                                  
                                     <div class="form-group row">
                                         <div class="col-md-6">                                                
-                                            <input type="text" id="total_riil" class="form-control input-group ft numberOnly" name="total_riil" value="" placeholder="Total" required>
+                                            <input type="text" id="total_riil" class="form-control input-group ft format-uang" name="total_riil" value="" placeholder="Total" required>
                                         </div> 
                                         <div class="col-md-12"> 
                                             <input type="text" id="total_terbilang" class="form-control input-group ft" name="total_terbilang" value="" placeholder="Terbilang" required>                                           
@@ -80,21 +80,21 @@
                                 <input style="display: none;" type="text" name="bend_nip" value="{{#with bendahara}}{{nip}}{{/with}}">                                      
                                 <div class="form-group row">
                                     <label for="nomor">Biaya Tiket (Pesawat/K. Api/K. Umum)</label>
-                                    <input type="text" id="harga_tiket" name="harga_tiket" class="form-control ft numberOnly" placeholder="Tiket" value="0" required>
+                                    <input type="text" id="harga_tiket" name="harga_tiket" class="form-control ft format-uang" placeholder="Tiket" value="0" required>
                                 </div>
                                 <div class="form-group row">
                                     <label for="nomor">Uang harian</label>                               
                                     <div class="form-group row">                                    
                                         <div class="col-md-3">      
-                                            <input type="text" id="harian_hari" name="harian_hari" class="form-control ht numberOnly ft" required>
+                                            <input type="text" id="harian_hari" name="harian_hari" class="form-control ht format-uang ft" required>
                                             <span class="help-block">hari</span>  
                                         </div> 
                                         <div class="col-md-4"> 
-                                            <input type="text" id="harian_biaya" class="form-control input-group ht numberOnly ft" name="harian_biaya" required>
+                                            <input type="text" id="harian_biaya" class="form-control input-group ht format-uang ft" name="harian_biaya" required>
                                             <span class="help-block">biaya harian</span>  
                                         </div>  
                                         <div class="col-md-5"> 
-                                            <input type="text" id="harian_total" name="harian_total" class="form-control ft numberOnly" required> 
+                                            <input type="text" id="harian_total" name="harian_total" class="form-control ft format-uang" required> 
                                             <span class="help-block">total b. harian</span>  
                                         </div> 
                                     </div>
@@ -103,15 +103,15 @@
                                     <label>Hotel</label>                                
                                     <div class="form-group row">                                    
                                         <div class="col-md-3">      
-                                            <input type="text" id="hotel_hari" name="hotel_hari" class="form-control uh numberOnly ft" required>
+                                            <input type="text" id="hotel_hari" name="hotel_hari" class="form-control uh format-uang ft" required>
                                             <span class="help-block">hari</span> 
                                         </div> 
                                         <div class="col-md-4"> 
-                                            <input type="text" id="hotel_biaya" class="form-control input-group uh numberOnly ft" name="hotel_biaya" value="0" required>
+                                            <input type="text" id="hotel_biaya" class="form-control input-group uh format-uang ft" name="hotel_biaya" value="0" required>
                                             <span class="help-block">biaya hotel</span>                                            
                                         </div>  
                                         <div class="col-md-5"> 
-                                            <input type="text" id="hotel_total" class="form-control input-group ft numberOnly" name="hotel_total" value="0" required>
+                                            <input type="text" id="hotel_total" class="form-control input-group ft format-uang" name="hotel_total" value="0" required>
                                             <span class="help-block">total b. hotel</span>                                            
                                         </div> 
                                     </div>
@@ -120,7 +120,7 @@
                                     <label for="nomor">Total Perincian</label>                             
                                     <div class="form-group row">                                    
                                         <div class="col-md-12">
-                                            <input type="text" id="total_rincian" name="total_rincian" class="form-control numberOnly ft" placeholder="Total rincian" required>   
+                                            <input type="text" id="total_rincian" name="total_rincian" class="form-control format-uang ft" placeholder="Total rincian" required>   
                                         </div> 
                                         <div class="col-md-12"> 
                                             <input type="text" id="total_rincian_terbilang" class="form-control input-group" name="total_rincian_terbilang" value="" placeholder="Terbilang" required>                                          
@@ -227,8 +227,6 @@
 <script src="/js/typeahead.bundle.min.js"></script>
 
 <script src="/js/jquery.dataTables.min.js"></script>
-
-<script src="/js/autoNumeric.min.js"></script>
 
 <script type="text/javascript">
     document.title = 'Perhitungan - SIMAMOV';
@@ -396,8 +394,11 @@
         }
     });
 
-    $('.numberOnly').autoNumeric('init', {digitGroupSeparator: '.', decimalCharacter: ',', decimalPlacesOverride: '0'});
-    $('.numberOnly').css('text-align', 'right');
+    // $('.format-uang').autoNumeric('init', {digitGroupSeparator: ',', decimalCharacter: '.', decimalPlacesOverride: '0'});
+    // $('.format-uang').change(function(){
+    //     console.log(+$('.format-uang').autoNumeric('get')+ 20000)
+    // })
+    // $('.format-uang').css('text-align', 'right');
     // on({
     //     'keypress': function(e){
     //         var regex = new RegExp("^[0-9]+$");

@@ -3,15 +3,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var KegiatanSchema = new Schema({
-    _id: String,
-    prog: String,
+    'kdprogram': String,
+    'kdgiat': String,
     uraian: String,
     jumlah: Number,
-    timestamp: String
+    timestamp: Number,
+    active: {
+        default: true,
+        type: Boolean
+    },
+    old: []
 }, { collection: 'pok_kegiatan' });
 
 KegiatanSchema.methods.isExist = function(cb) {
-  return this.model('Kegiatan').findOne({ _id: this._id }, cb);
+    return this.model('Kegiatan').findOne({ 'kdprogram': this.kdprogram, 'kdgiat': this.kdgiat }, cb);
 };
 
 KegiatanSchema.statics.getAll = function(cb) {

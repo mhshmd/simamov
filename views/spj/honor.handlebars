@@ -1,0 +1,92 @@
+<div class="animated fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card-group mb-0">
+                    <div class="card p-2">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3><i class="fa fa-credit-card fa-lg mt-2"></i> SPJ Honor</h3>
+                                    <p class="text-muted">Buat SPJ Honor Dosen</p>
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label class="radio-inline" for="import_radio" style="margin-left: 10px">
+                                        <input type="radio" id="import_radio" name="data_source" value="0" checked="checked">Import Data
+                                    </label>
+                                    <label class="radio-inline" for="sipadu_radio">
+                                        <input id="sipadu_radio" type="radio" name="data_source" value="1">SIPADU
+                                    </label>
+                                </div>
+                            </div>  
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <form id="form_upload_csv" enctype="multipart/form-data" method="post" action="/spj/honor">
+                                        <div class="form-group row">
+                                            <label for="nomor">Tanggal Pembuatan Surat</label>
+                                            <input type="text" id="tgl_buat_surat" name="tgl_buat_surat" class="form-control" required>
+                                        </div> 
+                                        <div class="form-group row">
+                                            <label for="nomor">File csv</label>
+                                            <input name="pok_file" type="file" class="form-control" required/>
+                                        </div> 
+                                        <div class="row">
+                                            <button id="unggah_xlsx_button" class="px-2" type="submit">Buat Surat</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <iframe id="realTimeView" class="preview-pane" type="application/pdf" width="100%" height="690" frameborder="0" style="position:relative;z-index:999;" src=""></iframe>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //Inisialisasi pdf viewer
+        $("#realTimeView").attr("src", 'http://'+location.host+'/result/SPJHonor.pdf');
+        
+        $("#tgl_buat_surat").val(moment().format('D MMMM YYYY'));
+        $('#tgl_buat_surat').datetimepicker({
+            locale: 'id',
+            format: 'D MMMM YYYY',
+            useCurrent: false,
+            widgetPositioning: {
+                horizontal: 'left',
+                vertical: 'bottom'
+            }
+        });
+
+        // submit unggah csv
+        $('#form_upload_csv').on('submit', function(e) {
+            e.preventDefault();
+            $("#unggah_xlsx_button").prop("disabled",true);
+            $("#unggah_xlsx_button").html('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i> '+$("#unggah_xlsx_button").text());
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    $("#realTimeView").attr("src", 'http://'+location.host+'/result/'+data);
+                    $("#unggah_xlsx_button").prop("disabled",false);
+                    $("#unggah_xlsx_button").html('Buat Surat');
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    })
+</script>
